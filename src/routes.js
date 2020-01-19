@@ -15,6 +15,7 @@ const Shift = React.lazy(() =>import('./views/Shift/Shift'));
 const AppUserProfile = React.lazy(()=>import('./views/AppUserProfile/AppUserProfile'));
 const AppUserForm = React.lazy(()=>import('./views/AppUserForm/AppUserForm'));
 const AppUser = React.lazy(()=>import('./views/AppUser/AppUser'));
+const EditAppUser = React.lazy(()=>import('./views/EditAppUser/EditAppUser'));
 
 //CLIENT
 const Client = React.lazy(()=>import('./views/Client/Client'));
@@ -60,6 +61,7 @@ const routes = [
     { path:'/AppUser',name:'AppUser',component: AppUser},
     { path:'/AppUserForm',name:'AppUserForm',component: AppUserForm},
     { path:'/AppUserProfile',name:'AppUserProfile',component: AppUserProfile},
+    { path:'/EditAppUser',name:'EditAppUser',component: EditAppUser},
 
     //Clientes - clientes
     { path:'/Client',name:'Client',component: Client},

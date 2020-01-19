@@ -64,7 +64,7 @@ class ItemQuantityForm extends Component {
         let params = {
 
         };
-        var url = withParams(constants.BACKEND_URL+"/ItemQuantity/sale", params);
+        var url = withParams(constants.BACKEND_URL+"/pos/Sale", params);
         fetch(url, {
             method: "POST",
             headers: headers,

@@ -6,7 +6,7 @@ import "../../stylesheets/layout/_adminLayout.scss";
 import {deleteCookie, getCookie, getJWtProperty, withParams} from "../../utils";
 import {setIdAppUser,setAppUser,setModules,setClientData,setNitIdClientHashMap,
     setClientBillNameArray,setClientNitArray,setNitClientHashMap,setItemQuantityHashMap,
-    setItemQuantityCode, setWarehouse, setShift, setCompany} from "../../redux/actions";
+    setItemQuantityCode, setWarehouse, setShift, setCompany, setCurrency} from "../../redux/actions";
 import moment from "moment";
 import {connect} from "react-redux";
 import * as constants from "../../constants";
@@ -39,6 +39,7 @@ class AdminLayout extends Component {
         this.loadWarehouse();
         this.loadShift();
         this.loadCompany();
+        this.loadCurrency();
     };
 
     loadNitIdClientHashMap = () => {
@@ -281,6 +282,30 @@ class AdminLayout extends Component {
         });
     };
 
+    loadCurrency(){
+        var headers = {
+            "Content-Type": "application/json; charset=utf-8",
+            Authorization: getCookie("JWT")
+        };
+        let me = this;
+        let params = {
+            idAppUser: getJWtProperty("idAppUser")
+        };
+        var url = withParams(constants.BACKEND_URL+"/pos/Currency/reducer", params);
+        fetch(url, {
+            method: "GET",
+            headers: headers
+        }).then(response => response.json())
+             .then(function(response) {
+                 if(response.success){
+                     me.props.setCurrency(response.data);
+                 }
+             }).catch(function(error) {
+            me.logout();
+            console.log(error);
+        });
+    }
+
     handleActiveSubmenu=(newActiveSubmenu)=>{
         this.setState({activeSubmenu:newActiveSubmenu});
         console.log("GOING TO SUBMENU; ",newActiveSubmenu.replace( /\s/g, ''));
@@ -315,4 +340,4 @@ class AdminLayout extends Component {
 
 export default withRouter(connect(null,{setIdAppUser,setAppUser,setModules,setClientData,
     setNitIdClientHashMap,setClientBillNameArray,setClientNitArray,setNitClientHashMap,
-    setItemQuantityHashMap,setItemQuantityCode, setWarehouse, setShift, setCompany})(AdminLayout));
+    setItemQuantityHashMap,setItemQuantityCode, setWarehouse, setShift, setCompany, setCurrency})(AdminLayout));

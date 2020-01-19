@@ -78,7 +78,7 @@ class WarehouseTable extends Component {
                       loadTablePage={this.loadClientTablePage}
                       length={this.props.clientCount}
                       onRowClick={this.onRowClick}
-                      title={"Warehouse"}
+                      title={"Almacenes"}
                       pageSize={Math.floor(this.state.windowHeight/50)}
                  />
                  <Row type="flex" justify="end">

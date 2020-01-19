@@ -25,7 +25,9 @@ class PaginatedLazyTable extends Component {
         pageData:{
             0:[],
             1:[]
-        }
+        },
+        rowHeight: 35,
+        headerHeight: 54
     };
 
     componentDidMount() {
@@ -36,8 +38,8 @@ class PaginatedLazyTable extends Component {
 
     thStyle = width => {
         return {
-            width:width ,
-            height:"40px"
+            width: width,
+            height: this.state.headerHeight.toString()+"px"
         };
     };
 
@@ -48,7 +50,10 @@ class PaginatedLazyTable extends Component {
     };
 
     theadStyle = {
-        background: "#fafafa"
+        background: "#fafafa",
+        borderBottomColor: "#ECEDF0",
+        borderBottomWidth: "1px",
+        borderBottomStyle: "solid"
     };
 
     thead = () => {
@@ -57,15 +62,20 @@ class PaginatedLazyTable extends Component {
         });
         return (
              <thead style={this.theadStyle}>
-             <tr>
-                 {headers}
-             </tr>
+                 <tr>
+                     {headers}
+                 </tr>
              </thead>
         );
     };
 
     trStyle = {
-        cursor:"pointer"
+        cursor:"pointer",
+        height:this.state.rowHeight.toString()+"px"
+    };
+
+    trStyleEmpty = {
+        height:this.state.rowHeight.toString()+"px"
     };
 
     tr = (row,index) => {
@@ -92,7 +102,7 @@ class PaginatedLazyTable extends Component {
             tds.push(this.td(row[fields[i]],i,index%2===0?"white":"#ECEDF0"));
         }
         return(
-             <tr key={index}>
+             <tr style={this.trStyleEmpty} key={index}>
                  {tds}
              </tr>
         );
@@ -114,7 +124,10 @@ class PaginatedLazyTable extends Component {
     tableStyle = {
         background:"white",
         display:"inline-table",
-        width: "100%"
+        width: "100%",
+        borderBottomColor: "#ECEDF0",
+        borderBottomWidth: "1px",
+        borderBottomStyle: "solid"
     };
 
     titleStyles = {
@@ -198,7 +211,7 @@ class PaginatedLazyTable extends Component {
     };
 
     tableContainerStyle = {
-        height: Math.max(((this.props.pageSize*30)+40),190).toString()+"px",
+        height: Math.max(((this.props.pageSize*this.state.rowHeight)+this.state.headerHeight),190).toString()+"px",
         background:"white",
         textAlign:"center"
     };

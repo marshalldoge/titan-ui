@@ -33,6 +33,7 @@ class ItemFileManager extends Component {
     }
 
     handleSubmit = files => {
+        let me = this;
         let formData  = new FormData();
         formData.append("file",files[0]);
         let headers={
@@ -46,14 +47,16 @@ class ItemFileManager extends Component {
             method: "POST",
             body: this.state.file,
             headers: headers
-        }).then(function (res) {
-            if (res.ok) {
-                alert("El archivo se ha subido correctamente. ");
-            } else if (res.status === 401) {
-                alert("Oops! ");
-            }
-        }, function (e) {
-            alert("Error submitting form!");
+        }).then(response => response.json())
+             .then(function (response) {
+                 //console.log("me in getpage fetch is ",me);
+                 if(response.success){
+                     alert("El archivo se ha subido correctamente")
+                 }else{
+                     alert("Ha habido un error: " + response.message);
+                 }
+             }).catch(function (error) {
+                 alert("Ha habido un error: " + error);
         });
     };
 

@@ -1,5 +1,8 @@
 .tr {
   &:hover {
-    opacity: 0.7;
+    background-color: grey;
   }
+}
+.tr:hover {
+  background-color: grey;
 }

@@ -5,18 +5,18 @@ import "antd/dist/antd.css";
 import "../../stylesheets/layout/_adminLayout.scss";
 import "../../redux/reducers/appUserReducer";
 import "../../stylesheets/views/shift/_shift.scss";
-import "./_Button.scss";
+import "./_EditAppUser.scss";
 
 
-class Button extends Component {
-
+class EditAppUser extends Component {
+	//TODO: Make a form to edit appuser basic information
 	render() {
 		return (
-			<div className={"buttonCtn "+this.props.size+" "+(this.props.inverse?"inverse":"")} onClick={this.props.onClick}>
-				<span className={"label "+this.props.size+" "+(this.props.inverse?"inverse":"")}>{this.props.label}</span>
-			</div>
+			 <div className={"buttonCtn "+this.props.size} onClick={this.props.onClick}>
+				 <span className={"label "+this.props.size}>{"LoL"}</span>
+			 </div>
 		);
 	}
 }
 
-export default Button;
+export default EditAppUser;

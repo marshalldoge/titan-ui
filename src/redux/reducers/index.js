@@ -6,6 +6,7 @@ import clientReducer from "./clientReducer";
 import itemQuantityReducer from "./itemQuantityReducer";
 import warehouseReducer from "./warehouseReducer";
 import companyReducer from "./companyReducer";
+import currencyReducer from "./currencyReducer";
 
 export default combineReducers({ appUserReducer, moduleReducer, shiftReducer,
-    clientReducer, itemQuantityReducer, warehouseReducer, companyReducer});
+    clientReducer, itemQuantityReducer, warehouseReducer, companyReducer, currencyReducer});

@@ -11,7 +11,7 @@ import ModuleForm from "../../components/ModuleForm/ModuleForm";
 import ShiftTable from "../../components/ShiftTable/ShiftTable";
 import {BACKEND_URL} from "../../constants";
 
-
+const Description= React.lazy(() => import("../../components/Description/Description"));
 const { TabPane } = Tabs;
 const { Title } = Typography;
 
@@ -47,6 +47,14 @@ class AppUserProfile extends Component {
             });
     };
 
+    onEditClick = record => {
+        console.log("Clicked row: ",record);
+        this.props.history.push({
+            pathname: "EditAppUser",
+            search: "?idAppUser=" + record.id
+        })
+    };
+
 
     ModuleConfigurationTab = () => {
         if(true){
@@ -62,22 +70,15 @@ class AppUserProfile extends Component {
         console.log(key);
     };
 
+
     render() {
         return (
             <div>
-                <Title level={3}>{this.state.AppUser.fullName}</Title>
                 <Row>
-                    <Col span={8}>
-                        FOTO
-                    </Col>
-                    <Col span={16}>
-                        <Row>
-                            Name : {this.state.AppUser.fullName}
-                        </Row>
-                        <Row>
-                            Id : {this.state.AppUser.id}
-                        </Row>
-                    </Col>
+                    <Description
+                        person = {this.state.AppUser}
+                        onEditClick = {this.onEditClick}
+                    />
                 </Row>
                 <Tabs defaultActiveKey="1" onChange={this.callback}>
                     <TabPane tab="Ventas" key="1">

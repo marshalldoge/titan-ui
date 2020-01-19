@@ -4,7 +4,8 @@ const initialState = {
     idCompany:null,
     clientCount:null,
     saleCount: null,
-    purchaseCount: null
+    purchaseCount: null,
+    supplierCount: null
 };
 
 export default function(state = initialState, action) {
@@ -19,7 +20,8 @@ export default function(state = initialState, action) {
                 idCompany:company.id,
                 clientCount:company.clientCount,
                 saleCount:company.saleCount,
-                purchaseCount:company.purchaseCount
+                purchaseCount:company.purchaseCount,
+                supplierCount:company.supplierCount
             };
         }
         case INCREASE_COMPANY_SALE_COUNT:{

@@ -1,6 +1,6 @@
 import React, {Component, Suspense} from "react";
 import {withRouter, Switch, Redirect, Route} from "react-router-dom";
-import {Layout, Breadcrumb, Row, Form} from "antd";
+import {Layout, Row, Form} from "antd";
 import "antd/dist/antd.css";
 import "../../stylesheets/layout/_adminLayout.scss";
 import "./_Body.scss"
@@ -55,10 +55,6 @@ class Body extends Component {
     render() {
         return (
             <Content>
-                <Breadcrumb style={{margin: "16px 0"}}>
-                    <Breadcrumb.Item>{this.props.activeSubmenu}</Breadcrumb.Item>
-                    <Breadcrumb.Item>{this.props.activeSubmenu}</Breadcrumb.Item>
-                </Breadcrumb>
                 <div className="body">
                     <Row justify="center">
                         <Suspense fallback={this.loading()}>

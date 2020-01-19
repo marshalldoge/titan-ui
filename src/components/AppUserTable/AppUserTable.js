@@ -63,10 +63,6 @@ class AppUserTable extends Component {
         })
     };
 
-    goToClientForm = () => {
-        this.props.history.push("/AdminPage/AppUserForm");
-    };
-
     render() {
         console.log("Props: ",this.props);
         console.log("Number of rows in client table: ",Math.floor(this.state.windowHeight/100));
@@ -81,11 +77,6 @@ class AppUserTable extends Component {
                       title={"Usuarios"}
                       pageSize={Math.floor(this.state.windowHeight/50)}
                  />
-                 <Row type="flex" justify="end">
-                     <Col span={6}>
-                         <Button style={{width:"100%"}} size={"small"} onClick={this.goToClientForm}>Añadir Usuario</Button>
-                     </Col>
-                 </Row>
              </div>
         );
     }

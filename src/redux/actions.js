@@ -3,7 +3,7 @@ import {SET_APPUSER, SET_NAME_ID_HASHMAP, SET_MODULE, SET_SHIFT,
     SET_CLIENT_NIT_ARRAY, SET_NIT_CLIENT_HASHMAP,SET_ITEM_QUANTITY,
     SET_ITEM_QUANTITY_CODE, SET_WAREHOUSE, SET_ID_WAREHOUSE, CLOSE_SHIFT,
     INCREASE_SALE_COUNT, SET_COMPANY, INCRESE_CLIENT_SALE_COUNT,
-    INCREASE_COMPANY_SALE_COUNT} from "./actionTypes";
+    INCREASE_COMPANY_SALE_COUNT,SET_CURRENCY} from "./actionTypes";
 
 export const setAppUser = AppUser => ({
     type: SET_APPUSER,
@@ -118,6 +118,11 @@ export const increaseClientSaleCount = idClient => ({
 
 export const increaseCompanySaleCount = () => ({
     type : INCREASE_COMPANY_SALE_COUNT
+});
+
+export const setCurrency = hashmap => ({
+    type: SET_CURRENCY,
+    payload: hashmap
 });
 
 

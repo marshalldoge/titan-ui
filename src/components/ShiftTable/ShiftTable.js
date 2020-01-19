@@ -54,7 +54,7 @@ class ShiftTable extends Component {
             idAppUser: this.props.idAppUser,
             page: page
         };
-        var url = withParams(constants.BACKEND_URL + "/Shift/findAllByIdAppUserPaginated", params);
+        var url = withParams(constants.BACKEND_URL + "/pos/Shift/findAllByIdAppUserPaginated", params);
         fetch(url, {
             method: "GET",
             headers: headers

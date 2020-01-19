@@ -7,10 +7,11 @@ import "../../redux/reducers/appUserReducer"
 import "../../stylesheets/views/shift/_shift.scss"
 import {connect} from "react-redux";
 import moment from "moment";
-import {getCookie, withParams} from "../../utils";
+import {deleteCookie, getCookie, withParams} from "../../utils";
 import * as constants from "../../constants";
 import "./_Shift.scss";
 import {closeShift, openShift, setIdShift, setShift} from "../../redux/actions";
+import clientReducer from "../../redux/reducers/clientReducer";
 
 const Button = React.lazy(() => import("../../components/Button/Button"));
 const PaginatedLazyTable= React.lazy(() => import("../../components/PaginatedLazyTable/PaginatedLazyTable"));
@@ -23,10 +24,10 @@ class Shift extends Component {
         columnDefs: [
             {headerName: "ID", field: "id", width: "10%"},
             {headerName: "Hora", field: "time", width: "15%"},
-            {headerName: "Cliente", field: "idClient", width: "30%"},
+            {headerName: "Cliente", field: "billName", width: "30%"},
             {headerName: "Pagado", field: "paid", width: "15%"},
             {headerName: "Total", field: "total", width: "15%"},
-            {headerName: "Moneda", field: "idCurrency", width: "15%"}
+            {headerName: "Moneda", field: "currency", width: "15%"}
         ],
         windowHeight: document.body.clientHeight,
         now: moment()
@@ -167,6 +168,7 @@ class Shift extends Component {
                   label={"Cerrar Caja"}
                   size={"medium"}
                   onClick={this.closeShift}
+                  inverse={true}
              />
         );
     };
@@ -198,6 +200,9 @@ class Shift extends Component {
                          for(let i=0;i<response.data.content.length;i++){
                              response.data.content[i].time =
                                   moment(response.data.content[i].time,"YYYY-MM-DD[T]HH:mm:ss").format("HH:mm:ss");
+                             response.data.content[i]["billName"] = me.props.clientHashMap[response.data.content[i].idCurrency].billName;
+                             response.data.content[i]["currency"] = me.props.currencyHashMap[response.data.content[i].idCurrency].abbreviation;
+                             console.log("new: ",response.data.content[i]["currency"]);
                          }
                          prevState.pageData[page]=response.data.content;
                          console.log("New state:",prevState);
@@ -209,17 +214,26 @@ class Shift extends Component {
         });
     };
 
+    onRowClick = record => {
+        this.props.history.push({
+            pathname: "SaleProfile",
+            search: "?idSale=" + record.id
+        })
+    };
+
     SaleTable = () => {
         return(
              <PaginatedLazyTable
+                  clientHashMap = {this.props.clientHashMap}
+                  currencyHashMap = {this.props.currencyHashMap}
                   idAppUser={this.props.idAppUser}
                   idShift={this.props.idShift}
                   columnDefs={this.state.columnDefs}
                   loadTablePage={this.loadSaleTablePageByIdShift}
-                  length={this.state.length}
+                  length={12}
                   onRowClick={this.onRowClick}
                   title={"Ventas"}
-                  pageSize={Math.floor(this.state.windowHeight/50)}
+                  pageSize={11}
              />
         );
     };
@@ -249,11 +263,13 @@ class Shift extends Component {
 }
 
 const mapStateToProps = state => {
-    const { appUserReducer, shiftReducer } = state;
-    const { idAppUser, idShift, inShift } = appUserReducer;
+    const { appUserReducer, shiftReducer, currencyReducer, clientReducer } = state;
+    const { idAppUser, idShift, inShift, saleCount } = appUserReducer;
     const { open } = shiftReducer;
+    const { currencyHashMap } = currencyReducer;
+    const { clientHashMap } = clientReducer;
     console.log("idShift Received: ",idShift);
-    return {idAppUser, idShift, open, inShift};
+    return {idAppUser, idShift, open, inShift, saleCount, currencyHashMap, clientHashMap};
 };
 
 export default withRouter(connect(mapStateToProps,{openShift, setIdShift, closeShift, setShift})(Shift));
