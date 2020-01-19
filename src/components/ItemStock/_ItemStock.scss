@@ -1,0 +1,21 @@
+.itemCode {
+  text-align: center;
+}
+.itemName{
+  text-align: center;
+}
+.itemCtn {
+  border-width: 1px;
+  border-style: solid;
+  border-color: whitesmoke;
+}
+.itemBox {
+  cursor: pointer;
+  border-width: 1px 1px 1px 5px;
+  background-color: white;
+  border-color: transparent transparent gray #003152;
+  border-style: solid;
+  vertical-align: center;
+  height: 100%;
+  width: 100%;
+}

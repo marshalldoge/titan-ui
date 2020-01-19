@@ -12,6 +12,7 @@ const ItemStock= React.lazy(() => import("../../components/ItemStock/ItemStock")
 class Item extends Component {
 
     loadItemButton = () => {
+        /*
         if(this.props.modules.Modules["Item"].actions["Create"]){
             //console.log("RENDERING BUTTON");
             return(
@@ -20,6 +21,8 @@ class Item extends Component {
         }else{
             return null;
         }
+
+         */
     };
 
     goToItemManager = () => {

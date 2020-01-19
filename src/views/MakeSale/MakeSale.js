@@ -46,7 +46,7 @@ class MakeSale extends Component {
             idAppUser: this.props.idAppUser,
             page: page
         };
-        var url = withParams(constants.BACKEND_URL + "/Sale/findSaleByIdAppUserAndIdShiftPaginated", params);
+        var url = withParams(constants.BACKEND_URL + "/pos/Sale/findSaleByIdAppUserAndIdShiftPaginated", params);
         fetch(url, {
             method: "GET",
             headers: headers

@@ -1,0 +1,42 @@
+.buttonCtn {
+  background-color: whitesmoke;
+  cursor: pointer;
+  border-width: 2px;
+  border-radius: 1px;
+  border-style: solid;
+  border-color: #003152;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+  &.expanded {
+    width: 100%;
+    height: 100%;
+  }
+  &.big {
+    width: 200px;
+    line-height: 60px;
+  }
+  &.medium {
+    width: 150px;
+    line-height: 40px;
+  }
+}
+.label {
+  display: block;
+  vertical-align: middle;
+  &.expanded {
+    font-size: 25px;
+    font-weight: bolder;
+    color: #003152;
+  }
+  &.big {
+    font-size: 25px;
+    font-weight: bolder;
+    color: #003152;
+  }
+  &.medium {
+    font-size: 15px;
+    font-weight: bolder;
+    color: #003152;
+  }
+}

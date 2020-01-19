@@ -7,6 +7,8 @@ import {connect} from "react-redux";
 import "antd/dist/antd.css";
 import "../../stylesheets/components/appUserTable/_appUserTable.scss";
 
+const PaginatedLazyTable= React.lazy(() => import("../../components/PaginatedLazyTable/PaginatedLazyTable"));
+
 class SupplierTable extends Component {
     constructor(props) {
         super(props);
@@ -15,94 +17,21 @@ class SupplierTable extends Component {
 
     state={
         columns: [],
-        data: []
+        data: [],
+        columnDefs: [
+            {headerName: "ID", field: "id", width: "10%"},
+            {headerName: "Nombre", field: "fullname", width: "60%"},
+            {headerName: "Celular", field: "cellphone", width: "30%"},
+        ],
+        loadPageFunction: null,
+        length: null,
+        windowHeight: document.body.clientHeight
     };
 
     componentDidMount() {
-        this.loadFields();
         this.loadData();
     }
 
-    loadFields=()=>{
-        var headers = {
-            "Content-Type": "application/json; charset=utf-8",
-            Authorization: getCookie("JWT")
-        };
-        let me = this;
-        var url = constants.BACKEND_URL+"/Supplier/fields";
-        fetch(url, {
-            method: "GET",
-            headers: headers
-        })
-            .then(response => response.text())
-            .then(function(data) {
-                console.log("Columns fields: ",data);
-                let columnsName=data.split(',');
-                let futureColumns=[];
-                for(let i in columnsName){
-                    let name=columnsName[i];
-                    let column={};
-                    switch(name){
-                        case "id":
-                            column["title"]="ID";
-                            column["width"]='5%';
-                            column["key"]=i;
-                            column["dataIndex"]=name;
-                            column["className"]="table-column "+name;
-                            futureColumns.push(column);
-                            break;
-                        case "fullName":
-                            column["title"]="Nombre";
-                            column["width"]='40%';
-                            column["key"]=i;
-                            column["dataIndex"]=name;
-                            column["className"]="table-column "+name;
-
-                            futureColumns.push(column);
-                            break;
-                        case "username":
-                            column["title"]="Nick";
-                            column["width"]='10%';
-                            column["key"]=i;
-                            column["dataIndex"]=name;
-                            column["className"]="table-column "+name;
-                            futureColumns.push(column);
-                            break;
-                        /*case "password":
-                            column["title"]="Contraseña";
-                            column["width"]="10%";
-                            column["key"]=i;
-                            column["dataIndex"]=name;
-                            column["className"]="table-column "+name;
-                            futureColumns.push(column);
-                            break;
-
-                         */
-                        case "role":
-                            column["title"]="Rol";
-                            column["width"]='10%';
-                            column["key"]=i;
-                            column["dataIndex"]=name;
-                            column["className"]="table-column "+name;
-                            futureColumns.push(column);
-                            break;
-                        case "location":
-                            column["title"]="Ubicacion";
-                            column["width"]='20%';
-                            column["key"]=i;
-                            column["dataIndex"]=name;
-                            column["className"]="table-column "+name;
-                            futureColumns.push(column);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                console.log(futureColumns);
-                me.setState({columns:futureColumns});
-                console.log("Future columns for user table: ",futureColumns);
-            });
-    }
     loadData=()=>{
         var headers = {
             "Content-Type": "application/json; charset=utf-8",
@@ -112,7 +41,7 @@ class SupplierTable extends Component {
         let params = {
             idCompany:this.props.idCompany
         };
-        var url = withParams(constants.BACKEND_URL+"/Supplier/findAllByIdCompany",params);
+        var url = withParams(constants.BACKEND_URL+"/pos/Supplier/findAllByIdCompany",params);
         fetch(url, {
             method: "GET",
             headers: headers

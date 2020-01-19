@@ -3,7 +3,7 @@ import {withRouter, Switch, Redirect, Route} from "react-router-dom";
 import {Layout, Breadcrumb, Row, Form} from "antd";
 import "antd/dist/antd.css";
 import "../../stylesheets/layout/_adminLayout.scss";
-import "../../stylesheets/components/body/_body.scss"
+import "./_Body.scss"
 // routes config
 import routes from '../../routes';
 

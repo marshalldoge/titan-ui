@@ -5,8 +5,9 @@ import { getCookie, withParams} from "../../utils.js";
 import * as constants from "../../constants"
 import {connect} from "react-redux";
 import "antd/dist/antd.css";
-import "../../redux/reducers/moduleReducer"
+import "../../redux/reducers/moduleReducer";
 import "../../stylesheets/components/appUserTable/_appUserTable.scss";
+import "./_ItemStock.scss";
 
 class ItemStock extends Component {
 
@@ -39,7 +40,7 @@ class ItemStock extends Component {
         let me = this;
         let params = {
             page: page,
-            pageSize: this.props.pageSize?this.props.pageSize:10
+            pageSize: this.props.pageSize?this.props.pageSize:20
         };
         let url = withParams(constants.BACKEND_URL + "/wms/Item/findAllPaginated", params);
         fetch(url, {
@@ -60,6 +61,12 @@ class ItemStock extends Component {
         });
     };
 
+    Title = () => {
+        return (
+             <h1>{"Productos"}</h1>
+        );
+    };
+
     onRowClick = record => {
         //const idSale = record.id;
         console.log("Clicked row: ",record);
@@ -70,19 +77,6 @@ class ItemStock extends Component {
             search: "?idItem=" + idItem
         })
          */
-    };
-
-    itemBoxStyle = {
-        borderRadius:"10px",
-        verticalAlign: "center",
-        height: "100%",
-        width:"300x"
-    };
-
-    rowStyle = {
-        background:"white",
-        height: "50px",
-        borderRadius: "10px"
     };
 
     itemBox = (item,index) => {
@@ -110,10 +104,10 @@ class ItemStock extends Component {
             conversionArray = [];
         }
         return(
-          <div style={this.itemBoxStyle} key={index}>
-              <Row style={this.rowStyle}>
-                  <Col span={4}>{item.code}</Col>
-                  <Col span={7}>{item.description}</Col>
+          <div className={"itemBox"} key={index}>
+              <Row align="middle">
+                  <Col className={"itemCode"} span={4}>{item.code}</Col>
+                  <Col className={"itemName"} span={7}>{item.description}</Col>
                   <Col span={13}>
                       <Row>
                           {firstRow}
@@ -128,10 +122,10 @@ class ItemStock extends Component {
         );
     };
 
-    container = () => {
+    Container = () => {
         let boxes = this.state.pageData[this.state.currentPage].map((item,index) => this.itemBox(item,index));
         return (
-          <div>
+          <div className={"itemCtn"}>
               {boxes}
           </div>
         );
@@ -176,7 +170,8 @@ class ItemStock extends Component {
         console.log("Props: ",this.props);
         return (
             <div>
-                {this.container()}
+                {this.Title()}
+                {this.Container()}
                 {this.pagination()}
             </div>
         );

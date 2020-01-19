@@ -21,6 +21,14 @@ class ClientProfile extends Component {
         this.loadClientData();
     }
 
+    descriptionStyle = {
+        background:"white",
+        borderRadius:"10px",
+        padding:"10px",
+        width:"100%",
+        marginTop:"5px"
+    };
+
     loadClientData = () => {
         let idClient = getUrlParams("idClient");
         const headers = {
@@ -64,7 +72,7 @@ class ClientProfile extends Component {
                             pageSize={10}
                         />}
                     </TabPane>
-                    <TabPane tab="Compras" key="2">
+                    <TabPane tab="Credito" key="2">
                         Content of Tab Pane 2
                     </TabPane>
                 </Tabs>

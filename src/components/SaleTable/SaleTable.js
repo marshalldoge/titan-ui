@@ -83,7 +83,7 @@ class SaleTable extends Component {
             page: page,
             pageSize: this.props.pageSize
         };
-        let url = withParams(constants.BACKEND_URL + "/Sale/findByIdClientPaginated", params);
+        let url = withParams(constants.BACKEND_URL + "/pos/Sale/findByIdClientPaginated", params);
         fetch(url, {
             method: "GET",
             headers: headers
@@ -108,8 +108,7 @@ class SaleTable extends Component {
     };
 
     loadSaleTablePageByIdCompany(page) {
-        //console.log("sale tale props: ",this.props);
-        //console.log("Loading page: ",page);
+        console.log("asdafsdfasdfasdf");
         var headers = {
             "Content-Type": "application/json; charset=utf-8",
             Authorization: getCookie("JWT")
@@ -120,7 +119,7 @@ class SaleTable extends Component {
             page: page,
             pageSize: this.props.pageSize
         };
-        let url = withParams(constants.BACKEND_URL + "/Sale/findByIdCompanyPaginated", params);
+        let url = withParams(constants.BACKEND_URL + "/pos/Sale/findByIdCompanyPaginated", params);
         fetch(url, {
             method: "GET",
             headers: headers
@@ -135,7 +134,7 @@ class SaleTable extends Component {
                                 moment(response.data.content[i].time,"YYYY-MM-DD[T]HH:mm:ss").format("HH:mm:ss");
                         }
                         prevState.pageData[page]=response.data.content;
-                        console.log("New state:",prevState);
+                        console.log("Sale by company: :",prevState);
                         return prevState;
                     });
                 }
@@ -157,7 +156,7 @@ class SaleTable extends Component {
             page: page,
             pageSize: this.props.pageSize
         };
-        let url = withParams(constants.BACKEND_URL + "/Sale/findByIdAppUserPaginated", params);
+        let url = withParams(constants.BACKEND_URL + "/pos/Sale/findByIdAppUserPaginated", params);
         fetch(url, {
             method: "GET",
             headers: headers
@@ -191,7 +190,7 @@ class SaleTable extends Component {
     };
 
     SaleTable = () => {
-        if(this.state.length && this.state.loadPageFunction){
+        if(this.state.length != null && this.state.loadPageFunction){
             return(
                 <PaginatedLazyTable
                     idCompany={this.props.idCompany}
@@ -203,7 +202,7 @@ class SaleTable extends Component {
                     length={this.state.length}
                     onRowClick={this.onRowClick}
                     title={"Ventas"}
-                    pageSize={Math.floor(this.state.windowHeight/50)}
+                    pageSize={this.props.pageSize?this.props.pageSize:Math.floor(this.state.windowHeight/50)}
                 />
             );
         }else{
