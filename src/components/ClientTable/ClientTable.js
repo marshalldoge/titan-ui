@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Table } from "antd";
-import { getCookie, withParams} from "../../utils.js";
+import { getCookie, withParams, parseTime} from "../../utils.js";
 import * as constants from "../../constants"
 import {connect} from "react-redux";
 import "antd/dist/antd.css";
@@ -16,9 +16,10 @@ class ClientTable extends Component {
         data: [],
         columnDefs: [
             {headerName: "ID", field: "id", width: "10%"},
-            {headerName: "Nombre", field: "fullName", width: "50%"},
+            {headerName: "Nombre", field: "fullName", width: "30%"},
             {headerName: "Nit", field: "nit", width: "20%"},
-            {headerName: "Celular", field: "cellphone", width: "20%"}
+            {headerName: "Celular", field: "cellphone", width: "20%"},
+            {headerName: "Ultima Venta", field: "lastSaleTimeStamp", width: "20%"}
         ],
         windowHeight: document.body.clientHeight
     };
@@ -44,6 +45,9 @@ class ClientTable extends Component {
                 if(response.success){
                     //console.log("Page data received: ",response);
                     me.setState ((prevState) =>{
+                        for(let i = 0; i < response.data.content.length; i++){
+                            response.data.content[i]["lastSaleTimeStamp"] = parseTime(response.data.content[i]["lastSaleTimeStamp"]);
+                        }
                         prevState.pageData[page]=response.data.content;
                         return prevState;
                     });

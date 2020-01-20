@@ -10,10 +10,12 @@ import {setIdAppUser,setAppUser,setModules,setClientData,setNitIdClientHashMap,
 import moment from "moment";
 import {connect} from "react-redux";
 import * as constants from "../../constants";
+import LoadingGif from'../../assets/gif/loading.gif';
 
 const Sidebar = React.lazy(() => import("../../components/Sidebar/Sidebar"));
 const Header = React.lazy(() => import("../../components/Header/Header"));
 const Body = React.lazy(() => import("../../components/Body/Body"));
+
 
 class AdminLayout extends Component {
     constructor(props) {
@@ -26,7 +28,9 @@ class AdminLayout extends Component {
         collapsed: false,
         activeSubmenu: "NewsFeed",
         userData:{},
-        successfulLoad:true
+        successfulLoad:true,
+        servicesToLoad: 9,
+        loadedServices: 0
     };
 
     componentDidMount = () => {
@@ -59,6 +63,11 @@ class AdminLayout extends Component {
             .then(function(data) {
                 //console.log("Result of ")
                 me.props.setNitIdClientHashMap(data);
+                me.setState ((prevState) =>{
+                    prevState.loadedServices = prevState.loadedServices+1;
+                    console.log(":V9");
+                    return prevState;
+                });
             }).catch(function(error) {
                 me.logout();
                 console.log(error);
@@ -120,6 +129,11 @@ class AdminLayout extends Component {
                 me.props.setClientNitArray(clientNit);
                 me.props.setClientBillNameArray(clientBillName);
                 me.props.setNitClientHashMap(nitClientHashMap);
+                me.setState ((prevState) =>{
+                    prevState.loadedServices = prevState.loadedServices+1;
+                    console.log(":V8");
+                    return prevState;
+                });
             }).catch(function(error) {
             me.logout();
             console.log(error);
@@ -143,6 +157,11 @@ class AdminLayout extends Component {
             .then(function(data) {
                 //console.log("Result of ")
                 me.props.setAppUser(data);
+                me.setState ((prevState) =>{
+                    prevState.loadedServices = prevState.loadedServices+1;
+                    console.log(":V7");
+                    return prevState;
+                });
             }).catch(function(error) {
             me.logout();
             console.log(error);
@@ -166,6 +185,11 @@ class AdminLayout extends Component {
             .then(function(data) {
                 //console.log("Result of ")
                 me.props.setModules(data);
+                me.setState ((prevState) =>{
+                    prevState.loadedServices = prevState.loadedServices+1;
+                    console.log(":V6");
+                    return prevState;
+                });
             }).catch(function(error) {
             me.logout();
             console.log(error);
@@ -188,6 +212,7 @@ class AdminLayout extends Component {
             .then(function(data) {
                 //console.log("Result of ")
                 me.props.setItemQuantityHashMap(data);
+                console.log("ItemQuanitity data: ",data);
                 let itemQuantityCode = {};
                 for (let warehouse in data) {
                     if (data.hasOwnProperty(warehouse)) {
@@ -203,6 +228,11 @@ class AdminLayout extends Component {
                 }
                 console.log("Item codes: ",itemQuantityCode);
                 me.props.setItemQuantityCode(itemQuantityCode);
+                me.setState ((prevState) =>{
+                    prevState.loadedServices = prevState.loadedServices+1;
+                    console.log(":V5");
+                    return prevState;
+                });
             }).catch(function(error) {
             me.logout();
             console.log(error);
@@ -225,6 +255,11 @@ class AdminLayout extends Component {
             .then(function(data) {
                 //console.log("Result of ")
                 me.props.setWarehouse(data);
+                me.setState ((prevState) =>{
+                    prevState.loadedServices = prevState.loadedServices+1;
+                    console.log(":V4");
+                    return prevState;
+                });
             }).catch(function(error) {
             me.logout();
             console.log(error);
@@ -246,12 +281,17 @@ class AdminLayout extends Component {
             headers: headers
         }).then(response => response.json())
             .then(function(data) {
-                //console.log("Result of ")
+                console.log("Result of SHIFT: ",data);
                 if(data.success){
                     data.data.open = moment(data.data.open,"YYYY-MM-DD[T]HH:mm:ss");
                     console.log("data.data: ",data.data);
                     me.props.setShift(data.data);
                 }
+                me.setState ((prevState) =>{
+                    prevState.loadedServices = prevState.loadedServices+1;
+                    console.log(":V3");
+                    return prevState;
+                });
             }).catch(function(error) {
             me.logout();
             console.log(error);
@@ -273,8 +313,14 @@ class AdminLayout extends Component {
             headers: headers
         }).then(response => response.json())
             .then(function(response) {
+                console.log("V2?",response);
                 if(response.success){
                     me.props.setCompany(response.data);
+                    me.setState ((prevState) =>{
+                        prevState.loadedServices = prevState.loadedServices+1;
+                        console.log(":V2");
+                        return prevState;
+                    });
                 }
             }).catch(function(error) {
             me.logout();
@@ -299,6 +345,11 @@ class AdminLayout extends Component {
              .then(function(response) {
                  if(response.success){
                      me.props.setCurrency(response.data);
+                     me.setState ((prevState) =>{
+                         prevState.loadedServices = prevState.loadedServices+1;
+                         console.log(":V");
+                         return prevState;
+                     });
                  }
              }).catch(function(error) {
             me.logout();
@@ -322,16 +373,34 @@ class AdminLayout extends Component {
         this.props.history.push("/login");
     };
 
+    Loading = () => {
+        return (
+             <div style={{width:"100%",height:"100%",verticalAlign:"middle",textAlign:"center"}}>
+                <img src={LoadingGif} alt={"Cargando..."}/>
+             </div>
+        );
+    };
+
+    Body = () => {
+        return (
+             <Body
+                  style={{height: "100%"}}
+                  activeSubmenu={this.state.activeSubmenu}
+             />
+        );
+    };
+
     render() {
+        //console.log("LOADING: ",this.state.loadedServices);
         return (
             <Layout style={{ minHeight: "100vh"}}>
                 <Sidebar  handleActiveSubmenu={this.handleActiveSubmenu}/>
                 <Layout style={{ overflow:"hidden" }}>
                     <Header style={{height: "100%"}}/>
-                    <Body
-                        style={{height: "100%"}}
-                        activeSubmenu={this.state.activeSubmenu}
-                    />
+                    {
+                        this.state.loadedServices === this.state.servicesToLoad?
+                        this.Body():this.Loading()
+                    }
                 </Layout>
             </Layout>
         );

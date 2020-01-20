@@ -1,3 +1,4 @@
+import moment from "moment";
 //--------------------------------COOKIES---------------------------------------
 export function setCookie(cname, cvalue, exdays) {
     var d = new Date();
@@ -82,3 +83,9 @@ export function changePath(newView){
     this.props.history.push(newView.replace( /\s/g, '') );
 };
 //--------------------------------END PATH---------------------------------------
+//--------------------------------TIME PARSER-------------------------------------------
+export function parseTime(localDateTime) {
+    let timestamp = moment(localDateTime);
+    return timestamp.format("DD/MM/YY HH:mm");
+}
+//--------------------------------END TIME PARSER---------------------------------------

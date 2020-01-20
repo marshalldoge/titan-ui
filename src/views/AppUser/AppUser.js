@@ -18,7 +18,7 @@ class AppUser extends Component{
         if(this.props.modules.Modules["AppUser"].actions["Create"]){
             return (
                  <Button
-                      label={"Añadir Items"}
+                      label={"Añadir Usuarios"}
                       size={"small"}
                       onClick={this.goToAppUserForm}
                       inverse={true}
@@ -38,7 +38,9 @@ class AppUser extends Component{
             <div>
                 <AppUserTable></AppUserTable>
                 <Row type="flex" justify="end">
-                    {this.addNewUserButton()}
+                    <Col span={8} style={{textAlign:"end"}}>
+                        {this.addNewUserButton()}
+                    </Col>
                 </Row>
             </div>
         );

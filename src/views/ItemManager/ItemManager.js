@@ -22,7 +22,7 @@ class ItemManager extends Component{
     render() {
         return (
             <div>
-                <div><h1>this is the item manager</h1></div>
+                <div><h1>Agregar Productos</h1></div>
                 <Tabs defaultActiveKey="1" onChange={this.callback}>
                     <TabPane tab="Archivo" key="1">
                         <ItemFileManager></ItemFileManager>

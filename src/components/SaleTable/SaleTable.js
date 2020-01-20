@@ -53,8 +53,11 @@ class SaleTable extends Component {
     };
 
     setLength = () => {
+
+        console.log("SALE TABLE filtermodel:",this.props.filterModel);
         switch(this.props.filterModel){
             case "appUser":
+                console.log("AppUser SaleCount: ",this.props.appUserSaleCount);
                 this.setState({length:this.props.appUserSaleCount});
                 break;
             case "company":
@@ -226,7 +229,7 @@ const mapStateToProps = (state, ownProps) => {
     const { appUserReducer, moduleReducer, companyReducer, clientReducer } = state;
     const { idCompany } = appUserReducer;
     const { modules } = moduleReducer;
-    let appUserSaleCount = ownProps.saleCount;
+    let appUserSaleCount = appUserReducer.saleCount;
     let companySaleCount = companyReducer.saleCount;
     console.log("Clien hashmap: ",clientReducer.clientHashMap);
     console.log("ownprops: ",ownProps);

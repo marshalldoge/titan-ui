@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Select, Typography, Button} from "antd";
+import { Select, Typography, message} from "antd";
 import "antd/dist/antd.css";
 import "../../stylesheets/layout/_adminLayout.scss";
 import {getCookie, withParams} from "../../utils";
@@ -9,6 +9,7 @@ import * as constants from "../../constants";
 import moduleReducer from "../../redux/reducers/moduleReducer";
 const { Option } = Select;
 const { Title } = Typography;
+const Button= React.lazy(() => import("../../components/Button/Button"));
 
 class ModuleForm extends Component {
     constructor(props) {
@@ -182,17 +183,32 @@ class ModuleForm extends Component {
         let params = {
             idAppUser:this.props.idAppUser
         };
-        const url = withParams(constants.BACKEND_URL+"/AppUserModuleAction", params);
+        const url = withParams(constants.BACKEND_URL+"/auth/AppUserModuleAction", params);
         fetch(url, {
             method: "POST",
             headers: headers,
             body: JSON.stringify(appUserModuleAction)
-        }).then(response => response.text())
-            .then(function(data) {
-                console.log("Success");
+        }).then(response => response.json())
+            .then(function(response) {
+                if(response.success){
+                    message.success('Se ha guardado sus cambios exitosamente.');
+                }else{
+                    message.error('Hubo un error, inténtelo de nuevo.')
+                }
             });
 
 
+    };
+
+    saveChangesButton = () => {
+        return (
+             <Button
+                  label={"Guardar Cambios"}
+                  size={"medium"}
+                  onClick={this.saveChanges}
+                  inverse={true}
+             />
+        );
     };
 
     render() {
@@ -202,9 +218,7 @@ class ModuleForm extends Component {
                     this.ModuleSelectGroup()
                 }
                 <br />
-                <Button type="primary" onClick={this.saveChanges}>
-                    Guardar Cambios
-                </Button>
+                {this.saveChangesButton()}
             </div>
         );
     }
