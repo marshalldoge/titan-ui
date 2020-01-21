@@ -19,6 +19,21 @@
   height: 100%;
   width: 100%;
 }
+.warehouseDescriptionCtn {
+  cursor:  pointer;
+  vertical-align: center;
+  padding-bottom: 5px;
+}
+.warehouseRow {
+  height: 50px;
+  &.middle {
+    border-width: 0 0 1px 0;
+    border-color: transparent transparent #dbdbdb transparent;
+    border-style: solid;
+  }
+}
 .warehouseName {
   text-align: center;
+  font-weight: bolder;
+  color: #001528
 }

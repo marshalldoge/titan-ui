@@ -41,7 +41,7 @@ const PurchaseManager = React.lazy(()=>import('./views/PurchaseManager/PurchaseM
 //WAREHOUSE
 const WarehouseTable = React.lazy(()=>import('./views/Warehouse/WarehouseTable'));
 const Item = React.lazy(()=>import('./views/Item/Item'));
-const WarehouseTransfer = React.lazy(()=>import('./views/WarehouseTransfer/WarehouseTransfer'));
+const WarehouseItemQuantityTransfer = React.lazy(()=>import('./views/WarehouseItemQuantityTransfer/WarehouseItemQuantityTransfer'));
 //ADMINISTRATION
 const Permits = React.lazy(() => import('./views/Administration/Permits'));
 const AddFile = React.lazy(() => import('./views/Administration/AddFile'));
@@ -78,7 +78,7 @@ const routes = [
 
     { path:'/Warehouse',name:'Warehouse',component: WarehouseTable},
     { path:'/Item',name:'Item',component: Item},
-    { path:'/Moverinventario',name:'WarehouseTransfer',component: WarehouseTransfer},
+    { path:'/WarehouseItemQuantityTransfer',name:'WarehouseTransfer',component: WarehouseItemQuantityTransfer},
 
     //Sale - sale
     { path:'/MakeSale',name:'MakeSale',component: MakeSale},

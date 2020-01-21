@@ -1,6 +1,6 @@
 import React, { Component} from "react";
 import { withRouter} from "react-router-dom";
-import {Row, Col, Pagination} from "antd";
+import {Row, Col, Pagination, Icon} from "antd";
 import { getCookie, withParams} from "../../utils.js";
 import * as constants from "../../constants"
 import {connect} from "react-redux";
@@ -8,6 +8,8 @@ import "antd/dist/antd.css";
 import "../../redux/reducers/moduleReducer";
 import "../../stylesheets/components/appUserTable/_appUserTable.scss";
 import "./_ItemStock.scss";
+
+const Button = React.lazy(() => import("../../components/Button/Button"));
 
 class ItemStock extends Component {
 
@@ -21,9 +23,8 @@ class ItemStock extends Component {
             first: 0,
             last: 1
         },
-        expanded: {},
         currentPage:0,
-        pageSize: 20
+        pageSize: 15
     };
 
     componentDidMount() {
@@ -66,6 +67,38 @@ class ItemStock extends Component {
         });
     };
 
+    loadWarehouseStock = (index, idItem) => {
+        //console.log("sale tale props: ",this.props);
+        //console.log("Loading page: ",page);
+        var headers = {
+            "Content-Type": "application/json; charset=utf-8",
+            Authorization: getCookie("JWT")
+        };
+        let me = this;
+        let params = {
+            idCompany: this.props.idCompany,
+            idItem: idItem
+        };
+        let url = withParams(constants.BACKEND_URL + "/wms/WarehouseItemQuantity/findWarehouseStock", params);
+        fetch(url, {
+            method: "GET",
+            headers: headers
+        }).then(response => response.json())
+             .then(function (response) {
+                 //console.log("me in getpage fetch is ",me);
+                 if(response.success){
+                     //console.log("Page data received: ",response);
+                     me.setState ((prevState) =>{
+                         prevState.pageData[me.state.currentPage][index]["warehouseStock"] =
+                              response.data;
+                         return prevState;
+                     });
+                 }
+             }).catch(function (error) {
+            console.log(error);
+        });
+    };
+
     Title = () => {
         return (
              <h1>{"Productos"}</h1>
@@ -90,6 +123,8 @@ class ItemStock extends Component {
                  !prevState.pageData[this.state.currentPage][index].isExpanded;
             return prevState;
         });
+        console.log("Item: ",item);
+        this.loadWarehouseStock(index,item.id);
     };
 
     ItemBox = (item,index) => {
@@ -118,8 +153,8 @@ class ItemStock extends Component {
             conversionArray = [];
         }
         return(
-          <div className={"itemBox"} key={index} onClick={(e,item) => this.expandItemBox(e,item,index)}>
-              <Row align="middle">
+          <div className={"itemBox"} key={index} onClick={(e) => this.expandItemBox(e,item,index)}>
+              <Row type={"flex"} align="middle">
                   <Col className={"itemCode"} span={3}>{item.code}</Col>
                   <Col className={"itemName"} span={6}>{item.description}</Col>
                   <Col span={15}>
@@ -132,59 +167,53 @@ class ItemStock extends Component {
                   </Col>
               </Row>
               <br/>
-              {item.isExpanded?this.WarehouseDescription(item):null}
+              {item.isExpanded&&item.warehouseStock?this.WarehouseDescription(item):null}
           </div>
         );
     };
 
     WarehouseDescription = (item) => {
-        let me = this;
-        let numberOfMeasures = item.conversion.split('x').length;
-        let conversionArray = item.conversion.split('x').map((measure,index) => {
-            //console.log("Item: ",item);
-            let regexStr = measure.match(/[a-z]+|[^a-z]+/gi);
-            let measureName = regexStr[regexStr.length-1];
-            let idWarehouse = 1;
-            let itemCode = item.code;
-            let quantity = me.props.itemQuantityHashMap[idWarehouse][itemCode+"_"+measureName]?
-                 me.props.itemQuantityHashMap[idWarehouse][itemCode+"_"+measureName].quantity:0;
-            //console.log("Quntity: ",quantity);
-            return (
-                 <Col key={index} span={15/numberOfMeasures}>{measureName}: {quantity}</Col>
-            );
-
-            //Gotta do this measure for every warehouse
-            for(let warehouse in this.props.nameIdWarehouseHashMap){
-                if(this.props.nameIdWarehouseHashMap.hasOwnProperty(warehouse)) {
-                    console.log("NANI? ",warehouse);
-                    WarehouseNames.push(
-                         <Row key={cont}>
-                             {warehouse}
-                         </Row>
-                    );
-                    cont++;
-                }
-            }
-        });
-        let WarehouseNames = [];
-        let cont = 0;
-        for(let warehouse in this.props.nameIdWarehouseHashMap){
-            if(this.props.nameIdWarehouseHashMap.hasOwnProperty(warehouse)) {
-                console.log("NANI? ",warehouse);
-                WarehouseNames.push(
-                     <Row key={cont}>
-                         {warehouse}
+        console.log("Item Warehouse stocks: ",item.warehouseStock);
+        //TODO CALCULATE THE NUMBER OF MEASURES AND SEND IT TO SIZE PARAMETER
+        let WarehouseRows = item.warehouseStock.map(
+             (warehouse,index) => this.WarehouseRow(warehouse,1,index,index!==item.warehouseStock.length-1)
+        );
+        return (
+             <Row type={"flex"} className={"warehouseDescriptionCtn"} align="middle">
+                 <Col className={"moveButtonCtn"} span={3}>
+                     <Row type={"flex"} justify={"center"}>
+                         <Button
+                              label={<Icon type="swap"/>}
+                              size={"small"}
+                              inverse={true}
+                         />
                      </Row>
+                 </Col>
+                 <Col className={"warehouseCtn"} span={18}>
+                     {WarehouseRows}
+                 </Col>
+             </Row>
+        );
+    };
+
+    WarehouseRow = (item,size,index,isInMiddle) => {
+        let stock = item.stock;
+        let measureCols = [];
+        let colSpan = Math.floor(16/size);
+        let key = 0;
+        for(let measure in stock){
+            if(stock.hasOwnProperty(measure)) {
+                console.log(measure," => ",stock[measure]);
+                measureCols.push(
+                     <Col key={key} span={colSpan}>{measure+": "+stock[measure]}</Col>
                 );
-                cont++;
+                key++;
             }
         }
         return (
-             <Row align="middle">
-                 <Col className={"itemCode"} span={3}>{""}</Col>
-                 <Col className={"warehouseName"} span={6}>
-                     {WarehouseNames}
-                 </Col>
+             <Row type={"flex"} key={index} className={"warehouseRow"+(isInMiddle?" middle":"")} align={"middle"}>
+                 <Col className={"warehouseName"} span={8}>{item.warehouseName}</Col>
+                 {measureCols}
              </Row>
         );
     };
