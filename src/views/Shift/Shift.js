@@ -168,7 +168,7 @@ class Shift extends Component {
                   label={"Cerrar Caja"}
                   size={"medium"}
                   onClick={this.closeShift}
-                  inverse={true}
+                  type={"inverse"}
              />
         );
     };

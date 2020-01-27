@@ -21,7 +21,7 @@ class AppUser extends Component{
                       label={"Añadir Usuarios"}
                       size={"small"}
                       onClick={this.goToAppUserForm}
-                      inverse={true}
+                      type={"inverse"}
                  />
             );
         }else{

@@ -101,9 +101,11 @@ class WarehouseItemQuantityTransfer extends Component{
                         <Row>
                             {this.OriginDropDown()}
                         </Row>
+                        <br/>
                         <Row>
                             {this.ItemFinder()}
                         </Row>
+                        <br/>
                         <Row>
                             {this.ItemFinder()}
                         </Row>

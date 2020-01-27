@@ -14,12 +14,20 @@
     &.inverse {
       background-color: #003152;
     }
+    &.danger {
+      background-color: #C05D4F;
+      border-color: #C05D4F;
+    }
   }
   &.big {
     width: 200px;
     line-height: 60px;
     &.inverse {
       background-color: #003152;
+    }
+    &.danger {
+      background-color: #C05D4F;
+      border-color: #C05D4F;
     }
   }
   &.medium {
@@ -28,12 +36,20 @@
     &.inverse {
       background-color: #003152;
     }
+    &.danger {
+      background-color: #C05D4F;
+      border-color: #C05D4F;
+    }
   }
   &.small {
     width: 120px;
     line-height: 30px;
     &.inverse {
       background-color: #003152;
+    }
+    &.danger {
+      background-color: #C05D4F;
+      border-color: #C05D4F;
     }
   }
 }
@@ -47,12 +63,18 @@
     &.inverse {
       color: whitesmoke;
     }
+    &.danger {
+      color: whitesmoke;
+    }
   }
   &.big {
     font-size: 25px;
     font-weight: bolder;
     color: #003152;
     &.inverse {
+      color: whitesmoke;
+    }
+    &.danger {
       color: whitesmoke;
     }
   }
@@ -63,12 +85,18 @@
     &.inverse {
       color: whitesmoke;
     }
+    &.danger {
+      color: whitesmoke;
+    }
   }
   &.small {
     font-size: 13px;
     font-weight: bolder;
     color: #003152;
     &.inverse {
+      color: whitesmoke;
+    }
+    &.danger {
       color: whitesmoke;
     }
   }

@@ -3,7 +3,8 @@ import { withRouter } from "react-router-dom";
 import {Input, Col, Row, Form, Typography, AutoComplete} from "antd";
 import "antd/dist/antd.css";
 import "../../stylesheets/layout/_adminLayout.scss";
-import "../../redux/reducers/appUserReducer"
+import "../../redux/reducers/appUserReducer";
+import "./_MakeSaleForm.scss";
 import {connect} from "react-redux";
 
 const {Title} = Typography;
@@ -64,11 +65,11 @@ class MakeSaleForm extends Component {
 
     };
 
-    saleData = () => {
+    clientDetails = () => {
         console.log("clientNit array: ",this.props.clientNit);
         console.log("nitClientHashMap: ",this.props.nitClientHashMap);
         return(
-            <Row style={this.styleTitleRow}>
+            <Row className={"clientDetailsCtn"}>
                 <Col span={24}>
                     <Row>
                         <Form layout="inline">
@@ -105,7 +106,7 @@ class MakeSaleForm extends Component {
         return (
             <div>
                 {this.title()}
-                {this.saleData()}
+                {this.clientDetails()}
                 <br/>
                 <ItemQuantityForm
                     client={this.state.client}

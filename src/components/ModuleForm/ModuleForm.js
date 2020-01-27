@@ -206,7 +206,7 @@ class ModuleForm extends Component {
                   label={"Guardar Cambios"}
                   size={"medium"}
                   onClick={this.saveChanges}
-                  inverse={true}
+                  type={"inverse"}
              />
         );
     };

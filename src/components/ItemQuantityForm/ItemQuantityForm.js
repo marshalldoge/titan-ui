@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import {Col, Row, Input, Typography, AutoComplete, Button} from "antd";
+import {Col, Row, Input, Typography, AutoComplete,Icon} from "antd";
 import "antd/dist/antd.css";
 import "../../stylesheets/layout/_adminLayout.scss";
 import "../../redux/reducers/appUserReducer"
@@ -8,11 +8,17 @@ import {connect} from "react-redux";
 import { increaseSaleCount, increaseClientSaleCount } from "../../redux/actions";
 import {getCookie, withParams} from "../../utils";
 import * as constants from "../../constants";
+import "./_ItemQuantityForm.scss";
 import moment from "moment";
 
 const { Title } = Typography;
+const Button = React.lazy(() => import("../../components/Button/Button"));
 
 class ItemQuantityForm extends Component {
+    constructor(props) {
+        super(props);
+        this.removeItem.bind(this);
+    }
 
     state = {
         saleItemQuantities:{
@@ -49,7 +55,7 @@ class ItemQuantityForm extends Component {
             billName:this.props.billName,
             nit:this.props.nit,
             idShift:this.props.idShift,
-            idCurrency:"1",
+            idCurrency:"1", //TODO Retrieve this from AppUser or some other Model
             idCompany:this.props.idCompany,
             idWarehouse: this.props.idWarehouse,
             time:time,
@@ -230,8 +236,18 @@ class ItemQuantityForm extends Component {
     removeItemButton = idSaleItem => {
         //console.log(idSaleItem," vs ",this.state.lastItemId);
       if(idSaleItem !== this.state.lastItemId)  {
-          return(
+          /*return(
               <Button type={"danger"} icon={"close"} onClick={()=>this.removeItem(idSaleItem)}/>
+          );
+
+           */
+          return (
+            <Button
+                 type={"danger"}
+                 label={<Icon type="close" />}
+                 onClick={()=>this.removeItem(idSaleItem)}
+
+            />
           );
       }else{
           return null;
@@ -241,22 +257,22 @@ class ItemQuantityForm extends Component {
     headers = () => {
         return(
             <Row type="flex" style={this.styleHeaderRow}>
-                <Col span={4} order={1} style={this.styleCell}>
-                    Codigo
+                <Col span={4} order={1} className={"headerCellCtn"}>
+                    Código
                 </Col>
-                <Col span={5} order={2} style={this.styleCell}>
+                <Col span={5} order={2} className={"headerCellCtn"}>
                     Descripcion
                 </Col>
-                <Col span={4} order={3} style={this.styleCell}>
+                <Col span={4} order={3} className={"headerCellCtn"}>
                     Cantidad
                 </Col>
-                <Col span={4} order={4} style={this.styleCell}>
+                <Col span={4} order={4} className={"headerCellCtn"}>
                     PV
                 </Col>
-                <Col span={4} order={5} style={this.styleCell}>
+                <Col span={4} order={5} className={"headerCellCtn"}>
                     Total
                 </Col>
-                <Col span={3} order={5} style={this.styleCell}>
+                <Col span={3} order={5} className={"headerCellCtn"}>
                     Remover
                 </Col>
             </Row>
@@ -276,12 +292,21 @@ class ItemQuantityForm extends Component {
         return(
             <div style={{}}>
                 {saleItemQuantities}
+                <br/>
                 <Row>
-                    <Col span={10} style={this.styleTotalButton}>
-                        <Title level={3} style={{margin:"0px"}}>TOTAL: {this.state.total}</Title>
+                    <Col span={10} style={{textAlign:"start"}}>
+                        <Button
+                             label={"Total: "+this.state.total}
+                             size={"big"}
+                        />
                     </Col>
-                    <Col span={8} offset={6} style={this.styleSaveButton}>
-                        <Title level={3} style={{margin:"0px"}} onClick={this.saveSale}>GUARDAR</Title>
+                    <Col span={8} offset={6} style={{textAlign:"end"}}>
+                        <Button
+                             type={"inverse"}
+                             onClick={this.saveSale}
+                             label={"GUARDAR"}
+                             size={"big"}
+                        />
                     </Col>
                 </Row>
             </div>

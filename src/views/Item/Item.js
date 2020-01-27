@@ -17,7 +17,7 @@ class Item extends Component {
                       label={"Añadir Items"}
                       size={"small"}
                       onClick={this.goToItemManager}
-                      inverse={true}
+                      type={"inverse"}
                  />
             );
         }else{
@@ -35,7 +35,7 @@ class Item extends Component {
                   label={"Mover Items"}
                   size={"small"}
                   onClick={this.goToItemMoveManager}
-                  inverse={true}
+                  type={"inverse"}
              />
         );
     };
