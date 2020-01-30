@@ -4,7 +4,7 @@ import {Tabs} from "antd";
 const { TabPane } = Tabs;
 
 const ItemFileManager= React.lazy(() => import("../../components/ItemFileManager/ItemFileManager"));
-
+const ItemManualManager= React.lazy(() => import("../../components/ItemManualManager/ItemManualManager"));
 class ItemManager extends Component{
     state={
 
@@ -25,10 +25,10 @@ class ItemManager extends Component{
                 <div><h1>Agregar Productos</h1></div>
                 <Tabs defaultActiveKey="1" onChange={this.callback}>
                     <TabPane tab="Archivo" key="1">
-                        <ItemFileManager></ItemFileManager>
+                        <ItemFileManager/>
                     </TabPane>
                     <TabPane tab="Manual" key="2">
-                        Content of Tab Pane 2
+                        <ItemManualManager/>
                     </TabPane>
                     <TabPane tab="Administrar" key="3">
                         Content of Tab Pane 3

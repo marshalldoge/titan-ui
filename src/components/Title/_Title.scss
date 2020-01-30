@@ -1,0 +1,15 @@
+@import 'stylesheets/themes/_colorPalette.scss';
+
+.title {
+  font-weight: 500;
+  color: $text-color;
+  &.small {
+    font-size: 15px;
+  }
+  &.medium {
+    font-size: 20px;
+  }
+  &.big {
+    font-size: 25px;
+  }
+}
