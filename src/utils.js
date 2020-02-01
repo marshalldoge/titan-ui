@@ -89,3 +89,8 @@ export function parseTime(localDateTime) {
     return timestamp.format("DD/MM/YY HH:mm");
 }
 //--------------------------------END TIME PARSER---------------------------------------
+//--------------------------------STRING-------------------------------------------
+export function isLetter(str) {
+    return str.length === 1 && str.match(/[a-z]/i);
+}
+//--------------------------------END STRING---------------------------------------

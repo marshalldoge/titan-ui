@@ -50,7 +50,7 @@ class Item extends Component {
             <div>
                 <ItemStock/>
                 <br/>
-                <Row type={"flex"} align={"start"}>
+                <Row type={"flex"} justify={"start"}>
                     <Col span={4}>
                         {this.loadItemButton()}
                     </Col>

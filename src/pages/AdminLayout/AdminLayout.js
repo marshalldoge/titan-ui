@@ -6,7 +6,7 @@ import "../../stylesheets/layout/_adminLayout.scss";
 import {deleteCookie, getCookie, getJWtProperty, withParams} from "../../utils";
 import {setIdAppUser,setAppUser,setModules,setClientData,setNitIdClientHashMap,
     setClientBillNameArray,setClientNitArray,setNitClientHashMap,setItemQuantityHashMap,
-    setItemQuantityCode, setWarehouse, setShift, setCompany, setCurrency} from "../../redux/actions";
+    setItemQuantityCode, setWarehouse, setShift, setCompany, setCurrency, setMeasure} from "../../redux/actions";
 import moment from "moment";
 import {connect} from "react-redux";
 import * as constants from "../../constants";
@@ -29,7 +29,7 @@ class AdminLayout extends Component {
         activeSubmenu: "NewsFeed",
         userData:{},
         successfulLoad:true,
-        servicesToLoad: 9,
+        servicesToLoad: 10,
         loadedServices: 0
     };
 
@@ -44,6 +44,7 @@ class AdminLayout extends Component {
         this.loadShift();
         this.loadCompany();
         this.loadCurrency();
+        this.loadMeasure();
     };
 
     loadNitIdClientHashMap = () => {
@@ -356,6 +357,37 @@ class AdminLayout extends Component {
             console.log(error);
         });
     }
+    loadMeasure = () => {
+        var headers = {
+            "Content-Type": "application/json; charset=utf-8",
+            Authorization: getCookie("JWT")
+        };
+        let me = this;
+        let params = {
+            idCompany: getJWtProperty("idCompany"),
+        };
+        var url = withParams(constants.BACKEND_URL+"/wms/Measure/measureHashMap", params);
+        fetch(url, {
+            method: "GET",
+            headers: headers
+        }).then(response => response.json())
+             .then(function(response) {
+                 //console.log("Result of ")
+                 if(response.success){
+                     me.props.setMeasure(response.data);
+                     me.setState ((prevState) =>{
+                         prevState.loadedServices = prevState.loadedServices+1;
+                         console.log(":V10");
+                         return prevState;
+                     });
+                 }else{
+
+                 }
+             }).catch(function(error) {
+            me.logout();
+            console.log(error);
+        });
+    };
 
     handleActiveSubmenu=(newActiveSubmenu)=>{
         this.setState({activeSubmenu:newActiveSubmenu});
@@ -409,4 +441,4 @@ class AdminLayout extends Component {
 
 export default withRouter(connect(null,{setIdAppUser,setAppUser,setModules,setClientData,
     setNitIdClientHashMap,setClientBillNameArray,setClientNitArray,setNitClientHashMap,
-    setItemQuantityHashMap,setItemQuantityCode, setWarehouse, setShift, setCompany, setCurrency})(AdminLayout));
+    setItemQuantityHashMap,setItemQuantityCode, setWarehouse, setShift, setCompany, setCurrency, setMeasure})(AdminLayout));

@@ -8,6 +8,10 @@
   color: #003152;
   font-weight: 400;
   font-size: 20px;
+  &.despcription {
+    height: 80px;
+    width: 100%;
+  }
 }
 .input:focus {
   outline: none;
@@ -16,5 +20,6 @@
   color: #003152;
   font-weight: 200;
   font-size: 20px;
+  vertical-align: top;
 }
 
