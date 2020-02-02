@@ -12,7 +12,7 @@ import "./_ItemQuantityForm.scss";
 import moment from "moment";
 
 const { Title } = Typography;
-const Button = React.lazy(() => import("../../components/Button/Button"));
+const Button = React.lazy(() => import("../TButton/TButton"));
 
 class ItemQuantityForm extends Component {
     constructor(props) {
@@ -237,7 +237,7 @@ class ItemQuantityForm extends Component {
         //console.log(idSaleItem," vs ",this.state.lastItemId);
       if(idSaleItem !== this.state.lastItemId)  {
           /*return(
-              <Button type={"danger"} icon={"close"} onClick={()=>this.removeItem(idSaleItem)}/>
+              <TButton type={"danger"} icon={"close"} onClick={()=>this.removeItem(idSaleItem)}/>
           );
 
            */

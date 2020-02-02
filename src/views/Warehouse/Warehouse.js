@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Row, Col, Button } from "antd";
+import { Row, Col } from "antd";
 import { getCookie, withParams} from "../../utils.js";
 import * as constants from "../../constants"
 import {connect} from "react-redux";
 import "antd/dist/antd.css";
-import "./_WarehouseTable.scss";
+import "./_Warehouse.scss";
 
-const PaginatedLazyTable= React.lazy(() => import("../../components/PaginatedLazyTable/PaginatedLazyTable"));
+const TButton = React.lazy(() => import("../../components/TButton/TButton"));
+const WarehouseTable = React.lazy(() => import("../../components/WarehouseTable/WarehouseTable"));
 
-class WarehouseTable extends Component {
+class Warehouse extends Component {
     // TODO Add Date of last sale to table
     state={
         columns: [],
@@ -64,7 +65,7 @@ class WarehouseTable extends Component {
     };
 
     goToClientForm = () => {
-        this.props.history.push("/AdminPage/AppUserForm");
+        this.props.history.push("/AppUserForm");
     };
 
     render() {
@@ -72,18 +73,15 @@ class WarehouseTable extends Component {
         console.log("Number of rows in client table: ",Math.floor(this.state.windowHeight/100));
         return (
              <div>
-                 <PaginatedLazyTable
-                      idCompany={this.props.idCompany}
-                      columnDefs={this.state.columnDefs}
-                      loadTablePage={this.loadClientTablePage}
-                      length={this.props.clientCount}
-                      onRowClick={this.onRowClick}
-                      title={"Almacenes"}
-                      pageSize={Math.floor(this.state.windowHeight/50)}
-                 />
+                 <WarehouseTable/>
                  <Row type="flex" justify="end">
-                     <Col span={6}>
-                         <Button style={{width:"100%"}} size={"small"} onClick={this.goToClientForm}>Añadir Almacén</Button>
+                     <Col span={6} style = {{textAlign:"end"}}>
+                         <TButton
+                            label={"Crear Almacén"}
+                            size={"small"}
+                            onClick={this.goToClientForm}
+                            type={"inverse"}
+                         />
                      </Col>
                  </Row>
              </div>
@@ -99,4 +97,4 @@ const mapStateToProps = state => {
     return {idCompany, clientCount};
 };
 
-export default withRouter(connect(mapStateToProps)(WarehouseTable));
+export default withRouter(connect(mapStateToProps)(Warehouse));

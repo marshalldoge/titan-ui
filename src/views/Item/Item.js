@@ -6,7 +6,7 @@ import "../../stylesheets/layout/_adminLayout.scss";
 import {connect} from "react-redux";
 
 const ItemStock= React.lazy(() => import("../../components/ItemStock/ItemStock"));
-const Button= React.lazy(() => import("../../components/Button/Button"));
+const Button= React.lazy(() => import("../../components/TButton/TButton"));
 
 class Item extends Component {
 

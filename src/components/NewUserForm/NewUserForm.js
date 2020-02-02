@@ -6,7 +6,6 @@ import {
     Input,
     Tooltip
 } from "antd";
-//import {Sidebar} from "../../components/Sidebar.js";
 import "antd/dist/antd.css";
 import "../../stylesheets/layout/_adminLayout.scss";
 // routes config

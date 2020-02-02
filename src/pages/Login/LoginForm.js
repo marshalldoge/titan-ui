@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {withRouter} from "react-router-dom";
-import {Form, Icon, Input, Button, Checkbox, Alert} from "antd";
+import {Form, Alert, Row, Col} from "antd";
 import {setCookie, getJWtProperty} from "../../utils.js";
 
 import "antd/dist/antd.css";
@@ -9,57 +9,94 @@ import { connect } from "react-redux";
 import { setIdAppUser } from "../../redux/actions";
 import * as constants from "../../constants";
 
+const TButton = React.lazy(() => import("../../components/TButton/TButton"));
 
 class LoginForm extends Component {
 
     state = {
-      displayAlert:0
+        displayAlert:0,
+        username: "",
+        password: ""
     };
 
-    handleSubmit = e => {
-        e.preventDefault();
-        this.props.form.validateFields((err, values) => {
-            if (!err) {
-                let me = this;
-                //console.log("Received values of form: ", values);
-                var user = values.username;
-                var password = values.password;
-                // Default options are marked with *
-                var data = JSON.stringify({
-                    username: user,
-                    password: password
-                });
-                var url = constants.BACKEND_URL+"/auth/login";
-                fetch(url, {
-                    method: "POST",
-                    body: data,
-                    headers: {
-                        "Content-Type": "application/json; charset=utf-8"
-                    }
-                }).then(function (res) {
-                    if (res.status === 200) {
-                        console.log("Success");
-                        //var jwt = parseJwt(res.headers.get("Authorization"));
-                        //var json=JSON.parse(jwt);
-                        setCookie("JWT", res.headers.get("Authorization"), 1);
-                        const {from} = me.props.location.state || {from: {pathname: "/"}};
-                        me.props.history.push(from);
+    handleChange = event => {
+        this.setState({[event.target.name]: event.target.value});
+    };
 
-                        //Updatign reducer
-                        console.log("The app user is: ",getJWtProperty("idAppUser"));
-                        me.props.setIdAppUser(getJWtProperty("idAppUser"));
-
-                    } else {
-                        me.setState({displayAlert:1});
-                    }
-                }).catch(error => {
-                    me.setState({displayAlert:2});
-                    console.log("Error: ", error);
-                } );
-            }
+    handleSubmit = () => {
+        let me = this;
+        //console.log("Received values of form: ", values);
+        var user = this.state.username;
+        var password = this.state.password;
+        // Default options are marked with *
+        var data = JSON.stringify({
+            username: user,
+            password: password
         });
+        var url = constants.BACKEND_URL+"/auth/login";
+        fetch(url, {
+            method: "POST",
+            body: data,
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
+            }
+        }).then(function (res) {
+            if (res.status === 200) {
+                console.log("Success");
+                //var jwt = parseJwt(res.headers.get("Authorization"));
+                //var json=JSON.parse(jwt);
+                setCookie("JWT", res.headers.get("Authorization"), 1);
+                const {from} = me.props.location.state || {from: {pathname: "/"}};
+                me.props.history.push(from);
 
+                //Updatign reducer
+                console.log("The app user is: ",getJWtProperty("idAppUser"));
+                me.props.setIdAppUser(getJWtProperty("idAppUser"));
+
+            } else {
+                me.setState({displayAlert:1});
+            }
+        }).catch(error => {
+            me.setState({displayAlert:2});
+            console.log("Error: ", error);
+        } );
     };
+
+    UsernameInput = () => {
+        return (
+             <input
+                  name={"username"}
+                  className={"usernameInput"}
+                  type={"text"}
+                  value={this.state.username}
+                  placeholder={"Usuario"}
+                  onChange={this.handleChange}
+             />
+        );
+    };
+    PasswordInput = () => {
+        return (
+             <input
+                  name={"password"}
+                  className={"usernameInput"}
+                  type={"password"}
+                  value={this.state.password}
+                  placeholder={"Contraseña"}
+                  onChange={this.handleChange}
+             />
+        );
+    };
+
+    LoginButton = () => {
+        return (
+          <TButton
+               label={"Ingresar"}
+               size={"medium"}
+               onClick={this.handleSubmit}
+               type={"inverse"}
+          />
+        );
+    }
 
     signOut(e) {
         e.preventDefault();
@@ -84,49 +121,24 @@ class LoginForm extends Component {
     };
 
     render() {
-        const {getFieldDecorator} = this.props.form;
         return (
-            <div>
-                <Form onSubmit={this.handleSubmit} className="login-form">
-                    <Form.Item>
-                        {getFieldDecorator("username", {
-                            rules: [{required: true, message: "Please input your username!"}]
-                        })(
-                            <Input
-                                prefix={<Icon type="user" style={{color: "rgba(0,0,0,.25)"}}/>}
-                                placeholder="Username"
-                            />
-                        )}
-                    </Form.Item>
-                    <Form.Item>
-                        {getFieldDecorator("password", {
-                            rules: [{required: true, message: "Please input your Password!"}]
-                        })(
-                            <Input
-                                prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}}/>}
-                                type="password"
-                                placeholder="Password"
-                            />
-                        )}
-                    </Form.Item>
-                    <Form.Item>
-                        {getFieldDecorator("remember", {
-                            valuePropName: "checked",
-                            initialValue: true
-                        })(<Checkbox>Remember me</Checkbox>)}
-                        <Button type="link">Me olvide mi contraseña</Button>
-                        <Button
-                            type="primary"
-                            htmlType="submit"
-                            className="login-form-button"
-                        >
-                            Log in
-                        </Button>
-                        Or <Button type="link">Registrese ahora!</Button>
-                    </Form.Item>
-                    {this.alert()}
-                </Form>
-            </div>
+            <Row type={"flex"} className={"loginFormCtn"} justify={"center"} align={"middle"}>
+                <Col span={10}>
+                    <Row type={"flex"} justify={"center"}>
+                        {this.UsernameInput()}
+                    </Row>
+                    <br/>
+                    <br/>
+                    <Row type={"flex"} justify={"center"}>
+                        {this.PasswordInput()}
+                    </Row>
+                    <br/>
+                    <br/>
+                    <Row type={"flex"} justify={"center"}>
+                        {this.LoginButton()}
+                    </Row>
+                </Col>
+            </Row>
         );
     }
 }

@@ -9,7 +9,7 @@ import * as constants from "../../constants";
 import moduleReducer from "../../redux/reducers/moduleReducer";
 const { Option } = Select;
 const { Title } = Typography;
-const Button= React.lazy(() => import("../../components/Button/Button"));
+const Button= React.lazy(() => import("../TButton/TButton"));
 
 class ModuleForm extends Component {
     constructor(props) {

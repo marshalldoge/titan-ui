@@ -1,35 +1,36 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Form } from "antd";
-
-import "../../stylesheets/layout/_login.scss";
-
+import { Row, Col } from "antd";
+import "./_Login.scss";
+import Logo from'../../assets/logos/logo.png';
 
 const LoginForm = React.lazy(() => import("./LoginForm"));
 
 class Login extends Component {
 
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log("Received values of form: ", values);
-      }
-    });
+  TitanLogo = () => {
+    return (
+         <img alt="" className={"loginLogo"} src={Logo}/>
+    );
   };
 
-  signOut(e) {
-    e.preventDefault();
-    this.props.history.push("/");
-  }
-
   render() {
-    return (
-      <div className="app">
-        <LoginForm form={this.props.form} />
-      </div>
+  	return (
+  		 <Row type="flex" className={"loginCtn"} justify={"center"} align={"middle"}>
+		     <Col span={24} style={{height:"500px"}}>
+			     <Row type={"flex"} justify={"center"} align={"middle"}>
+				     <Col span={10} style={{textAlign:"center"}}>
+					      {this.TitanLogo()}
+				     </Col>
+			     </Row>
+			     <br/>
+			     <Row>
+				     <LoginForm/>
+			     </Row>
+		     </Col>
+    	 </Row>
     );
   }
 }
 
-export default withRouter(Form.create()(Login));
+export default withRouter(Login);

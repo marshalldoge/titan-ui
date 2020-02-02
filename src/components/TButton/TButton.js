@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "../../redux/reducers/appUserReducer";
-import "./_Button.scss";
+import "./_TButton.scss";
 
 
-class Button extends Component {
+class TButton extends Component {
 
 	render() {
 		return (
@@ -14,4 +14,4 @@ class Button extends Component {
 	}
 }
 
-export default Button;
+export default TButton;

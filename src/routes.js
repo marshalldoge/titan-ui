@@ -39,7 +39,7 @@ const Purchase = React.lazy(()=>import('./views/Purchase/Purchase'));
 const PurchaseManager = React.lazy(()=>import('./views/PurchaseManager/PurchaseManager'));
 
 //WAREHOUSE
-const WarehouseTable = React.lazy(()=>import('./views/Warehouse/WarehouseTable'));
+const WarehouseTable = React.lazy(()=>import('./views/Warehouse/Warehouse'));
 const Item = React.lazy(()=>import('./views/Item/Item'));
 const WarehouseItemQuantityTransfer = React.lazy(()=>import('./views/WarehouseItemQuantityTransfer/WarehouseItemQuantityTransfer'));
 //ADMINISTRATION

@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {Col, Row} from "antd";
 
 const AppUserTable= React.lazy(() => import("../../components/AppUserTable/AppUserTable"));
-const Button= React.lazy(() => import("../../components/Button/Button"));
+const Button= React.lazy(() => import("../../components/TButton/TButton"));
 
 class AppUser extends Component{
 

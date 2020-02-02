@@ -4,11 +4,11 @@ import {Row, Col, Input, Dropdown, Icon, Menu} from "antd";
 import {getCookie} from "../../utils";
 import {BACKEND_URL} from "../../constants";
 import {connect} from "react-redux";
-import "../../components/Button/_Button.scss";
+import "../../components/TButton/_TButton.scss";
 
 const Search = Input.Search;
 
-const Button = React.lazy(() => import("../../components/Button/Button"));
+const Button = React.lazy(() => import("../../components/TButton/TButton"));
 const ManualTable = React.lazy(() => import("../../components/ManualTable/ManualTable"));
 
 class WarehouseItemQuantityTransfer extends Component{

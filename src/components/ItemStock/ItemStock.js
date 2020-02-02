@@ -9,7 +9,7 @@ import "../../redux/reducers/moduleReducer";
 import "../../stylesheets/components/appUserTable/_appUserTable.scss";
 import "./_ItemStock.scss";
 
-const Button = React.lazy(() => import("../../components/Button/Button"));
+const Button = React.lazy(() => import("../TButton/TButton"));
 const Title = React.lazy(() => import("../TTitle/TTitle"));
 
 class ItemStock extends Component {

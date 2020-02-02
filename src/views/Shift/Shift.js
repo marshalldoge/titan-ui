@@ -13,7 +13,7 @@ import "./_Shift.scss";
 import {closeShift, openShift, setIdShift, setShift} from "../../redux/actions";
 import clientReducer from "../../redux/reducers/clientReducer";
 
-const Button = React.lazy(() => import("../../components/Button/Button"));
+const Button = React.lazy(() => import("../../components/TButton/TButton"));
 const PaginatedLazyTable= React.lazy(() => import("../../components/PaginatedLazyTable/PaginatedLazyTable"));
 
 class Shift extends Component {
