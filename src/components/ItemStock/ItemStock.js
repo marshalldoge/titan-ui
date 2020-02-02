@@ -10,6 +10,7 @@ import "../../stylesheets/components/appUserTable/_appUserTable.scss";
 import "./_ItemStock.scss";
 
 const Button = React.lazy(() => import("../../components/Button/Button"));
+const Title = React.lazy(() => import("../TTitle/TTitle"));
 
 class ItemStock extends Component {
 
@@ -101,7 +102,10 @@ class ItemStock extends Component {
 
     Title = () => {
         return (
-             <h1>{"Productos"}</h1>
+             <Title
+                label={"Productos"}
+                size={"big"}
+             />
         );
     };
 

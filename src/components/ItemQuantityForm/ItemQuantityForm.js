@@ -256,23 +256,23 @@ class ItemQuantityForm extends Component {
 
     headers = () => {
         return(
-            <Row type="flex" style={this.styleHeaderRow}>
-                <Col span={4} order={1} className={"headerCellCtn"}>
+            <Row type="flex" className={"headerCtn"} style={this.styleHeaderRow}>
+                <Col span={4} order={1} >
                     Código
                 </Col>
-                <Col span={5} order={2} className={"headerCellCtn"}>
+                <Col span={5} order={2} >
                     Descripcion
                 </Col>
-                <Col span={4} order={3} className={"headerCellCtn"}>
+                <Col span={4} order={3} >
                     Cantidad
                 </Col>
-                <Col span={4} order={4} className={"headerCellCtn"}>
+                <Col span={4} order={4} >
                     PV
                 </Col>
-                <Col span={4} order={5} className={"headerCellCtn"}>
+                <Col span={4} order={5} >
                     Total
                 </Col>
-                <Col span={3} order={5} className={"headerCellCtn"}>
+                <Col span={3} order={5} >
                     Remover
                 </Col>
             </Row>

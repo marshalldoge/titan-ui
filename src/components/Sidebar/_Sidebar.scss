@@ -1,3 +1,10 @@
+@import 'stylesheets/themes/_main.scss';
+.sider {
+  text-align: left;
+  padding-top: 60px;
+  font-family: Roboto-Medium;
+}
+
 .trigger {
   font-size: 18px;
   line-height: 64px;
@@ -5,9 +12,8 @@
   cursor: pointer;
   transition: color 0.3s;
 }
-
-.trigger:hover {
-  color: #1890ff;
+.ant-menu.ant-menu-dark .ant-menu-item-selected {
+  background-color: #2F4A68;
 }
 
 .logo {
@@ -15,11 +21,6 @@
   width: 180px;
   background: rgba(255, 255, 255, 0.2);
   margin: 9px;
-}
-
-.sider {
-  text-align: left;
-  padding-top: 60px;
 }
 
 

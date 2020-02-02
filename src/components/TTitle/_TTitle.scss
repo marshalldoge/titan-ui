@@ -1,7 +1,7 @@
-@import 'stylesheets/themes/_colorPalette.scss';
+@import 'stylesheets/themes/_main.scss';
 
-.title {
-  font-weight: 500;
+.tTitle {
+  font-family: Roboto-Bold;
   color: $text-color;
   &.small {
     font-size: 15px;

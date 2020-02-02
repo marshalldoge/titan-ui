@@ -1,3 +1,4 @@
+@import 'stylesheets/themes/_main.scss';
 .DescriptionCtn {
   background-color: white;
   border-color: transparent transparent gray transparent;
@@ -8,9 +9,15 @@
   height: 80px;
   color: #1b1716
 }
+.fullName {
+  text-align: left;
+}
+.icon {
+  text-align: left;
+}
 
 .informationText {
-  font-weight: bolder;
+  font-family: Roboto-Medium;
   font-size: 14px;
   color: #1b1716;
 }

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Tabs, Descriptions } from "antd";
 import "antd/dist/antd.css";
-import "../../stylesheets/layout/_adminLayout.scss";
 import "../../redux/reducers/appUserReducer"
 import {getCookie, withParams, getUrlParams } from "../../utils";
 import {connect} from "react-redux";

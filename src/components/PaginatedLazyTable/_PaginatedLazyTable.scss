@@ -1,3 +1,22 @@
+@import 'stylesheets/themes/_main.scss';
+.title {
+  font-family: Roboto-Bold;
+  font-size: 25px;
+  text-align: center;
+}
+.thead {
+  background: #fafafa;
+  border-bottom-color: #ECEDF0;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  color: $text-color;
+  font-family: Roboto-Bold;
+  font-size: 16px;
+  font-weight: normal;
+}
+.th {
+  font-weight: normal;
+}
 .tr {
   &:hover {
     background-color: grey;
@@ -5,4 +24,8 @@
 }
 .tr:hover {
   background-color: grey;
+}
+.td {
+  font-family: Roboto-Regular;
+
 }

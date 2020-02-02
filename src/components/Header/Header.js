@@ -3,10 +3,10 @@ import {withRouter} from "react-router-dom";
 import {Layout, Menu, Icon, Dropdown} from "antd";
 import {getCookie, withParams, deleteCookie} from "../../utils.js";
 import "antd/dist/antd.css";
-import "../../stylesheets/layout/_adminLayout.scss";
 import {connect} from "react-redux";
 import * as constants from "../../constants";
 import {getJWtProperty} from "../../utils";
+import "./_Header.scss";
 
 const {Header} = Layout;
 
@@ -76,7 +76,7 @@ class Sidebar extends Component {
             </Menu>
         );
         return (
-            <Header style={{width: "100%", paddingRight: "0px"}}>
+            <Header className={"THeader"} style={{width: "100%", paddingRight: "0px"}}>
                 <Menu
                     theme="dark"
                     mode="horizontal"

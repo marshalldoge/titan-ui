@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import {Col, Row, Tabs, Typography} from "antd";
+import {Col, Row, Tabs} from "antd";
 import "antd/dist/antd.css";
-import "../../stylesheets/layout/_adminLayout.scss";
 import "../../redux/reducers/appUserReducer"
 import {getCookie, withParams, getUrlParams } from "../../utils";
 import {connect} from "react-redux";
@@ -13,7 +12,6 @@ import {BACKEND_URL} from "../../constants";
 
 const Description= React.lazy(() => import("../../components/Description/Description"));
 const { TabPane } = Tabs;
-const { Title } = Typography;
 
 class AppUserProfile extends Component {
 

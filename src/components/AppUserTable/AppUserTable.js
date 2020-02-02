@@ -16,7 +16,7 @@ class AppUserTable extends Component {
         data: [],
         columnDefs: [
             {headerName: "ID", field: "id", width: "10%"},
-            {headerName: "Nombre", field: "firstName", width: "50%"},
+            {headerName: "Medium", field: "firstName", width: "50%"},
             {headerName: "Email", field: "email", width: "20%"},
             {headerName: "Role", field: "role", width: "20%"}
         ],

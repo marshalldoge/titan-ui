@@ -45,15 +45,8 @@ class PaginatedLazyTable extends Component {
 
     th = (field,index) => {
         return (
-             <th key={index} style={this.thStyle(field.width)}>{field.headerName}</th>
+             <th key={index} className={"th"} style={this.thStyle(field.width)}>{field.headerName}</th>
         );
-    };
-
-    theadStyle = {
-        background: "#fafafa",
-        borderBottomColor: "#ECEDF0",
-        borderBottomWidth: "1px",
-        borderBottomStyle: "solid"
     };
 
     thead = () => {
@@ -61,7 +54,7 @@ class PaginatedLazyTable extends Component {
             return this.th(field, index)
         });
         return (
-             <thead style={this.theadStyle}>
+             <thead className={"thead"}>
                  <tr>
                      {headers}
                  </tr>
@@ -117,7 +110,7 @@ class PaginatedLazyTable extends Component {
 
     td = (value,index,background) => {
         return(
-             <td key={index} style={this.tdStyle(background)}>{value}</td>
+             <td key={index} className={"td"} style={this.tdStyle(background)}>{value}</td>
         );
     };
 
@@ -139,7 +132,7 @@ class PaginatedLazyTable extends Component {
         let titleText = this.props.title;
         if(titleText){
             return (
-                 <h1 style={this.titleStyles}>{titleText}</h1>
+                 <h1 className={"title"}>{titleText}</h1>
             );
         }else{
             return null;

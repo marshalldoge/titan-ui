@@ -8,7 +8,7 @@ import {isLetter, withParams} from "../../utils";
 import {connect} from "react-redux";
 import * as constants from "../../constants";
 
-const Title = React.lazy(() => import("../../components/Title/Title"));
+const Title = React.lazy(() => import("../TTitle/TTitle"));
 const Button = React.lazy(() => import("../../components/Button/Button"));
 
 class ItemManualManager extends Component {

@@ -1,3 +1,4 @@
+@import 'stylesheets/themes/_main.scss';
 .buttonCtn {
   background-color: whitesmoke;
   cursor: pointer;
@@ -56,9 +57,9 @@
 .label {
   display: block;
   vertical-align: middle;
+  font-family: Roboto-Black;
   &.expanded {
     font-size: 25px;
-    font-weight: bolder;
     color: #003152;
     &.inverse {
       color: whitesmoke;
@@ -69,7 +70,6 @@
   }
   &.big {
     font-size: 25px;
-    font-weight: bolder;
     color: #003152;
     &.inverse {
       color: whitesmoke;
@@ -80,7 +80,6 @@
   }
   &.medium {
     font-size: 15px;
-    font-weight: bolder;
     color: #003152;
     &.inverse {
       color: whitesmoke;
@@ -91,7 +90,6 @@
   }
   &.small {
     font-size: 13px;
-    font-weight: bolder;
     color: #003152;
     &.inverse {
       color: whitesmoke;

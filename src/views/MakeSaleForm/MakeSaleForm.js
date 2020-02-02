@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import {Input, Col, Row, Form, Typography, AutoComplete} from "antd";
+import {Input, Col, Row, Form, AutoComplete} from "antd";
 import "antd/dist/antd.css";
 import "../../stylesheets/layout/_adminLayout.scss";
 import "../../redux/reducers/appUserReducer";
 import "./_MakeSaleForm.scss";
 import {connect} from "react-redux";
 
-const {Title} = Typography;
+const TTitle = React.lazy(() => import("../../components/TTitle/TTitle"));
 
 const ItemQuantityForm= React.lazy(() => import("../../components/ItemQuantityForm/ItemQuantityForm"));
 
@@ -55,8 +55,10 @@ class MakeSaleForm extends Component {
     title = () => {
         return(
             <div>
-                <Title level={2}>Venta</Title>
-                <Title level={4}>{this.props.warehouseHashMap[this.props.idWarehouse]["name"]}</Title>
+                <TTitle
+                    label={"Venta"}
+                    size={"big"}
+                />
             </div>
         );
     };
