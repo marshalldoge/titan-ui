@@ -6,7 +6,7 @@ const Carousels = React.lazy(() => import('./views/Base/Carousels'));
 */
 
 //NEWS
-const NewsFeed = React.lazy(()=>import('./views/NewsFeed/NewsFeed'));
+const Dashboard = React.lazy(()=>import('./views/Dashboard/Dashboard'));
 
 //SHIFT
 const Shift = React.lazy(() =>import('./views/Shift/Shift'));
@@ -49,7 +49,7 @@ const AddFile = React.lazy(() => import('./views/Administration/AddFile'));
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
     { path: '/', exact: true, name: 'Home' },
-    { path: '/Dashboard', name: 'NewsFeed', component: NewsFeed },
+    { path: '/Dashboard', name: 'Dashboard', component: Dashboard },
     /*
         { path: '/theme', exact: true, name: 'Theme', component: Colors },
     */

@@ -53,9 +53,20 @@
       border-color: #C05D4F;
     }
   }
+  &.icon {
+    width: 60px;
+    height: 60px;
+    &.inverse {
+      background-color: #003152;
+    }
+    &.danger {
+      background-color: #C05D4F;
+      border-color: #C05D4F;
+    }
+  }
 }
 .label {
-  display: block;
+  display: inline-block;
   vertical-align: middle;
   font-family: Roboto-Black;
   &.expanded {
@@ -90,6 +101,16 @@
   }
   &.small {
     font-size: 13px;
+    color: #003152;
+    &.inverse {
+      color: whitesmoke;
+    }
+    &.danger {
+      color: whitesmoke;
+    }
+  }
+  &.icon {
+    font-size: 30px;
     color: #003152;
     &.inverse {
       color: whitesmoke;

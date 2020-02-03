@@ -9,7 +9,7 @@ import "../../redux/reducers/moduleReducer";
 import "../../stylesheets/components/appUserTable/_appUserTable.scss";
 import "./_ItemStock.scss";
 
-const Button = React.lazy(() => import("../TButton/TButton"));
+const TButton = React.lazy(() => import("../TButton/TButton"));
 const Title = React.lazy(() => import("../TTitle/TTitle"));
 
 class ItemStock extends Component {
@@ -186,9 +186,11 @@ class ItemStock extends Component {
              <Row type={"flex"} className={"warehouseDescriptionCtn"} align="middle">
                  <Col className={"moveButtonCtn"} span={3}>
                      <Row type={"flex"} justify={"center"}>
-                         <Button
-                              label={<Icon type="swap"/>}
-                              size={"small"}
+                         <TButton
+                              label={""}
+                              type={"inverse"}
+                              size={"icon"}
+                              icon={"setting"}
                               inverse={true}
                          />
                      </Row>

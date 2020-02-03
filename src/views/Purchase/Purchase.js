@@ -2,9 +2,10 @@ import React, {Component} from "react";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import PurchaseTable from "../../components/PurchaseTable/PurchaseTable";
-import {Button} from "antd";
+import {Row, Col} from "antd";
 
 const SaleTable= React.lazy(() => import("../../components/SaleTable/SaleTable"));
+const TButton= React.lazy(() => import("../../components/TButton/TButton"));
 
 class Purchase extends Component{
 
@@ -21,7 +22,11 @@ class Purchase extends Component{
         if(this.props.modules.Modules["Item"].actions["Create"]){
             //console.log("RENDERING BUTTON");
             return(
-                <Button onClick={this.goToPurchasemManager} type="primary">Realizar Compra</Button>
+            	 <TButton
+		              onClick={this.goToPurchasemManager}
+		              type={"inverse"}
+		              label={"Realizar Compra"}
+	             />
             );
         }else{
             return null;
@@ -51,6 +56,7 @@ class Purchase extends Component{
                     idAppUser={this.props.idAppUser}
                     filterModel={"appUser"}
                     pageSize={20}
+                    size={"small"}
                 />
             );
         }
@@ -59,9 +65,17 @@ class Purchase extends Component{
     render() {
         return (
             <div>
-                {this.AvailablePurchaseTable()}
+	            <Row type={"flex"} justify={"end"} align={"middle"}>
+		            <Col span={24}>
+                        {this.AvailablePurchaseTable()}
+		            </Col>
+	            </Row>
                 <br/>
-                {this.loadItemButton()}
+                <Row type={"flex"} justify={"end"} align={"middle"}>
+	                <Col span={6} style={{textAlign:"end"}}>
+                        {this.loadItemButton()}
+	                </Col>
+                </Row>
             </div>
         );
     }

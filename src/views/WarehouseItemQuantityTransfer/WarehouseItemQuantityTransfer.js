@@ -68,8 +68,8 @@ class WarehouseItemQuantityTransfer extends Component{
 
     SimpleButton = (label) => {
        return (
-             <div className={"buttonCtn big inverse"}>
-                 <span className={"label big inverse"}>{label}</span>
+             <div className={"buttonCtn medium inverse"}>
+                 <span className={"label medium inverse"}>{label}</span>
              </div>
         );
     };
@@ -97,13 +97,15 @@ class WarehouseItemQuantityTransfer extends Component{
             <div>
                 <h1>Transferencia de Items</h1>
                 <Row type="flex" justify="space-between">
-                    <Col span={11}>
+                    <Col span={24}>
                         <Row>
                             {this.OriginDropDown()}
                         </Row>
                         <br/>
                         <Row>
-                            {this.ItemFinder()}
+	                        <Col span={24}>
+                                {this.ItemFinder()}
+	                        </Col>
                         </Row>
                         <br/>
                         <Row>
@@ -111,31 +113,8 @@ class WarehouseItemQuantityTransfer extends Component{
                         </Row>
                         <br/>
                         <Row>
-                            <ManualTable
-                                 data={this.state.data}
-                                 columnDefs={this.state.columnDefs}
-                                 length={13}
-                                 pageSize={13}
-                            />
-                        </Row>
-                    </Col>
-                    <Col span={2}>
-                        <Icon type="double-right" />
-                    </Col>
-                    <Col span={11}>
-                        <Row>
-                            {this.DestinationDropDown()}
-                        </Row>
-                        <br/>
-                        <Row>
-                            <ManualTable
-                                 data={this.state.data}
-                                 columnDefs={this.state.columnDefs}
-                                 length={13}
-                                 pageSize={13}
-                            />
-                        </Row>
 
+                        </Row>
                     </Col>
                 </Row>
                 <br/>

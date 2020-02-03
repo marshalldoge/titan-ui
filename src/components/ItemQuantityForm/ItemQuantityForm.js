@@ -114,29 +114,6 @@ class ItemQuantityForm extends Component {
     styleInputNumber = {
         width:"80%"
     };
-    styleTotalButton = {
-        height:"40px",
-        borderWidth:"4px",
-        borderRadius: "10px",
-        background:"#fffcc1",
-        alignContent:"center",
-        textAlign:"center",
-        display : "flex",
-        alignItems : "center",
-        justifyContent: "center"
-    };
-    styleSaveButton = {
-        height:"40px",
-        borderWidth:"4px",
-        borderRadius: "10px",
-        background:"#4BB543",
-        alignContent:"center",
-        textAlign:"center",
-        display : "flex",
-        alignItems : "center",
-        justifyContent: "center"
-    };
-
     onSelect = (value,option,idSaleItem) => {
         let saleItemQuantities = this.state.saleItemQuantities;
         console.log("IdSaleItem rendered: ",idSaleItem);
@@ -261,7 +238,7 @@ class ItemQuantityForm extends Component {
                     Código
                 </Col>
                 <Col span={5} order={2} >
-                    Descripcion
+                    Name
                 </Col>
                 <Col span={4} order={3} >
                     Cantidad
