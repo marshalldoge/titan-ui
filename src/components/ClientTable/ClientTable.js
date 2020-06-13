@@ -35,7 +35,7 @@ class ClientTable extends Component {
             idCompany: this.props.idCompany,
             page: page
         };
-        const url = withParams(constants.BACKEND_URL + "/pos/Client/findByIdCompanyPaginated", params);
+        const url = withParams(constants.BACKEND_URL + "/Client/findByIdCompanyPaginated", params);
         fetch(url, {
             method: "GET",
             headers: headers

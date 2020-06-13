@@ -38,7 +38,7 @@ class ClientProfile extends Component {
         let params = {
             idClient: idClient
         };
-        const url = withParams(constants.BACKEND_URL+"/pos/Client/findById", params);
+        const url = withParams(constants.BACKEND_URL+"/Client/findById", params);
         fetch(url, {
             method: "GET",
             headers: headers

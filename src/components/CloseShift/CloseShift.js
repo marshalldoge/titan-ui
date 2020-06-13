@@ -86,7 +86,7 @@ class Shift extends Component {
             duration:duration
         });
         let me = this;
-        let url = withParams(constants.BACKEND_URL+"/pos/Shift", params);
+        let url = withParams(constants.BACKEND_URL+"/Shift", params);
         fetch(url, {
             method: "POST",
             headers: headers,

@@ -46,7 +46,7 @@ class ItemStock extends Component {
             page: page,
             pageSize: this.state.pageSize
         };
-        let url = withParams(constants.BACKEND_URL + "/wms/Item/findAllPaginated", params);
+        let url = withParams(constants.BACKEND_URL + "/Item/findAllPaginated", params);
         fetch(url, {
             method: "GET",
             headers: headers
@@ -80,7 +80,7 @@ class ItemStock extends Component {
             idCompany: this.props.idCompany,
             idItem: idItem
         };
-        let url = withParams(constants.BACKEND_URL + "/wms/WarehouseItemQuantity/findWarehouseStock", params);
+        let url = withParams(constants.BACKEND_URL + "/WarehouseItemQuantity/findWarehouseStock", params);
         fetch(url, {
             method: "GET",
             headers: headers

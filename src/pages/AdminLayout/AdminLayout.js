@@ -56,7 +56,7 @@ class AdminLayout extends Component {
         let params = {
             idCompany:getJWtProperty("idCompany")
         };
-        var url = withParams(constants.BACKEND_URL+"/pos/Client/nitIdClientHashMap", params);
+        var url = withParams(constants.BACKEND_URL+"/Client/nitIdClientHashMap", params);
         fetch(url, {
             method: "GET",
             headers: headers
@@ -84,7 +84,7 @@ class AdminLayout extends Component {
         let params = {
             idCompany:getJWtProperty("idCompany")
         };
-        var url = withParams(constants.BACKEND_URL+"/pos/Client/NitByIdCompany", params);
+        var url = withParams(constants.BACKEND_URL+"/Client/NitByIdCompany", params);
         fetch(url, {
             method: "GET",
             headers: headers
@@ -107,7 +107,7 @@ class AdminLayout extends Component {
         let params = {
             idCompany:getJWtProperty("idCompany")
         };
-        var url = withParams(constants.BACKEND_URL+"/pos/Client/ClientHashMapByIdCompany", params);
+        var url = withParams(constants.BACKEND_URL+"/Client/ClientHashMapByIdCompany", params);
         fetch(url, {
             method: "GET",
             headers: headers
@@ -150,7 +150,7 @@ class AdminLayout extends Component {
         let params = {
             idAppUser: getJWtProperty("idAppUser")
         };
-        var url = withParams(constants.BACKEND_URL+"/auth/AppUser", params);
+        var url = withParams(constants.BACKEND_URL+"/AppUser", params);
         fetch(url, {
             method: "GET",
             headers: headers
@@ -178,7 +178,7 @@ class AdminLayout extends Component {
             idAppUser: getJWtProperty("idAppUser"),
             loc:false
         };
-        var url = withParams(constants.BACKEND_URL+"/auth/AppUserModuleAction/reducer", params);
+        var url = withParams(constants.BACKEND_URL+"/AppUserModuleAction/reducer", params);
         fetch(url, {
             method: "GET",
             headers: headers
@@ -205,7 +205,7 @@ class AdminLayout extends Component {
         let params = {
             idCompany: getJWtProperty("idCompany"),
         };
-        var url = withParams(constants.BACKEND_URL+"/wms/WarehouseItemQuantity/itemQuantityHashMap", params);
+        var url = withParams(constants.BACKEND_URL+"/WarehouseItemQuantity/itemQuantityHashMap", params);
         fetch(url, {
             method: "GET",
             headers: headers
@@ -248,7 +248,7 @@ class AdminLayout extends Component {
         let params = {
             idCompany: getJWtProperty("idCompany"),
         };
-        var url = withParams(constants.BACKEND_URL+"/wms/Warehouse/warehouseHashMap", params);
+        var url = withParams(constants.BACKEND_URL+"/Warehouse/warehouseHashMap", params);
         fetch(url, {
             method: "GET",
             headers: headers
@@ -276,7 +276,7 @@ class AdminLayout extends Component {
         let params = {
             idAppUser: getJWtProperty("idAppUser")
         };
-        var url = withParams(constants.BACKEND_URL+"/pos/Shift/currentShift", params);
+        var url = withParams(constants.BACKEND_URL+"/Shift/currentShift", params);
         fetch(url, {
             method: "GET",
             headers: headers
@@ -308,7 +308,7 @@ class AdminLayout extends Component {
         let params = {
             idCompany: getJWtProperty("idCompany"),
         };
-        var url = withParams(constants.BACKEND_URL+"/pos/Company/findById", params);
+        var url = withParams(constants.BACKEND_URL+"/Company/findById", params);
         fetch(url, {
             method: "GET",
             headers: headers
@@ -338,7 +338,7 @@ class AdminLayout extends Component {
         let params = {
             idAppUser: getJWtProperty("idAppUser")
         };
-        var url = withParams(constants.BACKEND_URL+"/pos/Currency/reducer", params);
+        var url = withParams(constants.BACKEND_URL+"/Currency/reducer", params);
         fetch(url, {
             method: "GET",
             headers: headers
@@ -366,7 +366,7 @@ class AdminLayout extends Component {
         let params = {
             idCompany: getJWtProperty("idCompany"),
         };
-        var url = withParams(constants.BACKEND_URL+"/wms/Measure/measureHashMap", params);
+        var url = withParams(constants.BACKEND_URL+"/Measure/measureHashMap", params);
         fetch(url, {
             method: "GET",
             headers: headers

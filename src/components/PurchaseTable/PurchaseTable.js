@@ -83,7 +83,7 @@ class PurchaseTable extends Component {
             page: page,
             pageSize: this.props.pageSize
         };
-        let url = withParams(constants.BACKEND_URL + "/pos/Purchase/findByIdClientPaginated", params);
+        let url = withParams(constants.BACKEND_URL + "/Purchase/findByIdClientPaginated", params);
         fetch(url, {
             method: "GET",
             headers: headers
@@ -121,7 +121,7 @@ class PurchaseTable extends Component {
             page: page,
             pageSize: this.props.pageSize
         };
-        let url = withParams(constants.BACKEND_URL + "/pos/Purchase/findByIdCompanyPaginated", params);
+        let url = withParams(constants.BACKEND_URL + "/Purchase/findByIdCompanyPaginated", params);
         fetch(url, {
             method: "GET",
             headers: headers
@@ -158,7 +158,7 @@ class PurchaseTable extends Component {
             page: page,
             pageSize: this.props.pageSize
         };
-        let url = withParams(constants.BACKEND_URL + "/pos/Purchase/findByIdAppUserPaginated", params);
+        let url = withParams(constants.BACKEND_URL + "/Purchase/findByIdAppUserPaginated", params);
         fetch(url, {
             method: "GET",
             headers: headers

@@ -26,7 +26,7 @@ class Sidebar extends Component {
             idAppUser: getJWtProperty("idAppUser")
         };
         let me = this;
-        var url = withParams(constants.BACKEND_URL+"/auth/AppUser", params);
+        var url = withParams(constants.BACKEND_URL+"/AppUser", params);
         fetch(url, {
             method: "GET",
             headers: headers

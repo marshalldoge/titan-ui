@@ -33,7 +33,7 @@ class LoginForm extends Component {
             username: user,
             password: password
         });
-        var url = constants.BACKEND_URL+"/auth/login";
+        var url = constants.BACKEND_URL+"/login";
         fetch(url, {
             method: "POST",
             body: data,

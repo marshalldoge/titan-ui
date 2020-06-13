@@ -40,7 +40,7 @@ class SupplierTable extends Component {
             page: page,
             pageSize: 12
         };
-        var url = withParams(constants.BACKEND_URL+"/pos/Supplier/findAllByIdCompanyPaginated",params);
+        var url = withParams(constants.BACKEND_URL+"/Supplier/findAllByIdCompanyPaginated",params);
         fetch(url, {
             method: "GET",
             headers: headers

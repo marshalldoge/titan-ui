@@ -86,7 +86,7 @@ class SaleTable extends Component {
             page: page,
             pageSize: this.props.pageSize
         };
-        let url = withParams(constants.BACKEND_URL + "/pos/Sale/findByIdClientPaginated", params);
+        let url = withParams(constants.BACKEND_URL + "/Sale/findByIdClientPaginated", params);
         fetch(url, {
             method: "GET",
             headers: headers
@@ -122,7 +122,7 @@ class SaleTable extends Component {
             page: page,
             pageSize: this.props.pageSize
         };
-        let url = withParams(constants.BACKEND_URL + "/pos/Sale/findByIdCompanyPaginated", params);
+        let url = withParams(constants.BACKEND_URL + "/Sale/findByIdCompanyPaginated", params);
         fetch(url, {
             method: "GET",
             headers: headers
@@ -159,7 +159,7 @@ class SaleTable extends Component {
             page: page,
             pageSize: this.props.pageSize
         };
-        let url = withParams(constants.BACKEND_URL + "/pos/Sale/findByIdAppUserPaginated", params);
+        let url = withParams(constants.BACKEND_URL + "/Sale/findByIdAppUserPaginated", params);
         fetch(url, {
             method: "GET",
             headers: headers

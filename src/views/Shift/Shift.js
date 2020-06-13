@@ -75,7 +75,7 @@ class Shift extends Component {
             saleCount:this.props.saleCount
         });
         let me = this;
-        let url = withParams(constants.BACKEND_URL+"/pos/Shift", params);
+        let url = withParams(constants.BACKEND_URL+"/Shift", params);
         fetch(url, {
             method: "POST",
             headers: headers,
@@ -122,7 +122,7 @@ class Shift extends Component {
             duration:duration
         });
         let me = this;
-        let url = withParams(constants.BACKEND_URL+"/pos/Shift", params);
+        let url = withParams(constants.BACKEND_URL+"/Shift", params);
         fetch(url, {
             method: "POST",
             headers: headers,
@@ -187,7 +187,7 @@ class Shift extends Component {
             page: page,
             pageSize: this.props.pageSize
         };
-        let url = withParams(constants.BACKEND_URL + "/pos/Sale/findSaleByIdAppUserAndIdShiftPaginated", params);
+        let url = withParams(constants.BACKEND_URL + "/Sale/findSaleByIdAppUserAndIdShiftPaginated", params);
         fetch(url, {
             method: "GET",
             headers: headers

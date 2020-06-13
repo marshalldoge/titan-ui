@@ -41,7 +41,7 @@ class ItemFileManager extends Component {
         let params = {
             idWarehouse:this.state.warehouseMap[this.state.selected]
         };
-        let url = withParams(BACKEND_URL+"/wms/XLSXDocument",params);
+        let url = withParams(BACKEND_URL+"/XLSXDocument",params);
         fetch(url, {
             method: "POST",
             body: this.state.file,
@@ -81,7 +81,7 @@ class ItemFileManager extends Component {
         let params = {
             idCompany:this.props.idCompany
         };
-        let url = withParams(constants.BACKEND_URL+"/wms/Warehouse/findAllByIdCompany",params);
+        let url = withParams(constants.BACKEND_URL+"/Warehouse/findAllByIdCompany",params);
         fetch(url, {
             method: "GET",
             headers: headers

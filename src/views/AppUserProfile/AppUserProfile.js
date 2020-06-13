@@ -35,7 +35,7 @@ class AppUserProfile extends Component {
         let params = {
             idAppUser: idAppUser
         };
-        const url = withParams(BACKEND_URL+"/auth/AppUser", params);
+        const url = withParams(BACKEND_URL+"/AppUser", params);
         fetch(url, {
             method: "GET",
             headers: headers

@@ -55,7 +55,7 @@ class ItemManualManager extends Component {
 
 		});
 
-		const url = withParams(constants.BACKEND_URL + "/wms/Item", params);
+		const url = withParams(constants.BACKEND_URL + "/Item", params);
 		fetch(url, {
 			method: "POST",
 			headers: headers,

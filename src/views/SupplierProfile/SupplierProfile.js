@@ -28,7 +28,7 @@ class SupplierProfile extends Component {
         let params = {
             idSupplier: idSupplier
         };
-        const url = withParams(constants.BACKEND_URL+"/pos/Supplier/findById", params);
+        const url = withParams(constants.BACKEND_URL+"/Supplier/findById", params);
         fetch(url, {
             method: "GET",
             headers: headers

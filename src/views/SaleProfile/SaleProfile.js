@@ -41,7 +41,7 @@ class SaleProfile extends Component {
         let params = {
             idSale: idSale
         };
-        const url = withParams(constants.BACKEND_URL+"/pos/Sale/findById", params);
+        const url = withParams(constants.BACKEND_URL+"/Sale/findById", params);
         fetch(url, {
             method: "GET",
             headers: headers
@@ -60,7 +60,7 @@ class SaleProfile extends Component {
         let params = {
             idClient: idClient
         };
-        const url = withParams(constants.BACKEND_URL+"/pos/Client/findById", params);
+        const url = withParams(constants.BACKEND_URL+"/Client/findById", params);
         fetch(url, {
             method: "GET",
             headers: headers
@@ -83,7 +83,7 @@ class SaleProfile extends Component {
             page: page,
             pageSize: this.props.pageSize
         };
-        let url = withParams(constants.BACKEND_URL + "/pos/SaleItemQuantity/findByIdSalePaginated", params);
+        let url = withParams(constants.BACKEND_URL + "/SaleItemQuantity/findByIdSalePaginated", params);
         fetch(url, {
             method: "GET",
             headers: headers

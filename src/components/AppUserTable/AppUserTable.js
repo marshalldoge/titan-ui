@@ -35,7 +35,7 @@ class AppUserTable extends Component {
             page: page,
             pageSize: 25
         };
-        const url = withParams(constants.BACKEND_URL + "/auth/AppUser/findByIdCompanyPaginated", params);
+        const url = withParams(constants.BACKEND_URL + "/AppUser/findByIdCompanyPaginated", params);
         fetch(url, {
             method: "GET",
             headers: headers

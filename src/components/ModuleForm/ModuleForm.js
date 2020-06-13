@@ -45,7 +45,7 @@ class ModuleForm extends Component {
             idAppUser:this.props.idAppUser,
             loc:true
         };
-        var url = withParams(constants.BACKEND_URL+"/auth/AppUserModuleAction/reducer", params);
+        var url = withParams(constants.BACKEND_URL+"/AppUserModuleAction/reducer", params);
         fetch(url, {
             method: "GET",
             headers: headers
@@ -183,7 +183,7 @@ class ModuleForm extends Component {
         let params = {
             idAppUser:this.props.idAppUser
         };
-        const url = withParams(constants.BACKEND_URL+"/auth/AppUserModuleAction", params);
+        const url = withParams(constants.BACKEND_URL+"/AppUserModuleAction", params);
         fetch(url, {
             method: "POST",
             headers: headers,
