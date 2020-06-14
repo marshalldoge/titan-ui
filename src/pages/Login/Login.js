@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Row, Col } from "antd";
 import "./_Login.scss";
-import Logo from'../../assets/logos/logo.jpg';
+import Logo from'../../assets/logos/logo.png';
 
 const LoginForm = React.lazy(() => import("./LoginForm"));
 
