@@ -1,1 +1,1 @@
-export const BACKEND_URL = "http://localhost:8008/services";
+export const BACKEND_URL = process.env.REACT_APP_API_URL;
