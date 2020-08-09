@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {withRouter} from "react-router-dom";
-import {Layout, Menu, Icon} from "antd";
+import { Icon as LegacyIcon } from '@ant-design/compatible';
+import { Layout, Menu } from "antd";
 import {getCookie, withParams, getJWtProperty} from "../../utils.js";
 import "antd/dist/antd.css";
 import "./_Sidebar.scss";
@@ -81,7 +82,7 @@ class Sidebar extends Component {
                     }
                 >
                     <
-                        Icon
+                        LegacyIcon
                         type={item["logo"]}
                     />
                     <span className="nav-text"> {item["submenuTitle"]} </span>
@@ -93,7 +94,7 @@ class Sidebar extends Component {
                     key={item["submenuTitle"]}
                     title={
                         <span>
-                        <Icon
+                        <LegacyIcon
                             type={item["logo"]}
                         />
                         <span>{item["submenuTitle"]}</span>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import {Col, Row, Input, Typography, AutoComplete,Icon} from "antd";
+import { CloseOutlined } from '@ant-design/icons';
+import { Col, Row, Input, Typography, AutoComplete } from "antd";
 import "antd/dist/antd.css";
 import "../../stylesheets/layout/_adminLayout.scss";
 import "../../redux/reducers/appUserReducer"
@@ -219,11 +220,11 @@ class ItemQuantityForm extends Component {
 
            */
           return (
-            <TButton
-                 type={"danger"}
-                 label={<Icon type="close" />}
-                 onClick={()=>this.removeItem(idSaleItem)}
-            />
+              <TButton
+                   type={"danger"}
+                   label={<CloseOutlined />}
+                   onClick={()=>this.removeItem(idSaleItem)}
+              />
           );
       }else{
           return null;

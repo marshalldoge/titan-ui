@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import {withRouter} from "react-router-dom";
-import {Form, Alert, Row, Col} from "antd";
+import { Form } from '@ant-design/compatible';
+import '@ant-design/compatible/assets/index.css';
+import { Alert, Row, Col } from "antd";
 import {setCookie, getJWtProperty} from "../../utils.js";
 
 import "antd/dist/antd.css";
@@ -122,19 +124,19 @@ class LoginForm extends Component {
 
     render() {
         return (
-            <Row type={"flex"} className={"loginFormCtn"} justify={"center"} align={"middle"}>
+            <Row className={"loginFormCtn"} justify={"center"} align={"middle"}>
                 <Col span={10}>
-                    <Row type={"flex"} justify={"center"}>
+                    <Row justify={"center"}>
                         {this.UsernameInput()}
                     </Row>
                     <br/>
                     <br/>
-                    <Row type={"flex"} justify={"center"}>
+                    <Row justify={"center"}>
                         {this.PasswordInput()}
                     </Row>
                     <br/>
                     <br/>
-                    <Row type={"flex"} justify={"center"}>
+                    <Row justify={"center"}>
                         {this.LoginButton()}
                     </Row>
                 </Col>

@@ -1,6 +1,7 @@
 import React, {Component } from "react";
 import {withRouter} from "react-router-dom";
-import {Layout, Menu, Icon, Dropdown} from "antd";
+import { DownOutlined } from '@ant-design/icons';
+import { Layout, Menu, Dropdown } from "antd";
 import {getCookie, withParams, deleteCookie} from "../../utils.js";
 import "antd/dist/antd.css";
 import {connect} from "react-redux";
@@ -91,7 +92,7 @@ class Sidebar extends Component {
                 >
                     <Dropdown overlay={menu}>
                         <div className="ant-dropdown-link">
-                            {this.props.firstName} <Icon type="down"/>
+                            {this.props.firstName} <DownOutlined />
                         </div>
                     </Dropdown>
                 </Menu>

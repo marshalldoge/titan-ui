@@ -1,13 +1,9 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import {
-    Icon,
-    Button,
-    Form,
-    Input,
-    Tooltip,
-    Typography
-} from "antd";
+import { QuestionCircleOutlined } from '@ant-design/icons';
+import { Form } from '@ant-design/compatible';
+import '@ant-design/compatible/assets/index.css';
+import { Button, Input, Tooltip, Typography } from "antd";
 import "antd/dist/antd.css";
 import "../../stylesheets/layout/_adminLayout.scss";
 // routes config
@@ -113,7 +109,7 @@ class AppUserForm extends Component {
                             <span>
                                 Primer Nombre&nbsp;
                                 <Tooltip title="Nombres del usuario">
-                                     <Icon type="question-circle-o"/>
+                                     <QuestionCircleOutlined />
                                 </Tooltip>
                             </span>
                         }
@@ -127,7 +123,7 @@ class AppUserForm extends Component {
                             <span>
                                 Segundo Nombre&nbsp;
                                 <Tooltip title="Nombres del usuario">
-                                     <Icon type="question-circle-o"/>
+                                     <QuestionCircleOutlined />
                                 </Tooltip>
                             </span>
                         }
@@ -141,7 +137,7 @@ class AppUserForm extends Component {
                             <span>
                                 Primer apellido&nbsp;
                                 <Tooltip title="Apellidos del usuario.">
-                                     <Icon type="question-circle-o"/>
+                                     <QuestionCircleOutlined />
                                 </Tooltip>
                             </span>
                         }
@@ -155,7 +151,7 @@ class AppUserForm extends Component {
                             <span>
                                 Segundo apellido&nbsp;
                                 <Tooltip title="Apellidos del usuario.">
-                                     <Icon type="question-circle-o"/>
+                                     <QuestionCircleOutlined />
                                 </Tooltip>
                             </span>
                         }
@@ -209,7 +205,7 @@ class AppUserForm extends Component {
                             <span>
                                 Nombre de usuario&nbsp;
                                 <Tooltip title="What do you want others to call you?">
-                                     <Icon type="question-circle-o"/>
+                                     <QuestionCircleOutlined />
                                 </Tooltip>
                             </span>
                         }

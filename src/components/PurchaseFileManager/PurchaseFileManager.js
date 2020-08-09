@@ -1,6 +1,8 @@
 import React, { Component} from "react";
 import { withRouter} from "react-router-dom";
-import {Button, Form, Input, Select} from "antd";
+import { Form } from '@ant-design/compatible';
+import '@ant-design/compatible/assets/index.css';
+import { Button, Input, Select } from "antd";
 import { getCookie} from "../../utils.js";
 import "antd/dist/antd.css";
 import "../../stylesheets/layout/_adminLayout.scss";

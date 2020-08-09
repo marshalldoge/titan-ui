@@ -1,6 +1,6 @@
 import React, {Component, Suspense} from "react";
 import {withRouter, Switch, Redirect, Route} from "react-router-dom";
-import {Layout, Row, Form} from "antd";
+import { Layout, Row, Col } from "antd";
 import "antd/dist/antd.css";
 import "../../stylesheets/layout/_adminLayout.scss";
 import "./_Body.scss"
@@ -57,12 +57,14 @@ class Body extends Component {
             <Content>
                 <div className="body">
                     <Row justify="center">
-                        <Suspense fallback={this.loading()}>
-                            <Switch>
-                                {this.mapRoutes()}
-                                <Redirect exact from="/AdminPage" to="/AdminPage/dashboard"/>
-                            </Switch>
-                        </Suspense>
+	                    <Col span={24}>
+		                    <Suspense fallback={this.loading()}>
+			                    <Switch>
+				                    {this.mapRoutes()}
+				                    <Redirect exact from="/AdminPage" to="/AdminPage/dashboard"/>
+			                    </Switch>
+		                    </Suspense>
+	                    </Col>
                     </Row>
                 </div>
                 <Footer style={{textAlign: "center"}}>TuringSolutions</Footer>
@@ -71,4 +73,4 @@ class Body extends Component {
     }
 }
 
-export default withRouter(Form.create()(Body));
+export default withRouter(Body);

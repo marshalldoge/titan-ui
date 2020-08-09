@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import "../../redux/reducers/appUserReducer";
 import "./_TButton.scss";
-import { Icon } from "antd";
+import { Icon as LegacyIcon } from '@ant-design/compatible';
 
 
 class TButton extends Component {
 
 	Icon = () => {
 		if(this.props.icon){
-			return (
-				 <Icon type={this.props.icon} theme="filled" />
-			)
+			return <LegacyIcon type={this.props.icon} theme="filled" />;
 		}
 		return null;
 	};

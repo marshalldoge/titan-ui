@@ -25,7 +25,9 @@ class Login extends Component {
 			     </Row>
 			     <br/>
 			     <Row>
-				     <LoginForm/>
+				     <Col span={24}>
+					     <LoginForm/>
+				     </Col>
 			     </Row>
 		     </Col>
     	 </Row>

@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import "../../redux/reducers/appUserReducer";
 import "./_TTitle.scss";
-import {Icon} from "antd";
+import { Icon as LegacyIcon } from '@ant-design/compatible';
 
 
 class TTitle extends Component {
 
 	TitleIcon = () => {
 		if (this.props.icon) {
-			return <Icon type={this.props.icon} onClick={this.props.onClick}/>
+			return <LegacyIcon type={this.props.icon} onClick={this.props.onClick}/>;
 		}
 		return null;
 	};

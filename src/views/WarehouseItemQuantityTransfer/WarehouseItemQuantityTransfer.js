@@ -1,6 +1,6 @@
 import React, {Component } from "react";
 import {withRouter } from "react-router-dom";
-import {Row, Col, Input, Dropdown, Icon, Menu} from "antd";
+import { Row, Col, Input, Dropdown, Menu } from "antd";
 import {getCookie} from "../../utils";
 import {BACKEND_URL} from "../../constants";
 import {connect} from "react-redux";

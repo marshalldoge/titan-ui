@@ -1,6 +1,6 @@
 import React, { Component} from "react";
 import { withRouter} from "react-router-dom";
-import {Row, Col, Pagination, Icon} from "antd";
+import { Row, Col, Pagination } from "antd";
 import { getCookie, withParams} from "../../utils.js";
 import * as constants from "../../constants"
 import {connect} from "react-redux";

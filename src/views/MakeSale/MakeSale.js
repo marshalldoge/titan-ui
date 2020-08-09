@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import {Menu, Icon, Button, Dropdown, Card, Typography, Row, Col} from "antd";
+import { BankOutlined } from '@ant-design/icons';
+import { Menu, Button, Dropdown, Card, Typography, Row, Col } from "antd";
 import "antd/dist/antd.css";
 import "../../stylesheets/layout/_adminLayout.scss";
 import "../../redux/reducers/appUserReducer"
@@ -144,7 +145,7 @@ class MakeSale extends Component {
     };
     WarehousePicker = () =>{
         return (
-            <Dropdown.Button overlay={this.menu} icon={<Icon type="bank" />}>
+            <Dropdown.Button overlay={this.menu} icon={<BankOutlined />}>
                 {this.state.warehouse}
             </Dropdown.Button>
         );
