@@ -12,7 +12,7 @@ import "./_ItemQuantityForm.scss";
 import moment from "moment";
 
 const { Title } = Typography;
-const Button = React.lazy(() => import("../TButton/TButton"));
+const TButton = React.lazy(() => import("../TButton/TButton"));
 
 class ItemQuantityForm extends Component {
     constructor(props) {
@@ -219,11 +219,10 @@ class ItemQuantityForm extends Component {
 
            */
           return (
-            <Button
+            <TButton
                  type={"danger"}
                  label={<Icon type="close" />}
                  onClick={()=>this.removeItem(idSaleItem)}
-
             />
           );
       }else{
@@ -272,13 +271,13 @@ class ItemQuantityForm extends Component {
                 <br/>
                 <Row>
                     <Col span={10} style={{textAlign:"start"}}>
-                        <Button
+                        <TButton
                              label={"Total: "+this.state.total}
                              size={"big"}
                         />
                     </Col>
                     <Col span={8} offset={6} style={{textAlign:"end"}}>
-                        <Button
+                        <TButton
                              type={"inverse"}
                              onClick={this.saveSale}
                              label={"GUARDAR"}

@@ -11,6 +11,7 @@ import "./_ItemStock.scss";
 
 const TButton = React.lazy(() => import("../TButton/TButton"));
 const Title = React.lazy(() => import("../TTitle/TTitle"));
+const TransformItemModal = React.lazy(() => import("../TransformItemModal/TransformItemModal"));
 
 class ItemStock extends Component {
 
@@ -25,7 +26,9 @@ class ItemStock extends Component {
             last: 1
         },
         currentPage:0,
-        pageSize: 15
+        pageSize: 15,
+	    itemToTransform: {},
+	    isModalOpen: false,
     };
 
     componentDidMount() {
@@ -146,11 +149,10 @@ class ItemStock extends Component {
                      me.props.itemQuantityHashMap[idWarehouse][itemCode+"_"+measureName].quantity:0;
                 //console.log("Quntity: ",quantity);
                 return (
-                    <Col key={index} span={8}>{measureName}: {quantity}</Col>
+                    <Col key={index} span={4}>{measureName}: {quantity}</Col>
                 );
             });
-            firstRow = conversionArray.slice(0,2);
-            secondRow = conversionArray.slice(2);
+            firstRow = conversionArray;
             //console.log("firstRow: ",firstRow);
             //console.log("seconfRow: ",secondRow);
         }else{
@@ -160,15 +162,12 @@ class ItemStock extends Component {
           <div className={"itemBox"} key={index} onClick={(e) => this.expandItemBox(e,item,index)}>
               <Row type={"flex"} align="middle">
                   <Col className={"itemCode"} span={3}>{item.code}</Col>
-                  <Col className={"itemName"} span={6}>{item.description}</Col>
-                  <Col span={15}>
-                      <Row>
-                          {firstRow}
-                      </Row>
-                      <Row>
-                          {secondRow}
-                      </Row>
-                  </Col>
+	              <Col span={21}>
+		              <Row type={"flex"} align={"middle"}>
+			              <Col className={"itemName"} span={8}>{item.name}</Col>
+			              {firstRow}
+		              </Row>
+	              </Col>
               </Row>
               <br/>
               {item.isExpanded&&item.warehouseStock?this.WarehouseDescription(item):null}
@@ -180,22 +179,25 @@ class ItemStock extends Component {
         console.log("Item Warehouse stocks: ",item.warehouseStock);
         //TODO CALCULATE THE NUMBER OF MEASURES AND SEND IT TO SIZE PARAMETER
         let WarehouseRows = item.warehouseStock.map(
-             (warehouse,index) => this.WarehouseRow(warehouse,1,index,index!==item.warehouseStock.length-1)
+             (warehouse,index) => this.WarehouseRow(warehouse,4,index,index!==item.warehouseStock.length-1)
         );
         return (
              <Row type={"flex"} className={"warehouseDescriptionCtn"} align="middle">
                  <Col className={"moveButtonCtn"} span={3}>
                      <Row type={"flex"} justify={"center"}>
                          <TButton
-                              label={""}
                               type={"inverse"}
                               size={"icon"}
                               icon={"setting"}
                               inverse={true}
+                              onClick={()=> this.setState({
+	                              itemToTransform: item,
+	                              isModalOpen: true
+                              }) }
                          />
                      </Row>
                  </Col>
-                 <Col className={"warehouseCtn"} span={18}>
+                 <Col className={"warehouseCtn"} span={21}>
                      {WarehouseRows}
                  </Col>
              </Row>
@@ -207,6 +209,7 @@ class ItemStock extends Component {
         let measureCols = [];
         let colSpan = Math.floor(16/size);
         let key = 0;
+        console.log('Span: ',colSpan);
         for(let measure in stock){
             if(stock.hasOwnProperty(measure)) {
                 console.log(measure," => ",stock[measure]);
@@ -276,6 +279,13 @@ class ItemStock extends Component {
                 {this.Container()}
                 <br/>
                 {this.pagination()}
+	            <TransformItemModal
+		             isOpen={this.state.isModalOpen}
+		             item={this.state.itemToTransform}
+		             onClose={()=>this.setState({
+			             isModalOpen: false
+		             })}
+	            />
             </div>
         );
     }

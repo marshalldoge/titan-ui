@@ -54,8 +54,8 @@
     }
   }
   &.icon {
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     &.inverse {
       background-color: #003152;
     }
@@ -112,11 +112,24 @@
   &.icon {
     font-size: 30px;
     color: #003152;
+
     &.inverse {
       color: whitesmoke;
     }
     &.danger {
       color: whitesmoke;
     }
+  }
+}
+.onlyIcon {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 25px;
+  color: #003152;
+  &.inverse {
+    color: whitesmoke;
+  }
+  &.danger {
+    color: whitesmoke;
   }
 }
