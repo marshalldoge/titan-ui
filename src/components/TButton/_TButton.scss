@@ -134,3 +134,9 @@
     color: whitesmoke;
   }
 }
+.disabled {
+  background-color: #dbdbdb !important;
+  border-color: #dbdbdb !important;
+  color: #ECECF3 !important;
+  cursor: default;
+}

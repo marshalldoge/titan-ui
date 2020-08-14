@@ -1,0 +1,20 @@
+.measureInput {
+  border-width: 0 0 1px 0;
+  border-color: red green gray red;
+  border-style: solid;
+  height: 20px;
+  width: 100%;
+  color: #003152;
+  font-weight: 400;
+  font-size: 14px;
+  text-align: center;
+  padding-bottom: 2px;
+  &.danger {
+    border-width: 1px 1px 1px 1px;
+    border-color: red red red red;
+    border-style: solid;
+  }
+}
+.measureInput:focus {
+  outline: none;
+}

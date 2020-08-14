@@ -93,4 +93,25 @@ export function parseTime(localDateTime) {
 export function isLetter(str) {
     return str.length === 1 && str.match(/[a-z]/i);
 }
+export function isNumber(str) {
+	return str.length === 1 && str.match(/[0-9]/i);
+}
+export function getMeasureQuantity(str) {
+	let num = "";
+	for(let i = 0; i < str.length; i++) {
+		if(isLetter(str[i])){
+			break;
+		}
+		num+=str[i];
+	}
+	return parseInt(num);
+}
+export function getMeasureName(str) {
+	for(let i = 0; i < str.length; i++) {
+		if(isLetter(str[i])){
+			return str.substring(i);
+		}
+	}
+	return "";
+}
 //--------------------------------END STRING---------------------------------------

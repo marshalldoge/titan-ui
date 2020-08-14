@@ -21,8 +21,24 @@ class TButton extends Component {
 			);
 		}
 		return (
-			<div className={"buttonCtn "+(this.props.size?this.props.size:"small") + " "+(this.props.type?this.props.type:"")} onClick={this.props.onClick}>
-				<span className={"label "+(this.props.size?this.props.size:"small") + " "+(this.props.type?this.props.type:"")}>{this.props.label}{this.Icon()}</span>
+			<div
+				 className = {
+				 	"buttonCtn "+(this.props.size?this.props.size:"small") + " " +
+				    (this.props.type ? this.props.type : "") + " " +
+				    (this.props.disabled === true ? "disabled" : "")
+				 }
+				 onClick={() => {
+				 	if(this.props.disabled === undefined) this.props.onClick();
+				 }}>
+				<span
+					 className = {
+					 	"label "+(this.props.size?this.props.size:"small") + " " +
+					    (this.props.type ? this.props.type : "") + " " +
+					    (this.props.disabled === true ? "disabled" : "")
+					 }
+				>
+					{this.props.label}{this.Icon()}
+				</span>
 			</div>
 		);
 	}
