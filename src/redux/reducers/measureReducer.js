@@ -16,7 +16,7 @@ export default function(state = initialState, action) {
 			for(let measure in measureHashMap){
 				if(measureHashMap.hasOwnProperty(measure)) {
 					nameMeasure.push(measureHashMap[measure]["name"]);
-					nameIdMeasureHashMap[measureHashMap[measure]["name"]]=measure;
+					nameIdMeasureHashMap[measureHashMap[measure]["name"]]=parseInt(measure);
 				}
 			}
 			console.log("Current nameIdMeasureHashMap ",nameIdMeasureHashMap);

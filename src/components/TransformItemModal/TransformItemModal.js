@@ -4,6 +4,9 @@ import Modal from 'react-modal';
 import "./_TransformItemModal.scss";
 import {Col, Row, Checkbox, Radio, Input} from "antd";
 import { getMeasureName, getMeasureQuantity, isLetter, isNumber} from "../../utils.js";
+import {getCookie, withParams} from "../../utils";
+import {BACKEND_URL} from "../../constants";
+import {connect} from "react-redux";
 
 const TButton = React.lazy(() => import("../TButton/TButton"));
 const Title = React.lazy(() => import("../TTitle/TTitle"));
@@ -29,6 +32,71 @@ class TransformItemModal extends Component {
 			this.setWarehouses();
 		}
 	}
+
+	transformService = () => {
+		let me = this;
+		let destinyMeasure = "";
+		let originWarehouse = "";
+		let destinyWarehouse = "";
+		let itemQuantities = [];
+		let idItem = "";
+		console.log('ITEM DATA', this.props.item);
+
+		let headers={
+			"Authorization":getCookie("JWT"),
+			"Content-Type": "application/json; charset=utf-8"
+		};
+
+		for(let i = 0; i < this.state.warehouseOriginCheckboxes.length; i++) {
+			if(this.state.warehouseOriginCheckboxes[i]) {
+				originWarehouse = this.props.item.warehouseStock[i].idWarehouse;
+			}
+			if(this.state.warehouseDestinyRadioButtons[i]) {
+				destinyWarehouse = this.props.item.warehouseStock[i].idWarehouse;
+			}
+		}
+		console.log('Props of componentn: ',this.props);
+
+		for(let i = 0; i < this.state.measures.length; i++) {
+			if(this.state.measuresTransformStock[i]) {
+				itemQuantities.push({
+					idMeasure: this.props.nameIdMeasureHashMap[this.state.measures[i]],
+					quantity: parseFloat(this.state.measuresTransformStock[i])
+				});
+			}
+			console.log('i',this.state.measureDestinyRadioButtons[i]);
+			if(this.state.measureDestinyRadioButtons[i]) {
+				console.log('name: ',this.state.measures[i]," and id: ",this.props.nameIdMeasureHashMap[this.state.measures[i]]);
+				destinyMeasure = this.props.nameIdMeasureHashMap[this.state.measures[i]];
+			}
+
+		}
+
+		let body =JSON.stringify({
+			destinyMeasure : destinyMeasure,
+		    originWarehouse : originWarehouse,
+			destinyWarehouse: destinyWarehouse,
+			itemQuantities : itemQuantities,
+			idItem : this.props.item.id
+		});
+
+		let url = BACKEND_URL+"/WarehouseItemQuantity/transform";
+		fetch(url, {
+			method: "POST",
+			body: body,
+			headers: headers
+		}).then(response => response.json())
+			 .then(function (response) {
+				 //console.log("me in getpage fetch is ",me);
+				 if(response.success){
+					 alert("El archivo se ha subido correctamente")
+				 }else{
+					 alert("Ha habido un error: " + response.message);
+				 }
+			 }).catch(function (error) {
+			alert("Ha habido un error: " + error);
+		});
+	};
 
 	setWarehouses = () => {
 		if(this.props.item['warehouseStock']){
@@ -89,7 +157,6 @@ class TransformItemModal extends Component {
 		} else {
 			res = originQuantity * equivalence;
 		}
-		console.log('Value: ',res);
 		return res;
 	};
 
@@ -135,10 +202,13 @@ class TransformItemModal extends Component {
 			}
 
 			for(let i = 0; i < prevState.measureDestinyRadioButtons.length; i++) {
-				isDestinyMeasureSelected = prevState.warehouseDestinyRadioButtons[i] || isDestinyMeasureSelected;
+				isDestinyMeasureSelected = prevState.measureDestinyRadioButtons[i] || isDestinyMeasureSelected;
+
 			}
+			console.log('Valid form: ',transformIsValid,"-",isDestinyMeasureSelected,"-",isDestinyWarehouseSelected);
 			prevState.transformIsValid = transformIsValid && isDestinyMeasureSelected && isDestinyWarehouseSelected;
 
+			//console.log('transformIsValid: ',prevState.transformIsValid);
 			return prevState;
 		});
 	};
@@ -178,6 +248,7 @@ class TransformItemModal extends Component {
 			}
 			return prevState;
 		});
+		this.validateForm();
 	};
 
 	checkDestinyMeasure(e,idx) {
@@ -187,6 +258,7 @@ class TransformItemModal extends Component {
 			}
 			return prevState;
 		});
+		this.validateForm();
 	};
 
 	originWarehouseList = () => {
@@ -388,8 +460,8 @@ class TransformItemModal extends Component {
 						 <TButton
 							  disabled={!this.state.transformIsValid}
 							  type={"inverse"}
-							  //onClick={this.saveSale}
-							  label={"GUARDAR"}
+							  onClick={this.transformService}
+							  label={"TRANSFORMAR"}
 							  size={"expanded"}
 						 />
 					 </Col>
@@ -398,5 +470,11 @@ class TransformItemModal extends Component {
 		);
 	}
 }
-
-export default TransformItemModal;
+const mapStateToProps = state => {
+	const { appUserReducer, warehouseReducer, measureReducer } = state;
+	const { idCompany } = appUserReducer;
+	const { nameIdMeasureHashMap } = measureReducer;
+	const { nameIdWarehouseHashMap } = warehouseReducer;
+	return {idCompany, nameIdWarehouseHashMap, nameIdMeasureHashMap};
+};
+export default connect(mapStateToProps)(TransformItemModal);

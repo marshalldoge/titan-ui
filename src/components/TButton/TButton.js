@@ -28,7 +28,10 @@ class TButton extends Component {
 				    (this.props.disabled === true ? "disabled" : "")
 				 }
 				 onClick={() => {
-				 	if(this.props.disabled === undefined) this.props.onClick();
+				 	if(!this.props.disabled) {
+				 		console.log('Executing onClick');
+				 		this.props.onClick();
+				    }
 				 }}>
 				<span
 					 className = {

@@ -83,7 +83,7 @@ class ItemStock extends Component {
             idCompany: this.props.idCompany,
             idItem: idItem
         };
-        let url = withParams(constants.BACKEND_URL + "/WarehouseItemQuantity/findWarehouseStock", params);
+        let url = withParams(constants.BACKEND_URL + "/WarehouseItemQuantity/warehouseStock", params);
         fetch(url, {
             method: "GET",
             headers: headers
@@ -143,10 +143,15 @@ class ItemStock extends Component {
                 //console.log("Item: ",item);
                 let regexStr = measure.match(/[a-z]+|[^a-z]+/gi);
                 let measureName = regexStr[regexStr.length-1];
-                let idWarehouse = 1;
                 let itemCode = item.code;
-                let quantity = me.props.itemQuantityHashMap[idWarehouse][itemCode+"_"+measureName]?
-                     me.props.itemQuantityHashMap[idWarehouse][itemCode+"_"+measureName].quantity:0;
+	            let quantity = 0;
+	            for (let warehouse in this.props.nameIdWarehouseHashMap) {
+		            if (Object.prototype.hasOwnProperty.call(this.props.nameIdWarehouseHashMap, warehouse)) {
+			            let idWarehouse = this.props.nameIdWarehouseHashMap[warehouse];
+			            quantity += me.props.itemQuantityHashMap[idWarehouse][itemCode+"_"+measureName]?
+				             me.props.itemQuantityHashMap[idWarehouse][itemCode+"_"+measureName].quantity:0;
+		            }
+	            }
                 //console.log("Quntity: ",quantity);
                 return (
                     <Col key={index} span={4}>{measureName}: {quantity}</Col>
@@ -297,8 +302,6 @@ const mapStateToProps = state => {
     const { modules } = moduleReducer;
     const { itemQuantityCode, itemQuantityHashMap } = itemQuantityReducer;
     const { nameIdWarehouseHashMap } = warehouseReducer;
-    console.log("Itemquantity hashmap: ",itemQuantityHashMap);
-    console.log("ITEMqUANTITY CODE: ",itemQuantityCode[1].length);
     const ItemCount = itemQuantityCode[1].length;
     return {idCompany,idAppUser, modules, itemQuantityHashMap, itemQuantityCode, ItemCount, nameIdWarehouseHashMap};
 };
