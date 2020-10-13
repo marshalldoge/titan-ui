@@ -46,6 +46,10 @@ const WarehouseItemQuantityTransfer = React.lazy(()=>import('./views/WarehouseIt
 const Permits = React.lazy(() => import('./views/Administration/Permits'));
 const AddFile = React.lazy(() => import('./views/Administration/AddFile'));
 
+//ORDER
+const NewOrderForm = React.lazy(() => import('./components/NewOrderForm/NewOrderForm'));
+const Order = React.lazy(() => import('./views/Order/Order'));
+
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
     { path: '/', exact: true, name: 'Home' },
@@ -93,7 +97,11 @@ const routes = [
     //Administration - Administracion
 
     { path:'/Permisos',name:'Permits',component: Permits},
-    { path:'/AgregarArchivo',name:'AddFile',component: AddFile}
+    { path:'/AgregarArchivo',name:'AddFile',component: AddFile},
+
+    //Administration - Administracion
+	{ path:'/Order',name:'Order',component: Order},
+    { path:'/NewOrderForm',name:'NewOrderForm',component: NewOrderForm}
 
 ];
 

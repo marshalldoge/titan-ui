@@ -1,0 +1,398 @@
+int menu(void);
+int dato;
+int TEMP = 20;
+int n;
+int t = 2000;
+const int ROWS = 30;
+const int COLS = 29;
+int heatingPIN1 = 2;
+int heatingPIN2 = 3;
+int freezingPIN1 = 4;
+int freezingPIN2 = 5;
+int freezingPIN3 = 6;
+int freezingPIN4 = 7;
+int ENA = 8;
+int ENB = 9;
+int data[ROWS];
+char graficaMatriz[ROWS][COLS];
+char symbol1 = '*';
+char symbol2 = '|';
+char symbol3 = '_';
+
+float fdConv = 0.488758553275;
+float epsilon = 0.00000009;
+void setup()
+{
+
+  Serial.begin(9600);
+  pinMode(heatingPIN1,OUTPUT);
+  pinMode(heatingPIN2,OUTPUT);
+  pinMode(freezingPIN1,OUTPUT);
+  pinMode(freezingPIN2,OUTPUT);
+  pinMode(freezingPIN3,OUTPUT);
+  pinMode(freezingPIN4,OUTPUT);
+  pinMode(ENA,HIGH);
+  pinMode(ENB,HIGH);
+  for(int i = 0; i < ROWS; i++) {
+    for(int j = 0; j < COLS; j++) {
+      graficaMatriz[i][j] = ' ';
+    }
+  }
+  setUpGraphMatrix();
+}
+
+void loop()
+{
+   dato=menu();
+   switch(dato)
+   {
+      case 1: {
+      Serial.println("Intruduzca la variable SET_POINT:");
+      TEMP = readData();
+      break;
+      }
+      case 2:{
+      Serial.println("Introduzca numero de datos a leer por el sensor:");
+      n = readData();
+      runSensor(n,TEMP);
+      break;
+      }
+      case 3:{
+      Serial.println("Mostrando datos:");
+      showData(data,n);
+      break;
+      }
+      case 4:{
+      Serial.println("Graficando datos:");
+      graphData(data,n,TEMP);
+      break;
+      }
+      default: {
+      Serial.println("No es una opcion valida");
+      }
+      break;
+    }
+}
+
+//2
+void runSensor(int n,int TEMP) {
+  int V;
+  Serial.print("N de dato | LM35 | Calefactores | Enfriadores");
+  Serial.println("");
+  for(int i = 0; i < n; i++) {
+      V = analogRead(A0);
+      Serial.print(i+1);
+      Serial.print("         |");
+      Serial.print(getTemperatureInC(V));
+      Serial.print("C |");
+      if(getTemperatureInC(V) - (float)TEMP < epsilon) {
+        turnOnCalefactor();
+        Serial.println("M1: OFF M2: OFF | F1: ON F2: ON");
+      } else {
+        turnOnEnfriador();
+        Serial.println("M1: ON M2: ON | F1: OFF F2: OFF");
+      }
+      data[i] = getTemperatureInC(V);
+      delay(t);
+  }
+}
+
+//3
+void showData (int array[ROWS],int n) {
+  int V = 0;
+   for (int i = 0; i < n; i++) {
+      V = array[i];
+      Serial.print(i+1);
+      Serial.print("         |");
+      Serial.print(getTemperatureInC(V));
+      Serial.print("C |");
+      if(getTemperatureInC(V) - (float)TEMP < epsilon) {
+        Serial.println("M1: OFF M2: OFF | F1: ON F2: ON");
+      } else {
+        Serial.println("M1: ON M2: ON | F1: OFF F2: OFF");
+      }
+    }
+}
+
+//4
+void graphData (int array[ROWS],int n, int SET_POINT) {
+
+  //GRAFICA LM35
+  int V = 0;
+  int posDato = 0;
+
+  // SET POINT LINE
+  for (int j = 4; j < COLS; j++) {
+    graficaMatriz[getPositionInGraph(SET_POINT)][j] = '-';
+  }
+
+  for (int j = 4; j < COLS;j = j + 4) {
+    V = array[posDato];
+    graficaMatriz[getPositionInGraph(V)][j] = symbol1;
+    posDato++;
+  }
+
+  //GRAFICA CALEFACTOR y ENFRIADOR
+
+  //Lineas horizontales
+  posDato = -1;
+  for (int j = 4; j < COLS;j++) {
+    if(j%4 == 0) {
+      posDato++;
+    }
+    V = array[posDato];
+    if(V >= SET_POINT) {
+      graficaMatriz[21][j] = symbol3;
+      graficaMatriz[23][j] = symbol3;
+    } else {
+      graficaMatriz[17][j] = symbol3;
+      graficaMatriz[27][j] = symbol3;
+    }
+  }
+
+  //Lineas verticales
+  bool isAboveSetPoint = false;
+  posDato = 0;
+  for (int j = 4; j < COLS;j = j + 4) {
+    if(j == 4 && V > SET_POINT) {
+      isAboveSetPoint = true;
+    } else if(j == 4 && V < SET_POINT) {
+      isAboveSetPoint = false;
+    }
+    V = array[posDato];
+    bool aux = false;
+    if((V > SET_POINT && !isAboveSetPoint) || (V < SET_POINT && isAboveSetPoint)) {
+      for(int k = 18; k <= 21; k++) {
+        graficaMatriz[k][j] = symbol2;
+      }
+      for(int k = 24; k <= 27; k++) {
+        graficaMatriz[k][j] = symbol2;
+      }
+      isAboveSetPoint = !isAboveSetPoint;
+    }
+    posDato++;
+  }
+
+  //Mostrar matriz en el serial
+  for(int i = 0; i < ROWS; i++) {
+    for(int j = 0; j < COLS; j++) {
+      Serial.print(graficaMatriz[i][j]);
+    }Serial.println("");
+  }
+}
+
+int menu(void)
+{
+  int datomenu=0;
+  Serial.println("     MENU    ");
+  Serial.println("1. Establecer variable SET_POINT");
+  Serial.println("2. Iniciar lectura de datos");
+  Serial.println("3. Mostrar datos");
+  Serial.println("4. Graficar");
+  Serial.print("Seleccione opcion(1-4): ");
+  return readData();
+}
+
+int readData() {
+  String dataSize = "";
+
+  while(true) {
+    if(Serial.available()!=0) {
+      dataSize = Serial.readStringUntil('\n');
+      break;
+    }
+  }
+
+  Serial.println(dataSize);
+  return(dataSize.toInt());
+}
+
+float getTemperatureInC(float v){
+  return fdConv*v;
+}
+
+void turnOnCalefactor() {
+  digitalWrite(heatingPIN1,HIGH);
+  digitalWrite(heatingPIN2,HIGH);
+  digitalWrite(freezingPIN1,LOW);
+  digitalWrite(freezingPIN2,LOW);
+  digitalWrite(freezingPIN3,LOW);
+  digitalWrite(freezingPIN4,LOW);
+  digitalWrite(ENA,LOW);
+  digitalWrite(ENB,LOW);
+}
+
+void turnOnEnfriador() {
+  digitalWrite(freezingPIN1,HIGH);
+  digitalWrite(freezingPIN2,LOW);
+  digitalWrite(freezingPIN3,HIGH);
+  digitalWrite(freezingPIN4,LOW);
+  digitalWrite(ENA,HIGH);
+  digitalWrite(ENB,HIGH);
+  digitalWrite(heatingPIN1,LOW);
+  digitalWrite(heatingPIN2,LOW);
+}
+
+int getPositionInGraph(float t) {
+  int res = (int)t/10.0;
+  return 15-res;
+}
+
+void setUpGraphMatrix () {
+  for(int j = 4; j < COLS; j++) {
+    graficaMatriz[16][j] = '-';
+    graficaMatriz[22][j] = '-';
+    graficaMatriz[28][j] = '-';
+  }
+  graficaMatriz[0][3] = '|';
+  graficaMatriz[1][3] = '|';
+  graficaMatriz[2][3] = '|';
+  graficaMatriz[3][3] = '|';
+  graficaMatriz[4][3] = '|';
+  graficaMatriz[5][3] = '|';
+  graficaMatriz[6][3] = '|';
+  graficaMatriz[7][3] = '|';
+  graficaMatriz[8][3] = '|';
+  graficaMatriz[9][3] = '|';
+  graficaMatriz[10][3] = '|';
+  graficaMatriz[11][3] = '|';
+  graficaMatriz[12][3] = '|';
+  graficaMatriz[13][3] = '|';
+  graficaMatriz[14][3] = '|';
+  graficaMatriz[15][0] = ' ';
+  graficaMatriz[16][0] = ' ';
+  graficaMatriz[17][0] = ' ';
+  graficaMatriz[18][0] = ' ';
+  graficaMatriz[19][0] = ' ';
+  graficaMatriz[20][0] = ' ';
+  graficaMatriz[21][0] = ' ';
+  graficaMatriz[23][0] = ' ';
+  graficaMatriz[24][0] = ' ';
+  graficaMatriz[25][0] = ' ';
+  graficaMatriz[26][0] = ' ';
+  graficaMatriz[27][0] = ' ';
+  graficaMatriz[28][0] = ' ';
+  graficaMatriz[29][0] = ' ';
+
+  graficaMatriz[15][1]= ' ';
+  graficaMatriz[16][1]= ' ';
+  graficaMatriz[17][1]= ' ';
+  graficaMatriz[18][1]= ' ';
+  graficaMatriz[19][1]= ' ';
+  graficaMatriz[20][1]= ' ';
+  graficaMatriz[21][1]= ' ';
+  graficaMatriz[22][1]= ' ';
+  graficaMatriz[23][1]= ' ';
+  graficaMatriz[24][1]= ' ';
+  graficaMatriz[25][1]= ' ';
+  graficaMatriz[26][1]= ' ';
+  graficaMatriz[27][1]= ' ';
+  graficaMatriz[28][1]= ' ';
+  graficaMatriz[29][1]= ' ';
+
+  graficaMatriz[15][2]= '0';
+  graficaMatriz[16][2]= ' ';
+  graficaMatriz[17][2]= '1';
+  graficaMatriz[18][2]= ' ';
+  graficaMatriz[19][2]= ' ';
+  graficaMatriz[20][2]= ' ';
+  graficaMatriz[21][2]= '0';
+  graficaMatriz[22][2]= ' ';
+  graficaMatriz[23][2]= '1';
+  graficaMatriz[24][2]= ' ';
+  graficaMatriz[25][2]= ' ';
+  graficaMatriz[26][2]= ' ';
+  graficaMatriz[27][2]= '0';
+  graficaMatriz[28][2]= ' ';
+  graficaMatriz[29][2]= ' ';
+
+  graficaMatriz[15][3]= '|';
+  graficaMatriz[16][3]= '-';
+  graficaMatriz[17][3]= '|';
+  graficaMatriz[18][3]= '|';
+  graficaMatriz[19][3]= '|';
+  graficaMatriz[20][3]= '|';
+  graficaMatriz[21][3]= '|';
+  graficaMatriz[22][3]= '-';
+  graficaMatriz[23][3]= '|';
+  graficaMatriz[24][3]= '|';
+  graficaMatriz[25][3]= '|';
+  graficaMatriz[26][3]= '|';
+  graficaMatriz[27][3]= '|';
+  graficaMatriz[28][3]= '-';
+  graficaMatriz[29][3]= ' ';
+
+  graficaMatriz[29][4]= '1';
+  graficaMatriz[29][5]= ' ';
+  graficaMatriz[29][6]= ' ';
+  graficaMatriz[29][7]= ' ';
+  graficaMatriz[29][8]= '2';
+  graficaMatriz[29][9]= ' ';
+  graficaMatriz[29][10]= ' ';
+  graficaMatriz[29][11]= ' ';
+  graficaMatriz[29][12]= '3';
+  graficaMatriz[29][13]= ' ';
+  graficaMatriz[29][14]= ' ';
+  graficaMatriz[29][15]= ' ';
+  graficaMatriz[29][16]= '4';
+  graficaMatriz[29][17]= ' ';
+  graficaMatriz[29][18]= ' ';
+  graficaMatriz[29][19]= ' ';
+  graficaMatriz[29][20]= '5';
+  graficaMatriz[29][21]= ' ';
+  graficaMatriz[29][22]= ' ';
+  graficaMatriz[29][23]= ' ';
+  graficaMatriz[29][24]= '6';
+  graficaMatriz[29][25]= ' ';
+  graficaMatriz[29][26]= ' ';
+  graficaMatriz[29][27]= ' ';
+  graficaMatriz[29][28]= '7';
+
+  graficaMatriz[0][0] = '1';
+  graficaMatriz[1][0] = '1';
+  graficaMatriz[2][0] = '1';
+  graficaMatriz[3][0] = '1';
+  graficaMatriz[4][0] = '1';
+  graficaMatriz[5][0] = ' ';
+  graficaMatriz[6][0] = ' ';
+  graficaMatriz[7][0] = ' ';
+  graficaMatriz[8][0] = ' ';
+  graficaMatriz[9][0] = ' ';
+  graficaMatriz[10][0] = ' ';
+  graficaMatriz[11][0] = ' ';
+  graficaMatriz[12][0] = ' ';
+  graficaMatriz[13][0] = ' ';
+  graficaMatriz[14][0] = ' ';
+  graficaMatriz[5][0] = '1';
+  graficaMatriz[0][1] = '5';
+  graficaMatriz[1][1] = '4';
+  graficaMatriz[2][1] = '3';
+  graficaMatriz[3][1] = '2';
+  graficaMatriz[4][1] = '1';
+  graficaMatriz[5][1] = '0';
+  graficaMatriz[6][1] = '9';
+  graficaMatriz[7][1] = '8';
+  graficaMatriz[8][1] = '7';
+  graficaMatriz[9][1] = '6';
+  graficaMatriz[10][1] = '5';
+  graficaMatriz[11][1] = '4';
+  graficaMatriz[12][1] = '3';
+  graficaMatriz[13][1] = '2';
+  graficaMatriz[14][1] = '1';
+  graficaMatriz[15][1] = '0';
+  graficaMatriz[0][2] = '0';
+  graficaMatriz[1][2] = '0';
+  graficaMatriz[2][2] = '0';
+  graficaMatriz[3][2] = '0';
+  graficaMatriz[4][2] = '0';
+  graficaMatriz[5][2] = '0';
+  graficaMatriz[6][2] = '0';
+  graficaMatriz[7][2] = '0';
+  graficaMatriz[8][2] = '0';
+  graficaMatriz[9][2] = '0';
+  graficaMatriz[10][2] = '0';
+  graficaMatriz[11][2] = '0';
+  graficaMatriz[12][2] = '0';
+  graficaMatriz[13][2] = '0';
+  graficaMatriz[14][2] = '0';
+}
