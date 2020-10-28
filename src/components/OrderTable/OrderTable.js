@@ -7,21 +7,35 @@ import {connect} from "react-redux";
 import "antd/dist/antd.css";
 import "./_OrderTable.scss";
 
+const MessageModal = React.lazy(() => import("../../components/MessageModal/MessageModal"));
 const PaginatedLazyTable= React.lazy(() => import("../../components/PaginatedLazyTable/PaginatedLazyTable"));
 
 class OrderTable extends Component {
+	constructor(props) {
+		super(props);
+		this.sendMessage = this.sendMessage.bind(this);
+	};
     // TODO Add Date of last sale to table
     state={
         columns: [],
         data: [],
         columnDefs: [
-            {headerName: "ID", field: "id", width: "10%"},
+            {headerName: "ID", field: "id", width: "5%"},
             {headerName: "Medicamento", field: "itemDescription", width: "30%"},
-            {headerName: "Celular", field: "phone", width: "20%"},
+            {headerName: "Celular", field: "phone", width: "15%"},
             {headerName: "Nombre Persona", field: "clientName", width: "20%"},
-	        {headerName: "Precio", field: "price", width: "20%"}
+	        {headerName: "Precio", field: "price", width: "20%"},
+	        {headerName: "Mensaje",
+		        render:(row) =>
+			         <Button type="link" size={'small'} onClick={(e) => this.sendMessage(e,row)}>
+				         Mensaje
+			         </Button>,
+		        width: "15%"
+	        }
         ],
-        windowHeight: document.body.clientHeight
+        windowHeight: document.body.clientHeight,
+	    isModalOpen: false,
+	    messageInformation: {}
     };
 
     loadClientTablePage(page) {
@@ -55,10 +69,18 @@ class OrderTable extends Component {
         });
     };
 
+	sendMessage(event, row){
+		event.stopPropagation();
+		console.log("Message sent with information; ",row);
+		this.setState(prevState => {
+			prevState.messageInformation = row;
+			prevState.isModalOpen = true;
+			return prevState;
+		})
+	}
+
 
     render() {
-        console.log("Props: ",this.props);
-        console.log("Number of rows in client table: ",Math.floor(this.state.windowHeight/100));
         return (
              <div>
                  <PaginatedLazyTable
@@ -67,8 +89,15 @@ class OrderTable extends Component {
                       loadTablePage={this.loadClientTablePage}
                       length={this.props.clientCount}
                       title={"Pedidos"}
-                      pageSize={Math.floor(this.state.windowHeight/50)}
+                      pageSize={Math.floor(this.state.windowHeight/70)}
                  />
+	             <MessageModal
+		              isOpen={this.state.isModalOpen}
+		              messageInformation={this.state.messageInformation}
+		              onClose={()=>this.setState({
+			              isModalOpen: false
+		              })}
+	             />
              </div>
         );
     }

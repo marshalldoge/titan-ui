@@ -73,12 +73,20 @@ class PaginatedLazyTable extends Component {
 
     tr = (row,index) => {
         let tds = [];
-        let fields = this.props.columnDefs.map(e => e.field);
-        //console.log("tr fields: ",fields);
-        //console.log("row: ",row);
-        for(let i=0;i<fields.length;i++){
-            tds.push(this.td(row[fields[i]],i,index%2===0?"white":"#ECEDF0"));
-        }
+	    let fields = this.props.columnDefs.map(e => {
+		    if(e.render) return e.render;
+
+		    return e.field;
+	    });
+	    //console.log("tr fields: ",fields);
+	    //console.log("row: ",row);
+	    for(let i=0;i<fields.length;i++){
+		    if(typeof fields[i] === 'function') {
+			    tds.push(this.tdRender(fields[i], row, i, index%2===0? "white": "#ECEDF0"));
+		    } else {
+			    tds.push(this.td(row[fields[i]], i,index%2===0? "white": "#ECEDF0"));
+		    }
+	    }
         return(
              <tr className={"tr"} style = {this.trStyle} key={index} onClick={() => this.props.onRowClick(row)}>
                  {tds}
@@ -113,6 +121,12 @@ class PaginatedLazyTable extends Component {
              <td key={index} className={"td"} style={this.tdStyle(background)}>{value}</td>
         );
     };
+
+	tdRender = (render, row, index, background) => {
+		return(
+			 <td key={index} className={"td"} style={this.tdStyle(background)}>{render(row)}</td>
+		);
+	};
 
     tableStyle = {
         background:"white",
@@ -150,14 +164,12 @@ class PaginatedLazyTable extends Component {
 
     tbody = () => {
         let rowData = this.state.pageData[this.state.currentPage].map((row,index) => this.tr(row,index));
-        console.log("Page size of table: ",this.props.pageSize);
 
         //This is to print white and gray empty lines
         let emptyObject = {};
         for(let i = 0; i < this.props.columnDefs.length; i++) {
             emptyObject[this.props.columnDefs[i]['field']] = '';
         }
-        console.log("Empty object for table: ",emptyObject);
         for(let i = rowData.length;i < this.props.pageSize; i++) {
             rowData.push(this.trEmpty(emptyObject,i));
         }
@@ -170,7 +182,6 @@ class PaginatedLazyTable extends Component {
     };
 
     pagination = () => {
-        console.log("total for pagination: ",this.props.length);
         return(
              <Pagination
                   current={this.state.currentPage+1}

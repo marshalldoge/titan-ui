@@ -24,7 +24,7 @@ class Order extends Component{
 	addItemButton = () => {
 		return (
 			 <Button
-				  label={"Añadir Items"}
+				  label={"Nuevo pedido"}
 				  size={"small"}
 				  onClick={this.goToItemManager}
 				  type={"inverse"}

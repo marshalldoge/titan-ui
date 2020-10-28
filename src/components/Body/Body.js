@@ -1,6 +1,7 @@
 import React, {Component, Suspense} from "react";
 import {withRouter, Switch, Redirect, Route} from "react-router-dom";
 import { Layout, Row, Col } from "antd";
+import LoadingGif from'../../assets/gif/loading.gif';
 import "antd/dist/antd.css";
 import "../../stylesheets/layout/_adminLayout.scss";
 import "./_Body.scss"
@@ -15,9 +16,13 @@ class Body extends Component {
         this.mapRoutes = this.mapRoutes.bind(this);
     }
 
-    loading = () => {
-        return <div>The component is loading</div>
-    }
+	loading = () => {
+		return (
+			 <div style={{width:"100%",height:"100%",verticalAlign:"middle",textAlign:"center"}}>
+				 <img src={LoadingGif} alt={"Cargando..."}/>
+			 </div>
+		);
+	};
 
     /*
     {routes.map((route, idx) => {

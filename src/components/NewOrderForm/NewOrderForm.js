@@ -18,7 +18,7 @@ class NewOrderForm extends Component {
     };
 
 	goToOrder = () => {
-		this.props.history.push("/");
+		this.props.history.push("/Dashboard");
 	};
 
     handleSubmit = e => {
@@ -35,7 +35,9 @@ class NewOrderForm extends Component {
 	                clientName: values.firstName + " " +
 		                 values.secondName + " " +
 		                 values.secondName + " " +
-		                 values.secondLastName
+		                 values.secondLastName,
+	                price: Math.round(Math.random()*100+10 * 100) / 100
+
                 });
                 var url = constants.BACKEND_URL+"/Order";
                 fetch(url, {

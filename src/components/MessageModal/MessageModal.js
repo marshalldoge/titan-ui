@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "../../redux/reducers/appUserReducer";
 import Modal from 'react-modal';
 import "./_MessageModal.scss";
-import {Col, Row, Checkbox, Radio, Input} from "antd";
+import {Col, Row, Checkbox, message, Input} from "antd";
 import { getMeasureName, getMeasureQuantity, isLetter, isNumber} from "../../utils.js";
 import {getCookie, withParams} from "../../utils";
 import {BACKEND_URL} from "../../constants";
@@ -18,24 +18,35 @@ class TransformItemModal extends Component {
 		message: ""
 	};
 
+	componentDidMount() {
+		this.setState({
+			message: "Su pedido ya esta disponible. Puede recogerlo, a partir de mañana en horarios de oficina."
+		})
+	}
+
 	sendMessage = () => {
+		let me = this;
 		let headers={
 			"Authorization":getCookie("JWT"),
 			"Content-Type": "application/json; charset=utf-8",
 		};
+		let params = {
+			idItemOrder: this.props.messageInformation.id
+		};
 		console.log('Props: ',this.props);
 		let body = JSON.stringify({
-			to: "+591"+this.props.messageInformation.phone,
+			phone: "+591"+this.props.messageInformation.phone,
 			message: this.state.message
 		});
-		let url = BACKEND_URL + "/SMS";
+		let url = withParams(BACKEND_URL + "/SMS",params);
 		fetch(url, {
 			method: "POST",
 			body: body,
 			headers: headers
 		}).then(function (res) {
 			if (res.ok) {
-				alert("Se ha enviado el mensage correctamente. ");
+				me.props.onClose();
+				message.success("Se ha enviado el mensaje con éxito.");
 			} else if (res.status === 401) {
 				alert("Oops! ");
 			}
@@ -60,7 +71,7 @@ class TransformItemModal extends Component {
 				marginRight           : '-50%',
 				transform             : 'translate(-50%, -50%)',
 				width                 : '450px',
-				height                : '250px'
+				height                : '230px'
 			}
 		};
 		return (
@@ -73,10 +84,13 @@ class TransformItemModal extends Component {
 				  ariaHideApp={false}
 			 >
 				 <Title
-					  size={'big'}
+					  size={'medium'}
 					  label={'Mandar mensaje'}
 				 />
-				 <br/>
+				 <Title
+					  size={'small'}
+					  label={"Cel: " + this.props.messageInformation.phone}
+				 />
 				 <Row justify="space-between" align="bottom">
 					 <Col span={24}>
 						 <TextArea
@@ -93,7 +107,7 @@ class TransformItemModal extends Component {
 							  type={"inverse"}
 							  onClick={this.props.onClose}
 							  label={"CANCELAR"}
-							  size={"medium"}
+							  size={"small"}
 						 />
 					 </Col>
 					 <Col span={10}>
@@ -101,7 +115,7 @@ class TransformItemModal extends Component {
 							  type={"inverse"}
 							  onClick={this.sendMessage}
 							  label={"ENVIAR"}
-							  size={"medium"}
+							  size={"small"}
 						 />
 					 </Col>
 				 </Row>

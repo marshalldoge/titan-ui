@@ -51,6 +51,7 @@ const mapStateToProps = state => {
     const { appUserReducer, moduleReducer } = state;
     const { idAppUser } = appUserReducer;
     const { modules } = moduleReducer;
+    console.log('Modules: ',modules);
     return {idAppUser, modules};
 };
 
