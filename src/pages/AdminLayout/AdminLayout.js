@@ -29,12 +29,13 @@ class AdminLayout extends Component {
         activeSubmenu: "NewsFeed",
         userData:{},
         successfulLoad:true,
-        servicesToLoad: 10,
+        servicesToLoad: 0,
         loadedServices: 0
     };
 
     componentDidMount = () => {
-        this.props.setIdAppUser(getJWtProperty("idAppUser"));
+        this.props.setIdAppUser(getJWtProperty("appUserId"));
+        /*
         this.loadAppUser();
         this.loadModules();
         this.loadNitIdClientHashMap();
@@ -45,6 +46,7 @@ class AdminLayout extends Component {
         this.loadCompany();
         this.loadCurrency();
         this.loadMeasure();
+         */
     };
 
     loadNitIdClientHashMap = () => {
@@ -391,8 +393,7 @@ class AdminLayout extends Component {
 
     handleActiveSubmenu=(newActiveSubmenu)=>{
         this.setState({activeSubmenu:newActiveSubmenu});
-        console.log("GOING TO SUBMENU; ",newActiveSubmenu.replace( /\s/g, ''));
-        this.props.history.push(newActiveSubmenu.replace( /\s/g, '') );
+        this.props.history.push("/"+newActiveSubmenu);
     };
 
     onCollapse = collapsed => {

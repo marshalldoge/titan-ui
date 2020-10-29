@@ -1,6 +1,12 @@
 import React, {Component} from "react";
 import {withRouter} from "react-router-dom";
-import { Icon as LegacyIcon } from '@ant-design/compatible';
+import {
+	MenuUnfoldOutlined,
+	MenuFoldOutlined,
+	UserOutlined,
+	VideoCameraOutlined,
+	UploadOutlined,
+} from '@ant-design/icons';
 import { Layout, Menu } from "antd";
 import {getCookie, withParams, getJWtProperty} from "../../utils.js";
 import "antd/dist/antd.css";
@@ -13,7 +19,7 @@ const {Sider} = Layout;
 class Sidebar extends Component {
     state = {
         collapsed: false,
-        menuData: []
+        moduleData: []
     };
 
     onCollapse = collapsed => {
@@ -22,7 +28,7 @@ class Sidebar extends Component {
     };
 
     componentDidMount = () => {
-        this.loadSidebarPermit();
+
     };
 
     loadSidebarPermit = () => {
@@ -33,100 +39,37 @@ class Sidebar extends Component {
             Authorization: getCookie("JWT")
         };
         let params = {
-            idAppUser: getJWtProperty("idAppUser")
+
         };
         let me = this;
-        var url = withParams(constants.BACKEND_URL+"/SidebarPermit", params);
+        var url = withParams(constants.BACKEND_URL+"/module", params);
         fetch(url, {
             method: "GET",
             headers: headers
         })
             .then(response => response.json())
-            .then(function (data) {
-                /*Example data:
-                [
-                        {
-                                "menuItems": [
-                                        "Por Cantidad",
-                                        "Por Almacen"
-                                ],
-                                "logo": "dropbox",
-                                "submenuTitle": "Productos"
-                        },
-                        {
-                                "menuItems": [
-                                        "Borrar"
-                                ],
-                                "logo": "user",
-                                "submenuTitle": "Usuarios"
-                        }
-                ]
-                */
-                //console.log("Data for sidebar: ",data);
-                me.setState({menuData: data});
+            .then(function (response) {
+                if (response.success) {
+	                me.setState({moduleData: response.data});
+                }
 
-                //console.log("data fro menu: ", me.state.menuData);
-                //console.log("Data: ", data);
             });
     };
 
-    SubMenu = (item) => {
-        let menuItems=item["menuItems"].map(item => <Menu.Item key={item} onClick = {() => this.props.handleActiveSubmenu(item)}>{item}</Menu.Item>);
-        //console.log("Item to be converted in Submenu: ",item," with Menuitems: ",menuItems);
-        if(item["menuItemLength"] === 0){
-            return (
-                <Menu.Item
-                    key={item["submenuTitle"]}
-                    onClick={() =>
-                        this.props.handleActiveSubmenu(item["name"])
-                    }
-                >
-                    <
-                        LegacyIcon
-                        type={item["logo"]}
-                    />
-                    <span className="nav-text"> {item["submenuTitle"]} </span>
-                </Menu.Item>
-            );
-        }else {
-            return (
-                <SubMenu
-                    key={item["submenuTitle"]}
-                    title={
-                        <span>
-                        <LegacyIcon
-                            type={item["logo"]}
-                        />
-                        <span>{item["submenuTitle"]}</span>
-                    </span>
-                    }
-                >
-                    {menuItems}
-                </SubMenu>
-            );
-        }
-    };
-
-     Menu = () =>{
-         let SubMenus=this.state.menuData.map(item => this.SubMenu(item));
-         return(<Menu theme="dark" mode="inline">{SubMenus}</Menu>);
-     };
-
      Logo = () => {
-         return null;
          return (
               <div>
                   <img
                        className = "logo"
-                       alt = "SABONIS"
-                       //src={require("../../assets/brandLogos/sabonis.jpg")}
+                       alt = "TITAN"
+                       src={require("../../assets/logos/logoHealth.png")}
                   />
               </div>
          );
      };
 
     render(){
-        //onsole.log("WHole menuData: ",this.state.menuData);
+        //onsole.log("WHole moduleData: ",this.state.moduleData);
 
         return(
             <Sider
@@ -135,8 +78,20 @@ class Sidebar extends Component {
                 onCollapse={this.onCollapse}
                 className={"sider"}
             >
-                {this.Logo()}
-                {this.Menu()}
+                {
+                	//this.Logo()
+                }
+	            <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+		            <Menu.Item key="1" icon={<UserOutlined />} onClick={() => this.props.handleActiveSubmenu("home")}>
+			            Inicio
+		            </Menu.Item>
+		            <Menu.Item key="2" icon={<VideoCameraOutlined />} onClick={() => this.props.handleActiveSubmenu("searchAppointment")}>
+			            Mis consultas
+		            </Menu.Item>
+		            <Menu.Item key="3" icon={<UploadOutlined />} onClick={() => this.props.handleActiveSubmenu("appointment")}>
+			            Consultas
+		            </Menu.Item>
+	            </Menu>
             </Sider>
         );
     }

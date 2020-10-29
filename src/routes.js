@@ -50,10 +50,14 @@ const AddFile = React.lazy(() => import('./views/Administration/AddFile'));
 const NewOrderForm = React.lazy(() => import('./components/NewOrderForm/NewOrderForm'));
 const Order = React.lazy(() => import('./views/Order/Order'));
 
+//New routes
+const Appointment = React.lazy(() => import('./views/Appointment/Appointment'));
+const SearchAppointment = React.lazy(() => import('./views/SearchAppointment/SearchAppointment'));
+
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
     { path: '/', exact: true, name: 'Home' },
-    { path: '/Dashboard', name: 'Dashboard', component: Dashboard },
+    { path: '/home', name: 'Dashboard', component: Dashboard },
     /*
         { path: '/theme', exact: true, name: 'Theme', component: Colors },
     */
@@ -101,7 +105,11 @@ const routes = [
 
     //Administration - Administracion
 	{ path:'/Order',name:'Order',component: Order},
-    { path:'/NewOrderForm',name:'NewOrderForm',component: NewOrderForm}
+    { path:'/NewOrderForm',name:'NewOrderForm',component: NewOrderForm},
+
+    //New routes
+	{ path:'/appointment',name:'Appointment',component: Appointment},
+	{ path:'/searchAppointment',name:'SearchAppointment',component: SearchAppointment}
 
 ];
 
