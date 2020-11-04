@@ -52,7 +52,7 @@ const Order = React.lazy(() => import('./views/Order/Order'));
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
-    { path: '/', exact: true, name: 'Home' },
+    { path: '/', exact: true, name: 'Home', component: Dashboard },
     { path: '/Dashboard', name: 'Dashboard', component: Dashboard },
     /*
         { path: '/theme', exact: true, name: 'Theme', component: Colors },

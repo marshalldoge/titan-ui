@@ -72,7 +72,7 @@ class ShiftTable extends Component {
                                 "En curso";
                             let duration = parseFloat(response.data.content[i].duration);
                             let parcedDuration;
-                            if(duration){
+                            if(duration || duration === 0){
                                 let minute = Math.floor(duration/60);
                                 let hour = Math.floor(duration/60/60);
                                 let second = Math.floor(duration%60);

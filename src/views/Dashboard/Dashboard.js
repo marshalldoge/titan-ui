@@ -21,11 +21,14 @@ class Dashboard extends Component {
 		isModalOpen: false,
 		messageInformation: {},
 		monthData:[],
-		monthIndicator: []
+		monthIndicator: [],
+		orderMonthData:[],
+		orderMonthIndicator: []
 	};
 
 	componentDidMount() {
 		this.getMonthData();
+		this.getOrderMonthData();
 	}
 
 	openMessageModal = (e,item) => {
@@ -68,6 +71,40 @@ class Dashboard extends Component {
 			}, function (e) {
 				alert("Error submitting form!");
 			});
+	};
+
+	getOrderMonthData = () => {
+		let me = this;
+		let headers={
+			"Content-Type": "application/json; charset=utf-8",
+			"Authorization":getCookie("JWT")
+		};
+		let params = {
+			month: 10
+		};
+		let url = withParams(BACKEND_URL+"/Order/month",params);
+		fetch(url, {
+			method: "GET",
+			body: this.state.file,
+			headers: headers
+		}).then(response => response.json())
+			 .then(function (res) {
+				 if (res.success) {
+					 me.setState(prevState => {
+						 let total = 0;
+						 for(let i = 0; i < res.data.length; i++) {
+							 total += res.data[i]["y"];
+						 }
+						 prevState.orderMonthIndicator = total;
+						 prevState.orderMonthData = res.data;
+						 return prevState;
+					 })
+				 } else {
+					 alert("Ha ocurrido un error cargando los datos del mes.");
+				 }
+			 }, function (e) {
+				 alert("Error submitting form!");
+			 });
 	};
 
 	messagesList = () => {
@@ -129,13 +166,33 @@ class Dashboard extends Component {
 						  gauge: { axis: { range: [0, 50] } }
 					  }
 				  ]}
-				  layout={ {width: 400, height: 350} }
+				  layout={ {width: 300, height: 250} }
+			 />
+		)
+	};
+
+	OrderIndicators = () => {
+		return (
+			 <Plot
+				  data={[
+					  {
+						  domain: { x: [0, 1], y: [0, 1] },
+						  value: this.state.orderMonthIndicator,
+						  title: { text: "Pedidos" },
+						  type: "indicator",
+						  mode: "gauge+number",
+						  delta: { reference: 200 },
+						  gauge: { axis: { range: [0, 50] } }
+					  }
+				  ]}
+				  layout={ {width: 300, height: 250} }
 			 />
 		)
 	};
 
 	MonthMessageLine = () => {
-		const data = [{
+		const data = [];
+		data.push({
 			id: "Mensajes",
 			color: "hsl(49, 70%, 50%)",
 			data: this.state.monthData.map(item => {
@@ -144,7 +201,18 @@ class Dashboard extends Component {
 					y: item["y"]
 				}
 			})
-		}];
+		});
+		data.push({
+			id: "Pedidos",
+			color: "hsl(49, 70%, 50%)",
+			data: this.state.orderMonthData.map(item => {
+				return {
+					x: item["x"].split("-")[2],
+					y: item["y"]
+				}
+			})
+		});
+
 
 		console.log("Data to render",data);
 
@@ -173,7 +241,7 @@ class Dashboard extends Component {
 					 tickSize: 5,
 					 tickPadding: 5,
 					 tickRotation: 0,
-					 legend: 'Mensajes',
+					 legend: 'Cantidad',
 					 legendOffset: -40,
 					 legendPosition: 'middle'
 				 }}
@@ -219,7 +287,7 @@ class Dashboard extends Component {
 				<Row>
 					<Col span={24}>
 					<TTitle
-						label={"Gráficos"}
+						label={"Inicio"}
 						 size={"big"}
 					/>
 					</Col>
@@ -238,6 +306,11 @@ class Dashboard extends Component {
 			            <Row type={"flex"} className={"indicator-ctn"}>
 				            <Col span={20}>
 					            {this.MessageIndicators()}
+				            </Col>
+			            </Row>
+			            <Row type={"flex"} className={"indicator-ctn"}>
+				            <Col span={20}>
+					            {this.OrderIndicators()}
 				            </Col>
 			            </Row>
 			            <Row type={"flex"}>

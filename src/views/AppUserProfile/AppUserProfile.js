@@ -62,7 +62,7 @@ class AppUserProfile extends Component {
                 </TabPane>
             );
         }
-    }
+    };
 
     callback = key => {
         console.log(key);
@@ -90,9 +90,6 @@ class AppUserProfile extends Component {
                             pageSize={12}
                             saleCount={this.state.AppUser.saleCount}
                         />}
-                    </TabPane>
-                    <TabPane tab="Compras" key="2">
-                        Content of Tab Pane 2
                     </TabPane>
                     <TabPane tab="Cajas" key="3">
                         <ShiftTable

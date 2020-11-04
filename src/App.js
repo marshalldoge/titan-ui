@@ -43,7 +43,7 @@ function App() {
              <React.Suspense fallback={loading()}>
                <Switch>
                  <Route exact path='/Login' component={Login} render={props => <Login {...props}/>}></Route>
-                 <PrivateRoute exact path='/AdminLayout' component={AdminLayout} ></PrivateRoute>
+                 <PrivateRoute exact path='/Dashboard' component={AdminLayout} ></PrivateRoute>
                  <PrivateRoute path='/' component={AdminLayout}></PrivateRoute>
                </Switch>
              </React.Suspense>

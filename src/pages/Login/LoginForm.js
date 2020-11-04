@@ -102,7 +102,7 @@ class LoginForm extends Component {
 
     signOut(e) {
         e.preventDefault();
-        this.props.history.push("/");
+        this.props.history.push("/Dashboard");
     }
 
     alert = () => {

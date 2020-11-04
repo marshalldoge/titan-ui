@@ -2,7 +2,7 @@ import React, {Component } from "react";
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Form } from '@ant-design/compatible';
 import '@ant-design/compatible/assets/index.css';
-import { Button, Input, Tooltip } from "antd";
+import { Input, Tooltip, message } from "antd";
 import "antd/dist/antd.css";
 import "../../stylesheets/layout/_adminLayout.scss";
 // routes config
@@ -10,19 +10,25 @@ import * as constants from "../../constants";
 import {getCookie} from "../../utils";
 
 const TTitle = React.lazy(() => import("../TTitle/TTitle"));
+const Button= React.lazy(() => import("../TButton/TButton"));
 
 class NewOrderForm extends Component {
+
+	constructor(props) {
+		super(props);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
     state = {
         confirmDirty: false,
         autoCompleteResult: []
     };
 
 	goToOrder = () => {
-		this.props.history.push("/Dashboard");
+		this.props.history.push("/Order");
 	};
 
     handleSubmit = e => {
-        e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 let me = this;
@@ -51,6 +57,7 @@ class NewOrderForm extends Component {
                     if (res.status == "200") {
                         console.log("Success");
                         me.goToOrder();
+                        message.success("Se ha guardado el pedido correctamente.");
                         //var jwt = parseJwt(res.headers.get("Authorization"));
                         //var json=JSON.parse(jwt);
 
@@ -178,9 +185,11 @@ class NewOrderForm extends Component {
 	                    })(<Input addonBefore={"591"} style={{width: '100%'}}/>)}
 	                </Form.Item>
 	                <Form.Item {...tailFormItemLayout}>
-	                    <Button type="primary" htmlType="submit">
-	                        Registrar
-	                    </Button>
+		                <Button
+			                 onClick={this.handleSubmit}
+			                 label={"Guardar Pedido"}
+			                 size={"expanded"}
+		                />
 	                </Form.Item>
 	            </Form>
 	         </div>
