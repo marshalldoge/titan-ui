@@ -1,4 +1,5 @@
 import moment from "moment";
+import 'moment/locale/es';
 //--------------------------------COOKIES---------------------------------------
 export function setCookie(cname, cvalue, exdays) {
     var d = new Date();
@@ -114,4 +115,30 @@ export function getMeasureName(str) {
 	}
 	return "";
 }
+export function camelize (str) {
+	let newStr = str.split("");
+	newStr[0] = newStr[0].toUpperCase();
+	return newStr.join("");
+}
+
 //--------------------------------END STRING---------------------------------------
+//--------------------------------TIME-------------------------------------------
+export function getTime(timestamp) {
+	let time = moment(timestamp).format('HH:mm');
+	return time;
+}
+export function parsedFirebaseTime(unixTimeStamp) {
+	if(unixTimeStamp === null) return "--";
+	let time = moment.unix(unixTimeStamp.seconds).format('HH:mm');
+	return time;
+}
+export function parsedFirebaseDate(unixTimeStamp) {
+	if(unixTimeStamp === null) return "--";
+	let timestamp = moment.unix(unixTimeStamp.seconds);
+	timestamp.locale('es');
+	let dayName = camelize(timestamp.clone().format('dddd'));
+	let monthName = camelize(timestamp.clone().format('MMMM'));
+	let day = timestamp.clone().format('D');
+	return dayName + ", "+monthName+" "+day;
+}
+//--------------------------------END TIME---------------------------------------

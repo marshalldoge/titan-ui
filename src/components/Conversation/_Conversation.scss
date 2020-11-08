@@ -1,0 +1,32 @@
+.conversation-ctn {
+  height: 80%;
+  min-height: 80%;
+  overflow-y: scroll;
+}
+.date-ctn {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #dbdbdb;
+  font-weight: 600;
+}
+.appUser-name {
+  font-weight: 700;
+  font-size: 16px;
+}
+.space-name-time {
+  min-width: 10px;
+  bottom: 0;
+}
+.message-time {
+  font-weight: 400;
+  font-size: 12px;
+  color: gray;
+  padding-top: 5px;
+}
+.send-icon {
+  height: 20px;
+  width: 20px;
+  font-size: 30px;
+  color: #003152;
+  cursor: pointer;
+}

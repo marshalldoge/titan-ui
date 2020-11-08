@@ -20,9 +20,26 @@ class SearchAppointmentTable extends Component {
         columns: [],
         data: [],
         columnDefs: [
-            {headerName: "ID", field: "id", width: "5%"},
-            {headerName: "Nombre", field: "fullName", width: "30%"},
-            {headerName: "CI", field: "ci", width: "15%"},
+            {
+            	headerName: "ID",
+	            field: "id",
+	            width: "5%"
+            },
+            {
+            	headerName: "Nombre",
+	            width: "30%",
+	            render: function(item) {
+		            return item.patient.appUser.firstName+ " " + item.patient.appUser.lastName
+	            }
+            },
+            {
+            	headerName: "CI",
+	            field: "ci",
+	            width: "15%",
+	            render: function(item) {
+		            return item.patient.appUser.ci
+	            }
+            },
             {headerName: "Creación", field: "creationTimeStamp", width: "25%"},
             {headerName: "Última actualización", field: "lastUpdateTimeStamp", width: "25%"},
         ],
@@ -53,17 +70,7 @@ class SearchAppointmentTable extends Component {
                  if(response.success){
                      //console.log("Page data received: ",response);
                      me.setState ((prevState) =>{
-                         prevState.pageData[page] =
-	                          response.data.content.map(appointment => {
-	                          	    let appt = {
-	                          	    	id: appointment['id'],
-	                          	    	//ci: appointment['appUser']['ci'],
-	                          	    	//fullName: appointment['appUser']['firstName'] + ' ' + appointment['appUser']['secondName'],
-		                                creationTimeStamp: appointment['creationTimeStamp'],
-		                                lastUpdateTimeStamp: appointment['lastUpdateTimeStamp']
-	                                };
-	                          	    return appt;
-	                          });
+                         prevState.pageData[page] =response.data.content;
                          return prevState;
                      });
                  }
@@ -82,10 +89,22 @@ class SearchAppointmentTable extends Component {
 		})
 	}
 
+	onRowClick = record => {
+		//const idSale = record.id;
+		console.log("Clicked row: ",record);
+		this.props.history.push({
+			pathname: "appointment_profile",
+			search: "?appointmentId=" + record.id+"&patientId="+record.patient.id
+		})
+	};
+
 
     render() {
         return (
              <div>
+	             {
+		             //this.Search() TODO: For future tickets, add search bar
+	             }
                  <PaginatedLazyTable
                       status={0}
                       columnDefs={this.state.columnDefs}
@@ -94,6 +113,7 @@ class SearchAppointmentTable extends Component {
                       title={"Consultas"}
                       pageSize={Math.floor(this.state.windowHeight/70)}
                       id={this.props.id}
+                      onRowClick={this.onRowClick}
                  />
              </div>
         );

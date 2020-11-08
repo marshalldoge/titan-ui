@@ -52,6 +52,7 @@ const Order = React.lazy(() => import('./views/Order/Order'));
 
 //New routes
 const Appointment = React.lazy(() => import('./views/Appointment/Appointment'));
+const AppointmentProfile = React.lazy(() => import('./components/AppointmentProfile/AppointmentProfile'));
 const SearchAppointment = React.lazy(() => import('./views/SearchAppointment/SearchAppointment'));
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
@@ -109,6 +110,7 @@ const routes = [
 
     //New routes
 	{ path:'/appointment',name:'Appointment',component: Appointment},
+	{ path:'/appointment_profile',name:'appointment_profile',component: AppointmentProfile},
 	{ path:'/searchAppointment',name:'SearchAppointment',component: SearchAppointment}
 
 ];

@@ -27,10 +27,6 @@ export default function(state = initialState, action) {
             };
         }
         case SET_APPUSER:{
-            //console.log("SET_APPUSER: The content to be updated: ",action);
-            const {AppUser} = action.payload;
-            console.log('actions.payload: ',action.payload);
-            //console.log("Current appUser ",AppUser);
             return {
                 ...state,
                 ...action.payload

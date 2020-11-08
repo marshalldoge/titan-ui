@@ -8,15 +8,11 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AppointmentTable/AppointmentTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppointmentTable/AppointmentTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AppointmentTable/_AppointmentTable.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppointmentTable/_AppointmentTable.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ManualTable/ManualTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ManualTable/ManualTable.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/PaginatedLazyTable/PaginatedLazyTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PaginatedLazyTable/PaginatedLazyTable.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SearchAppointmentTable/SearchAppointmentTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SearchAppointmentTable/SearchAppointmentTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/AdminLayout/AdminLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdminLayout/AdminLayout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/actions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/reducers/appUserReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducers/appUserReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -31,74 +27,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/Appointment/Appointment.js">
+        <entry file="file://$PROJECT_DIR$/src/components/AppointmentProfile/AppointmentProfile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-58">
-              <caret line="5" column="94" selection-start-line="5" selection-start-column="94" selection-end-line="5" selection-end-column="94" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/AppointmentTable/AppointmentTable.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2314">
-              <caret line="383" column="27" lean-forward="true" selection-start-line="383" selection-start-column="27" selection-end-line="383" selection-end-column="27" />
-              <folding>
-                <element signature="e#0#40#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/SearchAppointmentTable/SearchAppointmentTable.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="8" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/redux/store.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="5" column="81" selection-start-line="5" selection-start-column="81" selection-end-line="5" selection-end-column="81" />
-              <folding>
-                <element signature="e#0#36#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/redux/selectors.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/redux/reducers/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="e#0#40#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/AdminLayout/AdminLayout.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5114">
-              <caret line="157" column="28" lean-forward="true" selection-start-line="157" selection-start-column="28" selection-end-line="157" selection-end-column="28" />
+            <state relative-caret-position="239">
+              <caret line="156" column="57" selection-start-line="156" selection-start-column="57" selection-end-line="156" selection-end-column="57" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -109,26 +41,83 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/redux/reducers/appUserReducer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="34" column="25" lean-forward="true" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
+            <state relative-caret-position="-311">
+              <caret line="28" column="26" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/redux/actionTypes.js">
+        <entry file="file://$PROJECT_DIR$/src/components/Conversation/Conversation.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="63">
-              <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+            <state relative-caret-position="172">
+              <caret line="46" column="23" lean-forward="true" selection-start-line="46" selection-start-column="23" selection-end-line="46" selection-end-column="23" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/Conversation/_Conversation.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="42">
+              <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/redux/actions.js">
+        <entry file="file://$PROJECT_DIR$/src/utils.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+            <state relative-caret-position="1199">
+              <caret line="130" column="43" selection-start-line="130" selection-start-column="43" selection-end-line="130" selection-end-column="43" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/AdminLayout/AdminLayout.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="145" column="4" selection-start-line="145" selection-start-column="4" selection-end-line="163" selection-end-column="5" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/AppointmentProfile/_AppointmentProfile.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="42">
+              <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/SupplierTable/SupplierTable.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="158">
+              <caret line="61" column="4" selection-start-line="61" selection-start-column="4" selection-end-line="61" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/views/SupplierProfile/SupplierProfile.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="273">
+              <caret line="21" column="52" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="52" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -137,21 +126,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>.js</find>
-      <find>onChange</find>
-      <find>e.target</find>
-      <find>root</find>
-      <find>graph[</find>
-      <find>fetch</find>
-      <find>showCount</find>
-      <find>content</find>
-      <find>NewUserForm</find>
-      <find>tTitle</find>
-      <find>&lt;tTitle</find>
-      <find>order0</find>
-      <find>nombre de</find>
-      <find>JWT</find>
-      <find>field</find>
       <find>title: ,</find>
       <find>constructor</find>
       <find>get</find>
@@ -167,6 +141,21 @@
       <find>ss</find>
       <find>SearchAppointment</find>
       <find>TBUTTON</find>
+      <find>tr</find>
+      <find>ttit</find>
+      <find>&lt;tt</find>
+      <find>onrowclic</find>
+      <find>onrow</find>
+      <find>field-name</find>
+      <find>drawerAppointmentData.patient.appUser</find>
+      <find>drawerAppointmentData</find>
+      <find>this.state.patient</find>
+      <find>has</find>
+      <find>conversationDay</find>
+      <find>conversationDays</find>
+      <find>onError</find>
+      <find>parsedf</find>
+      <find>parsedFirebaseDate</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;/pos/Purchase</replace>
@@ -189,6 +178,10 @@
       <replace>key: &quot;ID&quot;, title: &quot;ID&quot;,</replace>
       <replace>moduleData</replace>
       <replace>Appointment</replace>
+      <replace>patient</replace>
+      <replace>this.state.patient.appUser</replace>
+      <replace>conversationDays</replace>
+      <replace>conversationDates</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -201,11 +194,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/stylesheets/themes/_main.scss" />
-        <option value="$PROJECT_DIR$/src/components/Body/_Body.scss" />
-        <option value="$PROJECT_DIR$/src/components/Description/_Description.scss" />
-        <option value="$PROJECT_DIR$/src/components/Header/_Header.scss" />
-        <option value="$PROJECT_DIR$/src/components/ItemManualManager/_ItemManualManager.scss" />
         <option value="$PROJECT_DIR$/src/components/ItemQuantityForm/_ItemQuantityForm.scss" />
         <option value="$PROJECT_DIR$/src/components/ItemStock/_ItemStock.scss" />
         <option value="$PROJECT_DIR$/src/constants.js" />
@@ -214,7 +202,6 @@
         <option value="$PROJECT_DIR$/.env.production" />
         <option value="$PROJECT_DIR$/src/components/ItemQuantityForm/ItemQuantityForm.js" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/src/utils.js" />
         <option value="$PROJECT_DIR$/src/components/TransformItemModal/_TransformItemModal.scss" />
         <option value="$PROJECT_DIR$/src/components/TButton/_TButton.scss" />
         <option value="$PROJECT_DIR$/src/views/Item/Item.js" />
@@ -229,7 +216,6 @@
         <option value="$PROJECT_DIR$/src/components/Description/Description.js" />
         <option value="$PROJECT_DIR$/src/views/AppUserForm/AppUserForm.js" />
         <option value="$PROJECT_DIR$/src/components/NewOrderForm/NewOrderForm.js" />
-        <option value="$PROJECT_DIR$/src/components/PaginatedLazyTable/PaginatedLazyTable.js" />
         <option value="$PROJECT_DIR$/src/components/OrderTable/OrderTable.js" />
         <option value="$PROJECT_DIR$/src/views/Dashboard/mockData.js" />
         <option value="$PROJECT_DIR$/src/views/Dashboard/_Dashboard.scss" />
@@ -241,7 +227,6 @@
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/src/pages/Login/Login.js" />
         <option value="$PROJECT_DIR$/src/pages/Login/_Login.scss" />
-        <option value="$PROJECT_DIR$/src/routes.js" />
         <option value="$PROJECT_DIR$/src/components/Sidebar/Sidebar.js" />
         <option value="$PROJECT_DIR$/src/views/SearchAppointment/SearchAppointment.js" />
         <option value="$PROJECT_DIR$/src/views/Appointment/Appointment.js" />
@@ -249,9 +234,17 @@
         <option value="$PROJECT_DIR$/src/components/AppointmentTable/AppointmentTable.js" />
         <option value="$PROJECT_DIR$/src/redux/actions.js" />
         <option value="$PROJECT_DIR$/src/pages/AdminLayout/AdminLayout.js" />
-        <option value="$PROJECT_DIR$/src/redux/reducers/appUserReducer.js" />
         <option value="$PROJECT_DIR$/src/redux/store.js" />
+        <option value="$PROJECT_DIR$/src/components/PaginatedLazyTable/PaginatedLazyTable.js" />
+        <option value="$PROJECT_DIR$/src/routes.js" />
         <option value="$PROJECT_DIR$/src/components/SearchAppointmentTable/SearchAppointmentTable.js" />
+        <option value="$PROJECT_DIR$/src/components/AppointmentProfile/_AppointmentProfile.scss" />
+        <option value="$PROJECT_DIR$/src/components/Chat/Chat.js" />
+        <option value="$PROJECT_DIR$/src/redux/reducers/appUserReducer.js" />
+        <option value="$PROJECT_DIR$/src/components/AppointmentProfile/AppointmentProfile.js" />
+        <option value="$PROJECT_DIR$/src/utils.js" />
+        <option value="$PROJECT_DIR$/src/components/Conversation/Conversation.js" />
+        <option value="$PROJECT_DIR$/src/components/Conversation/_Conversation.scss" />
       </list>
     </option>
   </component>
@@ -292,7 +285,21 @@
               <item name="titan-ui" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="NewOrderForm" type="462c0819:PsiDirectoryNode" />
+              <item name="AppointmentProfile" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="titan-ui" type="b2602c69:ProjectViewProjectNode" />
+              <item name="titan-ui" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="AppointmentTable" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="titan-ui" type="b2602c69:ProjectViewProjectNode" />
+              <item name="titan-ui" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="Conversation" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="titan-ui" type="b2602c69:ProjectViewProjectNode" />
@@ -312,27 +319,14 @@
               <item name="titan-ui" type="b2602c69:ProjectViewProjectNode" />
               <item name="titan-ui" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="redux" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="titan-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="titan-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="redux" type="462c0819:PsiDirectoryNode" />
-              <item name="reducers" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="ShiftTable" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="titan-ui" type="b2602c69:ProjectViewProjectNode" />
               <item name="titan-ui" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="titan-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="titan-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="Appointment" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="titan-ui" type="b2602c69:ProjectViewProjectNode" />
@@ -463,13 +457,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="210104000" />
+    <option name="totallyTimeSpent" value="223404000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="803" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2149401" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2149401" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -482,7 +476,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="GraphQL" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.15971223" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.15251799" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="TypeScript" order="12" />
       <window_info anchor="bottom" id="Messages" order="13" />
@@ -516,48 +510,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/MessageModal/_MessageModal.scss">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/gif/loading.gif">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Body/Body.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="23" column="10" lean-forward="true" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/stylesheets/themes/_main.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/logo512.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/logo192.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/logos/logo.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/logos/logo.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="59" selection-start-line="12" selection-start-column="59" selection-end-line="12" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/assets/logos/logoFarmavir.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -584,16 +536,6 @@
           <caret line="53" column="37" selection-start-line="53" selection-start-column="37" selection-end-line="53" selection-end-column="37" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/OrderTable/OrderTable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1743">
-          <caret line="90" column="37" selection-start-line="90" selection-start-column="37" selection-end-line="90" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -765,37 +707,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/AppointmentTable/_AppointmentTable.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="36" column="21" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1218">
-          <caret line="58" column="45" selection-start-line="58" selection-start-column="45" selection-end-line="58" selection-end-column="45" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/NewOrderForm/NewOrderForm.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
           <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/AppointmentTable/AppointmentTable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2314">
-          <caret line="383" column="27" lean-forward="true" selection-start-line="383" selection-start-column="27" selection-end-line="383" selection-end-column="27" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
@@ -826,20 +744,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/AdminLayout/AdminLayout.js">
+    <entry file="file://$PROJECT_DIR$/src/redux/store.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5114">
-          <caret line="157" column="28" lean-forward="true" selection-start-line="157" selection-start-column="28" selection-end-line="157" selection-end-column="28" />
+        <state relative-caret-position="147">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#0#36#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/reducers/appUserReducer.js">
+    <entry file="file://$PROJECT_DIR$/src/routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="34" column="25" lean-forward="true" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
+        <state relative-caret-position="38">
+          <caret line="54" column="64" selection-start-line="54" selection-start-column="64" selection-end-line="54" selection-end-column="64" />
         </state>
       </provider>
     </entry>
@@ -855,23 +773,135 @@
     <entry file="file://$PROJECT_DIR$/src/redux/selectors.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/store.js">
+    <entry file="file://$PROJECT_DIR$/src/components/PaginatedLazyTable/PaginatedLazyTable.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="81" selection-start-line="5" selection-start-column="81" selection-end-line="5" selection-end-column="81" />
+        <state relative-caret-position="108">
+          <caret line="86" column="66" selection-start-line="86" selection-start-column="66" selection-end-line="86" selection-end-column="66" />
           <folding>
-            <element signature="e#0#36#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/OrderTable/OrderTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1439">
+          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/SupplierTable/SupplierTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="61" column="4" selection-start-line="61" selection-start-column="4" selection-end-line="61" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/SupplierProfile/SupplierProfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="21" column="52" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/AdminLayout/AdminLayout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="145" column="4" selection-start-line="145" selection-start-column="4" selection-end-line="163" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/AppointmentTable/_AppointmentTable.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="50" selection-start-line="50" selection-end-line="52" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/SearchAppointmentTable/SearchAppointmentTable.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="8" />
+        <state relative-caret-position="260">
+          <caret line="96" column="59" selection-start-line="96" selection-start-column="59" selection-end-line="96" selection-end-column="59" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/AppointmentProfile/_AppointmentProfile.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/AppointmentTable/AppointmentTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2784">
+          <caret line="329" column="21" selection-start-line="329" selection-start-column="21" selection-end-line="353" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/static/js/18.1198dbfc.chunk.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13367">
+          <caret line="1" column="104573" selection-start-line="1" selection-start-column="104573" selection-end-line="1" selection-end-column="104573" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/reducers/appUserReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-311">
+          <caret line="28" column="26" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/AppointmentProfile/AppointmentProfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="156" column="57" selection-start-line="156" selection-start-column="57" selection-end-line="156" selection-end-column="57" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1199">
+          <caret line="130" column="43" selection-start-line="130" selection-start-column="43" selection-end-line="130" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Conversation/Conversation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="46" column="23" lean-forward="true" selection-start-line="46" selection-start-column="23" selection-end-line="46" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Conversation/_Conversation.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
         </state>
       </provider>
     </entry>
