@@ -88,7 +88,7 @@ class PaginatedLazyTable extends Component {
 		    }
 	    }
         return(
-             <tr className={"tr"} style = {this.trStyle} key={index} onClick={() => this.props.onRowClick(row)}>
+             <tr className={"tr"} style = {this.trStyle} key={index} onClick={() => this.props.openApptDrawer(row)}>
                  {tds}
              </tr>
         );

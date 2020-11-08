@@ -29,20 +29,11 @@ export default function(state = initialState, action) {
         case SET_APPUSER:{
             //console.log("SET_APPUSER: The content to be updated: ",action);
             const {AppUser} = action.payload;
+            console.log('actions.payload: ',action.payload);
             //console.log("Current appUser ",AppUser);
             return {
                 ...state,
-                idAppUser: AppUser.id,
-                firstName:AppUser.firstName,
-                username:AppUser.username,
-                role:AppUser.role,
-                email:AppUser.email,
-                cellphone: AppUser.cellphone,
-                idShift:AppUser.idShift,
-                idCompany:AppUser.idCompany,
-                inShift:AppUser.inShift,
-                shiftCount:AppUser.shiftCount,
-                saleCount:AppUser.saleCount
+                ...action.payload
             };
         }
         case SET_ID_SHIFT:{

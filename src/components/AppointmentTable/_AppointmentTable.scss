@@ -1,0 +1,61 @@
+@import './../../stylesheets/themes/main';
+.itemCode {
+  text-align: center;
+}
+.itemName{
+  text-align: center;
+}
+.itemCtn {
+  border-width: 1px;
+  border-style: solid;
+  border-color: whitesmoke;
+  font-family: Roboto-Regular;
+}
+.itemBox {
+  cursor: pointer;
+  border-width: 1px 1px 1px 5px;
+  background-color: white;
+  border-color: transparent transparent gray #003152;
+  border-style: solid;
+  vertical-align: center;
+  height: 100%;
+  width: 100%;
+}
+.itembox-fields-ctn {
+  min-height: 40px;
+  margin-left: 10px;
+  margin-top: 25px;
+}
+.text-buttons-ctn {
+  min-height: 160px;
+  height: 160px;
+}
+.appt-description {
+  border-width: 2px;
+  border-style: solid;
+  border-color: #dbdbdb;
+  border-radius: 5px;
+  height: 110px;
+  overflow-y: scroll;
+  padding: 10px;
+  margin: 10px;
+}
+.vehiclePhoto {
+  width: 200px;
+  height: 120px;
+  margin: 10px;
+}
+.vehicle-box-row {
+  min-height: 50px;
+}
+.field-name {
+  font-weight: 700;
+}
+.add-photo-link {
+  cursor: pointer;
+  color: #003152;
+  font-weight: 600;
+}
+.drawer-media {
+  padding: 2px;
+}

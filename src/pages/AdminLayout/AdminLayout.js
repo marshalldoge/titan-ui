@@ -35,8 +35,8 @@ class AdminLayout extends Component {
 
     componentDidMount = () => {
         this.props.setIdAppUser(getJWtProperty("appUserId"));
+	    this.loadAppUser();
         /*
-        this.loadAppUser();
         this.loadModules();
         this.loadNitIdClientHashMap();
         this.loadClientHashMap();
@@ -149,22 +149,14 @@ class AdminLayout extends Component {
             Authorization: getCookie("JWT")
         };
         let me = this;
-        let params = {
-            idAppUser: getJWtProperty("idAppUser")
-        };
-        var url = withParams(constants.BACKEND_URL+"/AppUser", params);
+        var url = constants.BACKEND_URL+"/doctor/"+getJWtProperty("appUserId");
         fetch(url, {
             method: "GET",
             headers: headers
         }).then(response => response.json())
-            .then(function(data) {
+            .then(function(response) {
                 //console.log("Result of ")
-                me.props.setAppUser(data);
-                me.setState ((prevState) =>{
-                    prevState.loadedServices = prevState.loadedServices+1;
-                    console.log(":V7");
-                    return prevState;
-                });
+                me.props.setAppUser(response.data);
             }).catch(function(error) {
             me.logout();
             console.log(error);

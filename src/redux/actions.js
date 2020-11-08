@@ -7,9 +7,7 @@ import {SET_APPUSER, SET_NAME_ID_HASHMAP, SET_MODULE, SET_SHIFT,
 
 export const setAppUser = AppUser => ({
     type: SET_APPUSER,
-    payload: {
-        AppUser
-    }
+    payload: AppUser
 });
 
 export const setIdAppUser = AppUser => ({

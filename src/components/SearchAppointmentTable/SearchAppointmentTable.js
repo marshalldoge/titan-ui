@@ -39,11 +39,11 @@ class SearchAppointmentTable extends Component {
         };
         let me = this;
         let params = {
-            status: this.props.status,
             page: page,
             pageSize: 25
         };
-        const url = withParams(constants.BACKEND_URL + "/appointment/page", params);
+
+        const url = withParams(constants.BACKEND_URL + "/doctor/" + this.props.id + "/appointment/page", params);
         fetch(url, {
             method: "GET",
             headers: headers
@@ -93,6 +93,7 @@ class SearchAppointmentTable extends Component {
                       length={this.props.clientCount}
                       title={"Consultas"}
                       pageSize={Math.floor(this.state.windowHeight/70)}
+                      id={this.props.id}
                  />
              </div>
         );
@@ -101,10 +102,9 @@ class SearchAppointmentTable extends Component {
 
 const mapStateToProps = state => {
     const { appUserReducer, companyReducer } = state;
-    const { idCompany } = appUserReducer;
-    const { clientCount } = 1;
-    console.log("Client count: ",clientCount);
-    return {idCompany, clientCount};
+    const { id } = appUserReducer;
+    console.log('DEBUG REDUCER: ',appUserReducer);
+    return {id};
 };
 
 export default withRouter(connect(mapStateToProps)(SearchAppointmentTable));
