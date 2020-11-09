@@ -2,7 +2,7 @@ import React, { Component} from "react";
 import { withRouter} from "react-router-dom";
 import { Row, Col, Pagination, Drawer, Image, Input, Collapse,List } from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
-import { getCookie, withParams} from "../../utils.js";
+import { getCookie, withParams, getAge} from "../../utils.js";
 import * as constants from "../../constants"
 import {connect} from "react-redux";
 import "antd/dist/antd.css";
@@ -104,6 +104,41 @@ class AppointmentTable extends Component {
 		});
 	};
 
+	addDoctorToAppt = (appt) => {
+		//console.log("sale tale props: ",this.props);
+		//console.log("Loading page: ",page);
+		var headers = {
+			"Content-Type": "application/json; charset=utf-8",
+			Authorization: getCookie("JWT")
+		};
+		console.log('props: ',this.props);
+		let body = JSON.stringify(
+			 [
+				 {
+				 	id: this.props.id
+				 }
+			 ]);
+		console.log('Body: ',body);
+		let me = this;
+		let url = constants.BACKEND_URL + "/doctor/appointment/"+appt.id;
+		fetch(url, {
+			method: "PUT",
+			headers: headers,
+			body: body
+		}).then(response => response.json())
+			 .then(function (response) {
+				 if(response.success){
+					 me.props.history.push({
+						 pathname: "appointment_profile",
+						 search: "?appointmentId=" + appt.id+"&patientId="+appt.patient.id
+					 })
+				 }
+			 }).catch(function (error) {
+			console.log(error);
+		});
+	};
+
+
 	Title = () => {
 		return (
 			 <Title
@@ -130,6 +165,11 @@ class AppointmentTable extends Component {
 		})
 	};
 
+	onTakeAppointment = (e,appt) => {
+		this.addDoctorToAppt(appt);
+	};
+
+
 	ApptDescription = () => {
 		return (
 			 <div className={"appt-description"}>
@@ -141,9 +181,6 @@ class AppointmentTable extends Component {
 	};
 
 	ItemBox = (appt,index) => {
-		let me=this;
-		let conversionArray;
-		console.log("APPT: ",appt);
 		return(
 			 <div className={"itemBox"} key={index}>
 				 <Row className={"itembox-fields-ctn"}>
@@ -195,6 +232,7 @@ class AppointmentTable extends Component {
 									  label={"Atender"}
 									  size={"expanded"}
 									  inverse={true}
+									  onClick={e => this.onTakeAppointment(e,appt)}
 								 />
 							 </Col>
 						 </Row>
@@ -307,13 +345,22 @@ class AppointmentTable extends Component {
 
 	Drawer = () => {
 		if(this.state.drawerAppointmentData === null) return null;
-		const data = [
-			'Racing car sprays burning fuel into crowd.',
-			'Japanese princess to wed commoner.',
-			'Australian walks 100km after outback crash.',
-			'Man charged over missing wedding girl.',
-			'Los Angeles battles huge wildfires.',
-		];
+		const allergies = this.state.drawerAppointmentData.patient.allergies.map(allergy => {
+			return allergy.name;
+		});
+		const medications = this.state.drawerAppointmentData.patient.medications.map(medication => {
+			return medication.name;
+		});
+		const substances = this.state.drawerAppointmentData.patient.substances.map(substance => {
+			return substance.name;
+		});
+		const diseases = this.state.drawerAppointmentData.patient.diseases.map(disease => {
+			return disease.name;
+		});
+
+		console.log('this.state.drawerAppointmentData: ',this.state.drawerAppointmentData);
+
+
 		return (
 			 <Drawer
 				  placement="right"
@@ -335,10 +382,10 @@ class AppointmentTable extends Component {
 						 )}
 					 </Col>
 					 <Col span={8}>
-						 {this.FieldValue("Género: ",this.state.drawerAppointmentData.make)}
+						 {this.FieldValue("Género: ",this.state.drawerAppointmentData.patient.appUser.genre)}
 					 </Col>
 					 <Col span={8}>
-						 {this.FieldValue("Edad: ",this.state.drawerAppointmentData.color)}
+						 {this.FieldValue("Edad: ",getAge(this.state.drawerAppointmentData.patient.appUser.birthDate))}
 					 </Col>
 				 </Row>
 				 <Row className={"this.state.drawerVehicleData-box-row"}>
@@ -360,25 +407,38 @@ class AppointmentTable extends Component {
 					 />
 					 <br/>
 					 <Col span={24}>
-						 <Collapse defaultActiveKey={['1']}>
-							 <Panel header="Alergias" key="1">
+						 <Collapse>
+							 <Panel header="Alergias" key="1" disabled={allergies.length === 0}>
 								 <List
 									  size="small"
-									  header={<div>Header</div>}
-									  footer={<div>Footer</div>}
 									  bordered
-									  dataSource={data}
+									  dataSource={allergies}
 									  renderItem={item => <List.Item>{item}</List.Item>}
 								 />
 							 </Panel>
-							 <Panel header="Medicamentos" key="2">
-								 <p>{"Lista"}</p>
+							 <Panel header="Medicamentos" key="2" disabled={medications.length === 0}>
+								 <List
+									  size="small"
+									  bordered
+									  dataSource={medications}
+									  renderItem={item => <List.Item>{item}</List.Item>}
+								 />
 							 </Panel>
-							 <Panel header="Substancias" key="3">
-								 <p>{"Lista"}</p>
+							 <Panel header="Substancias" key="3" disabled={substances.length === 0}>
+								 <List
+									  size="small"
+									  bordered
+									  dataSource={substances}
+									  renderItem={item => <List.Item>{item}</List.Item>}
+								 />
 							 </Panel>
-							 <Panel header="Enfermadades" key="4">
-								 <p>{"Lista"}</p>
+							 <Panel header="Enfermadades" key="4" disabled={diseases.length === 0}>
+								 <List
+									  size="small"
+									  bordered
+									  dataSource={diseases}
+									  renderItem={item => <List.Item>{item}</List.Item>}
+								 />
 							 </Panel>
 						 </Collapse>
 					 </Col>
@@ -425,10 +485,10 @@ class AppointmentTable extends Component {
 }
 
 const mapStateToProps = state => {
-	const { appUserReducer, moduleReducer, itemQuantityReducer, warehouseReducer } = state;
-	const { appUser, appointments } = appUserReducer;
-	const { modules } = moduleReducer;
-	return {appUser, appointments, modules};
+	const { appUserReducer } = state;
+	const { appUser, appointments, id } = appUserReducer;
+	console.log('DEGUB APP_REDUCER: ',appUserReducer);
+	return {appUser, appointments, id};
 };
 
 export default withRouter(connect(mapStateToProps)(AppointmentTable));

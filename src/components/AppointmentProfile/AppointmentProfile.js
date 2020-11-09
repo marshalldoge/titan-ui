@@ -6,7 +6,7 @@ import * as constants from "../../constants"
 import {connect} from "react-redux";
 import "antd/dist/antd.css";
 import "./_AppointmentProfile.scss";
-import {getJWtProperty, getTime, getUrlParams} from "../../utils";
+import {getAge, getJWtProperty, getTime, getUrlParams} from "../../utils";
 
 const TTitle = React.lazy(() => import("../TTitle/TTitle"));
 const Conversation = React.lazy(() => import("../Conversation/Conversation"));
@@ -96,7 +96,7 @@ class AppointmentProfile extends Component {
 						 {this.FieldValue("Género: ",this.state.patient.appUser.genre)}
 					 </Col>
 					 <Col span={8}>
-						 {this.FieldValue("Edad: ",this.state.patient.appUser.color)}
+						 {this.FieldValue("Edad: ",getAge(this.state.patient.appUser.birthDay))}
 					 </Col>
 				 </Row>
 				 <Row className={"this.state.drawerVehicleData-box-row"}>

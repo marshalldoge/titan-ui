@@ -43,7 +43,7 @@ class Conversation extends Component {
 		let me = this;
 		firestore.collection("messages")
 			 .where("appointmentId", "==", this.props.appointmentId)
-			 .orderBy("creationTimeStamp","desc")
+			 .orderBy("creationTimeStamp","asc")
 			 .limit(25)
 			 .onSnapshot(function(querySnapshot) {
 				 let conversationDates = {};

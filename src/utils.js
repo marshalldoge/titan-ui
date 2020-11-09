@@ -141,4 +141,7 @@ export function parsedFirebaseDate(unixTimeStamp) {
 	let day = timestamp.clone().format('D');
 	return dayName + ", "+monthName+" "+day;
 }
+export function getAge(timestamp) {
+	return moment(timestamp).diff(moment(),'years');
+}
 //--------------------------------END TIME---------------------------------------

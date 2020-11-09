@@ -149,7 +149,7 @@ class AdminLayout extends Component {
             Authorization: getCookie("JWT")
         };
         let me = this;
-        var url = constants.BACKEND_URL+"/doctor/"+getJWtProperty("appUserId");
+        var url = constants.BACKEND_URL+"/doctor/appUser/"+getJWtProperty("appUserId");
         fetch(url, {
             method: "GET",
             headers: headers

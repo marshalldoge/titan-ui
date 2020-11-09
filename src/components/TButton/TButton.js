@@ -29,6 +29,7 @@ class TButton extends Component {
 				 }
 				 onClick={() => {
 				 	if(!this.props.disabled) {
+				 		console.log('Click fun: ',this.props.onClick," and type: ",typeof this.props.onClick)
 				 		console.log('Executing onClick');
 				 		this.props.onClick();
 				    }
