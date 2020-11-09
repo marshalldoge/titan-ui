@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Row, Col, Input, Button } from "antd";
-import { SendOutlined } from '@ant-design/icons';
+import {Row, Col, Input, Button, Select, Drawer, DatePicker} from "antd";
+import { SendOutlined, PaperClipOutlined, ThunderboltOutlined } from '@ant-design/icons';
 import * as constants from "../../constants"
 import {connect} from "react-redux";
+import moment from "moment";
 import "antd/dist/antd.css";
 import "./_Conversation.scss";
-import {getJWtProperty, getTime, getUrlParams, parsedFirebaseTime, parsedFirebaseDate} from "../../utils";
+import loadingChat from'../../assets/gif/loadingChat.gif';
+import {getJWtProperty, getTime, getUrlParams, parsedFirebaseTime, parsedFirebaseDate, getAge, isToday} from "../../utils";
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
+import LoadingGif from "../../assets/gif/loading.gif";
 
 firebase.initializeApp({
 	apiKey: "AIzaSyClRs3Xkafgy4TNUA9vfFz8RjHLG3ZHMaU",
@@ -25,10 +28,19 @@ firebase.initializeApp({
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 
+const { Option } = Select;
 const { TextArea } = Input;
 const TTitle = React.lazy(() => import("../TTitle/TTitle"));
+const TButton = React.lazy(() => import("../TButton/TButton"));
 
 class Conversation extends Component {
+
+	constructor(props) {
+		super(props);
+		this.handleInputChange = this.handleInputChange.bind(this);
+		this.el = React.createRef();
+	}
+
 
 	state = {
 		appointment: null,
@@ -36,7 +48,9 @@ class Conversation extends Component {
 		conversationDates: null,
 		messages: null,
 		query: null,
-		messageText: ""
+		messageText: "",
+		actionSelected: "",
+		isActionDrawerOpen: false
 	};
 
 	componentDidMount() {
@@ -50,15 +64,26 @@ class Conversation extends Component {
 
 			 	 for(let i = 0; i < querySnapshot.docs.length; i++) {
 			 	 	console.log('processing: ',querySnapshot.docs[i].data());
-			 	 	if(conversationDates[parsedFirebaseDate(querySnapshot.docs[i].data().creationTimeStamp)] === undefined) {
-					    conversationDates[parsedFirebaseDate(querySnapshot.docs[i].data().creationTimeStamp)] = [];
+			 	 	let creationTimeStamp = parsedFirebaseDate(querySnapshot.docs[i].data().creationTimeStamp);
+				     if(querySnapshot.docs[i].data().creationTimeStamp !== null && isToday(querySnapshot.docs[i].data().creationTimeStamp)) {
+					     creationTimeStamp = "Hoy";
+				     }
+			 	 	if(conversationDates[creationTimeStamp] === undefined) {
+					    conversationDates[creationTimeStamp] = [];
 				    }
-					conversationDates[parsedFirebaseDate(querySnapshot.docs[i].data().creationTimeStamp)].push(querySnapshot.docs[i].data());
+					conversationDates[creationTimeStamp].push(querySnapshot.docs[i].data());
 			     }
 			 	 console.log(conversationDates);
 				 me.setState({conversationDates: conversationDates});
 			 });
-		this.handleInputChange = this.handleInputChange.bind(this);
+		this.scrollToBottom()
+	}
+
+	componentDidUpdate () {
+		this.scrollToBottom()
+	}
+	scrollToBottom() {
+		this.el.current.scrollTop = this.el.current.scrollHeight;
 	}
 
 	sendMessage = () => {
@@ -79,8 +104,8 @@ class Conversation extends Component {
 
 	Message = (message,idx) => {
 		return (
-			 <Row key={idx}>
-				 <Col span={24}>
+			 <Row key={idx} className={"message-ctn"}>
+				 <Col span={24} className={"message-sub-ctn"}>
 					 <Row>
 						 <span className={"appUser-name"}>{this.props.appUser[message.appUserId].firstName + " " + this.props.appUser[message.appUserId].lastName}</span>
 						 <span className={"space-name-time"}/>
@@ -111,8 +136,20 @@ class Conversation extends Component {
 		)
 	};
 
+	loadingConversation = () => {
+		return (
+			 <Row justify={"center"}>
+				 <Col span={5}>
+					 <div style={{width:"100px",height:"60px",verticalAlign:"middle",textAlign:"center",paddingTop:"40px"}}>
+						 <img style={{width:"100px",height:"60px"}} src={loadingChat} alt={"Cargando..."}/>
+					 </div>
+				 </Col>
+			 </Row>
+		);
+	};
+
 	Conversation = () => {
-		if(this.state.conversationDates === null) return null;
+		if(this.state.conversationDates === null) return this.loadingConversation();
 		let conversationDates = [];
 		let idx = 0;
 		for (let date in this.state.conversationDates) {
@@ -122,12 +159,10 @@ class Conversation extends Component {
 			}
 		}
 		return (
-			 <Row className={"conversation-ctn"}>
-				 <Col span={24}>
-					 {conversationDates}
-				 </Col>
-			 </Row>
-		)
+			 <React.Fragment>
+				 {conversationDates}
+			 </React.Fragment>
+		);
 	};
 
 	handleInputChange(event) {
@@ -142,30 +177,139 @@ class Conversation extends Component {
 
 	MessageTextArea = () => {
 		return (
-			 <Row justify="space-around" className={""}>
-				 <Col span={20}>
-					 <TextArea name="messageText" value={this.state.messageText} placeholder="Escribe un mensaje" autoSize onChange={this.handleInputChange}/>
-				 </Col>
-				 <Col span={3}>
-					 <SendOutlined className={"send-icon"} onClick={this.sendMessage}/>
+			 <Row className={"message-text-area-ctn"}>
+				 <Col span={24} className={"message-text-area-sub-ctn"}>
+					 <Row justify="space-around">
+						 <Col span={24}>
+							 <TextArea name="messageText" value={this.state.messageText} placeholder="Escribe un mensaje" autoSize onChange={this.handleInputChange}/>
+						 </Col>
+					 </Row>
+					 <Row className={"message-text-buttons-ctn"} align={"middle"} justify={"start"}>
+						 <Col span={3}>
+							 <div className={"icon-button action"} onClick={() => this.setState({isActionDrawerOpen: true})}>
+								 <ThunderboltOutlined className={"icon"}/>
+							 </div>
+						 </Col>
+						 <Col span={3} offset={15}>
+							 <Row justify={"end"}>
+								 <div className={"icon-button attachment"}>
+									 <PaperClipOutlined className={"icon"}/>
+								 </div>
+							 </Row>
+						 </Col>
+						 <Col span={3} className={"message-text-buttons-sub-ctn"}>
+							 <Row justify={"center"} align="middle">
+								 <div className={"icon-button send"} onClick={this.sendMessage}>
+								    <SendOutlined className={"icon"}/>
+								 </div>
+							 </Row>
+						 </Col>
+					 </Row>
 				 </Col>
 			 </Row>
 		)
 	};
 
+	handleChange = (value) => {
+		console.log(`selected ${value}`);
+	};
+
+	Drawer = () => {
+		return (
+			 <Drawer
+				  placement="right"
+				  closable={true}
+				  onClose={()=>this.setState({isActionDrawerOpen: false})}
+				  visible={this.state.isActionDrawerOpen}
+				  width={600}
+			 >
+				 <Row className={"vehicle-box-row"}>
+					 <Col span={24}>
+						 <TTitle
+							  label={"Acciones"}
+							  size={"medium"}
+						 />
+					 </Col>
+				 </Row>
+				 <Row className={"vehicle-box-row"}>
+					 <Col span={24}>
+						 <Select
+							  style={{ width: '100%' }}
+							  onChange={this.handleChange}
+							  placeholder={"Escoja la acción..."}
+						 >
+							 <Option value="0">Crear tratamiento</Option>
+							 <Option value="1">Notificar</Option>
+							 <Option value="2">Mandar correo con contactos</Option>
+						 </Select>
+					 </Col>
+				 </Row>
+				 <br/>
+				 <Row className={"vehicle-box-row"}>
+					 <Col span={24}>
+						 <Input placeholder="Nombre del medicamento" />
+					 </Col>
+				 </Row>
+				 <br/>
+				 <Row className={"vehicle-box-row"}>
+					 <Col span={24}>
+						 DE: <DatePicker placeholder={"Escoja la fecha de inicio"}/>
+					 </Col>
+				 </Row>
+				 <br/>
+				 <Row className={"vehicle-box-row"}>
+					 <Col span={24}>
+						 A: <DatePicker placeholder={"Escoja la fecha de fin"}/>
+					 </Col>
+				 </Row>
+				 <br/>
+				 <Row justify="space-between">
+					 <Col span={11}>
+						 Cada: <Input
+							  style={{ width: '50%' }}
+							  placeholder=""
+						 />
+					 </Col>
+					 <Col span={11}>
+						 <Select
+							  onChange={this.handleChange}
+							  placeholder={"Tiempo..."}
+						 >
+							 <Option value="0">Dias</Option>
+							 <Option value="1">Horas</Option>
+							 <Option value="2">Minutos</Option>
+						 </Select>
+					 </Col>
+				 </Row>
+				 <br/>
+				 <Row className={"vehicle-box-row"}>
+					 <Col span={24}>
+						 <TButton
+							  label={"CREAR"}
+							  type={"inverse"}
+							  size={"expanded"}
+						 />
+					 </Col>
+				 </Row>
+				 <br/>
+
+			 </Drawer>
+		)
+	};
+
+
 	render() {
 		return (
 			 <React.Fragment>
-				 <Row>
-					 <Col span={24}>
-						 {this.Conversation()}
-					 </Col>
-				 </Row>
-				 <Row>
-					 <Col span={24}>
-						 {this.MessageTextArea()}
-					 </Col>
-				 </Row>
+				 <div className={"conversation-ctn"} ref={this.el}>
+					 <Row>
+						 <Col span={24}>
+							 {this.Conversation()}
+						 </Col>
+					 </Row>
+				 </div>
+				 {this.MessageTextArea()}
+				 {this.Drawer()}
 			 </React.Fragment>
 		);
 	}

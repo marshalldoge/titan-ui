@@ -1,13 +1,35 @@
+.appointment-title-ctn {
+  height: 6%;
+}
+.patient-title-ctn {
+  height: 5%;
+}
+.patient-data-ctn {
+  height: 5%;
+}
+.messages-title-ctn {
+  height: 5%;
+}
 .conversation-ctn {
-  height: 80%;
-  min-height: 80%;
+  height: 75%;
+  max-height: 75%;
   overflow-y: scroll;
+  border-top: #a4b2b7;
+  border-bottom: #a4b2b7;
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+  border-bottom-style: solid;
+  border-top-style: solid;
 }
 .date-ctn {
   border-bottom-width: 1px;
   border-bottom-style: solid;
   border-bottom-color: #dbdbdb;
   font-weight: 600;
+}
+.message-ctn {
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 .appUser-name {
   font-weight: 700;
@@ -23,10 +45,42 @@
   color: gray;
   padding-top: 5px;
 }
-.send-icon {
-  height: 20px;
-  width: 20px;
-  font-size: 30px;
-  color: #003152;
+.message-text-area-ctn {
+  margin-top: 1%;
+  height: 12%;
+}
+.message-text-area-sub-ctn {
+  max-height: 100%;
+}
+.message-text-buttons-ctn {
+  margin-top: 1%;
+  height: auto;
+}
+.message-text-buttons-sub-ctn {
+  height: auto;
+}
+.icon-button {
+  border-radius: 2px;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-left: 1px;
+  margin-right: 1px;
   cursor: pointer;
+  &.action {
+    background-color: #001529;
+  }
+  &.attachment {
+    background-color: #FFC857;
+  }
+  &.send {
+    background-color: rgb(15,121,91);
+  }
+}
+.icon {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
 }

@@ -59,20 +59,17 @@ class Body extends Component {
 
     render() {
         return (
-            <Content>
-                <div className="body">
-                    <Row justify="center">
-	                    <Col span={24}>
-		                    <Suspense fallback={this.loading()}>
-			                    <Switch>
-				                    {this.mapRoutes()}
-				                    <Redirect exact from="/AdminPage" to="/AdminPage/dashboard"/>
-			                    </Switch>
-		                    </Suspense>
-	                    </Col>
-                    </Row>
-                </div>
-                <Footer style={{textAlign: "center"}}>TuringSolutions</Footer>
+            <Content className={"antd-content"}>
+                <Row justify="center" className="body-ctn">
+                    <Col span={24} className={"body-sub-ctn"}>
+	                    <Suspense fallback={this.loading()}>
+		                    <Switch>
+			                    {this.mapRoutes()}
+			                    <Redirect exact from="/AdminPage" to="/AdminPage/dashboard"/>
+		                    </Switch>
+	                    </Suspense>
+                    </Col>
+                </Row>
             </Content>
         );
     }

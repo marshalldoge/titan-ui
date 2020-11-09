@@ -6,6 +6,7 @@ import * as constants from "../../constants"
 import {connect} from "react-redux";
 import "antd/dist/antd.css";
 import "./_SearchAppointmentTable.scss";
+import {camelize, getDateFromLocalDateTime, getTimeIntervalFromLocalDateTime} from "../../utils";
 
 const MessageModal = React.lazy(() => import("../../components/MessageModal/MessageModal"));
 const PaginatedLazyTable= React.lazy(() => import("../../components/PaginatedLazyTable/PaginatedLazyTable"));
@@ -29,7 +30,7 @@ class SearchAppointmentTable extends Component {
             	headerName: "Nombre",
 	            width: "30%",
 	            render: function(item) {
-		            return item.patient.appUser.firstName+ " " + item.patient.appUser.lastName
+		            return camelize(item.patient.appUser.firstName)+ " " + camelize(item.patient.appUser.lastName)
 	            }
             },
             {
@@ -40,15 +41,27 @@ class SearchAppointmentTable extends Component {
 		            return item.patient.appUser.ci
 	            }
             },
-            {headerName: "Creación", field: "creationTimeStamp", width: "25%"},
-            {headerName: "Última actualización", field: "lastUpdateTimeStamp", width: "25%"},
+            {
+            	headerName: "Creación",
+	            width: "25%",
+	            render: function (item) {
+		            return getDateFromLocalDateTime(item.creationTimeStamp)
+	            }
+            },
+            {
+            	headerName: "Última actualización",
+	            width: "25%",
+	            render: function (item) {
+		            return getTimeIntervalFromLocalDateTime(item.lastUpateTimeStamp)
+	            }
+            },
         ],
         windowHeight: document.body.clientHeight,
 	    isModalOpen: false,
 	    messageInformation: {}
     };
 
-    loadClientTablePage(page) {
+    loadDoctorAppointmentsPage(page) {
         console.log("Loading page: ",page);
         const headers = {
             "Content-Type": "application/json; charset=utf-8",
@@ -108,10 +121,10 @@ class SearchAppointmentTable extends Component {
                  <PaginatedLazyTable
                       status={0}
                       columnDefs={this.state.columnDefs}
-                      loadTablePage={this.loadClientTablePage}
+                      loadTablePage={this.loadDoctorAppointmentsPage}
                       length={this.props.clientCount}
                       title={"Consultas"}
-                      pageSize={Math.floor(this.state.windowHeight/70)}
+                      pageSize={Math.floor(this.state.windowHeight/60)}
                       id={this.props.id}
                       onRowClick={this.onRowClick}
                  />

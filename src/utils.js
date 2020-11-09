@@ -144,4 +144,19 @@ export function parsedFirebaseDate(unixTimeStamp) {
 export function getAge(timestamp) {
 	return moment(timestamp).diff(moment(),'years');
 }
+export function isToday(unixTimeStamp) {
+	let timestamp = moment.unix(unixTimeStamp.seconds);
+	let today = moment();
+	return timestamp.format('YYYY-MM-DD') === today.format('YYYY-MM-DD');
+}
+export function getDateFromLocalDateTime(timestamp) {
+	let time = moment(timestamp);
+	return time.format('DD/MMM');
+}
+export function getTimeIntervalFromLocalDateTime(timestamp) {
+	let time = moment(timestamp);
+	let now = moment();
+	if(now.diff(time,'days') === 0) return "Hoy";
+	return "Hace "+now.diff(time,'days')+" días";
+}
 //--------------------------------END TIME---------------------------------------

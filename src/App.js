@@ -23,7 +23,7 @@ const Authenticate= ()=>{
     console.log("Usuario no autenticado :$");
     return false;
   }
-}
+};
 const PrivateRoute = ({component: Component, ...rest}) => (
      <Route {...rest} render={(props) => (
           Authenticate()
@@ -33,7 +33,7 @@ const PrivateRoute = ({component: Component, ...rest}) => (
                  state: {from: props.location}
                }}/>
      )}/>
-)
+);
 
 function App() {
   return (

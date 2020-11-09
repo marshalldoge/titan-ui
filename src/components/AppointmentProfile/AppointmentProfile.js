@@ -6,7 +6,7 @@ import * as constants from "../../constants"
 import {connect} from "react-redux";
 import "antd/dist/antd.css";
 import "./_AppointmentProfile.scss";
-import {getAge, getJWtProperty, getTime, getUrlParams} from "../../utils";
+import {camelize, getAge, getJWtProperty, getTime, getUrlParams} from "../../utils";
 
 const TTitle = React.lazy(() => import("../TTitle/TTitle"));
 const Conversation = React.lazy(() => import("../Conversation/Conversation"));
@@ -59,6 +59,12 @@ class AppointmentProfile extends Component {
 		}).then(response => response.json())
 			 .then(function(response) {
 				 //console.log("Result of ")
+				 me.setState(prevState => {
+				 	let patient = response.data;
+				 	patient.appUser.firstName = camelize(patient.appUser.firstName);
+				 	patient.appUser.lastName = camelize(patient.appUser.lastName);
+				 	return prevState;
+				 });
 				 me.setState({
 					 patient: response.data
 				 })
@@ -83,81 +89,80 @@ class AppointmentProfile extends Component {
 	PatientData = () => {
 		if(this.state.patient === null) return null;
 		return (
-			 <React.Fragment>
-				 <Row>
-					 <Col span={8}>
-						 {this.FieldValue("Nombre: ",
-							  this.state.patient.appUser.firstName +
-							  " " +
-							  this.state.patient.appUser.lastName
-						 )}
-					 </Col>
-					 <Col span={8}>
-						 {this.FieldValue("Género: ",this.state.patient.appUser.genre)}
-					 </Col>
-					 <Col span={8}>
-						 {this.FieldValue("Edad: ",getAge(this.state.patient.appUser.birthDay))}
-					 </Col>
-				 </Row>
-				 <Row className={"this.state.drawerVehicleData-box-row"}>
-					 <Col span={8}>
-						 {this.FieldValue("Altura: ",this.state.patient.appUser.height)}
-					 </Col>
-					 <Col span={8}>
-						 {this.FieldValue("Peso: ",this.state.patient.appUser.weight)}
-					 </Col>
-					 <Col span={8}>
-						 {this.FieldValue("Celular: ",this.state.patient.appUser.phone)}
-					 </Col>
-				 </Row>
-			 </React.Fragment>
+			 <Row className={"patient-data-ctn"}>
+				 <Col span={24}>
+					 <Row>
+						 <Col span={8}>
+							 {this.FieldValue("Nombre: ",
+								  this.state.patient.appUser.firstName +
+								  " " +
+								  this.state.patient.appUser.lastName
+							 )}
+						 </Col>
+						 <Col span={8}>
+							 {this.FieldValue("Género: ",this.state.patient.appUser.genre)}
+						 </Col>
+						 <Col span={8}>
+							 {this.FieldValue("Edad: ",getAge(this.state.patient.appUser.birthDay))}
+						 </Col>
+					 </Row>
+					 <Row>
+						 <Col span={8}>
+							 {this.FieldValue("Altura: ",this.state.patient.appUser.height)}
+						 </Col>
+						 <Col span={8}>
+							 {this.FieldValue("Peso: ",this.state.patient.appUser.weight)}
+						 </Col>
+						 <Col span={8}>
+							 {this.FieldValue("Celular: ",this.state.patient.appUser.phone)}
+						 </Col>
+					 </Row>
+				 </Col>
+			 </Row>
 		)
 	};
 
 	render() {
 		return (
-			 <React.Fragment>
-				<Row>
-					<Col>
-						<TTitle
-							 label={"Consulta "}
-							 size={"big"}
-							 onClick={() => this.props.onEditClick(this.props.person)}
-						/>
-					</Col>
-				</Row>
-				 <Row>
-					 <Col>
-						 <TTitle
-							  label={"Paciente "}
-							  size={"medium"}
-							  onClick={() => this.props.onEditClick(this.props.person)}
-						 />
-					 </Col>
-				 </Row>
-				 {this.PatientData()}
-				 <Row>
-					 <Col>
-						 <TTitle
-							  label={"Mensajes"}
-							  size={"medium"}
-							  onClick={() => this.props.onEditClick(this.props.person)}
-						 />
-					 </Col>
-				 </Row>
-				 {this.state.appointment && this.state.patient &&
+			 <Row className={"appointment-profile-ctn"}>
+				 <Col span={24} className={"appointment-profile-sub-ctn"}>
+					 <Row className={"appointment-title-ctn"}>
+						 <Col>
+							 <TTitle
+								  label={"Consulta - "+(this.state.patient && (this.state.patient.appUser.firstName +
+									   " " +
+									   this.state.patient.appUser.lastName))}
+								  size={"big"}
+								  onClick={() => this.props.onEditClick(this.props.person)}
+							 />
+						 </Col>
+					 </Row>
+					 {
+					 	// this.PatientData()
+					 }
+					 <Row className={"messages-title-ctn"}>
+						 <Col>
+							 <TTitle
+								  label={"Mensajes"}
+								  size={"medium"}
+								  onClick={() => this.props.onEditClick(this.props.person)}
+							 />
+						 </Col>
+					 </Row>
+					 {this.state.appointment && this.state.patient &&
 					 <Conversation
 						  appointmentId={this.state.appointment.id}
 						  appUser={
-						  	{
-						  		[this.props.appUser.id]: this.props.appUser,
-							    [this.state.patient.appUser.id]: this.state.patient.appUser
-						  	}
+							  {
+								  [this.props.appUser.id]: this.props.appUser,
+								  [this.state.patient.appUser.id]: this.state.patient.appUser
+							  }
 						  }
 						  doctorId={this.props.appUser.id}
 					 />
-				 }
-			 </React.Fragment>
+					 }
+				 </Col>
+			 </Row>
 		);
 	}
 }

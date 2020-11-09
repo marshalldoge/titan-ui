@@ -1,11 +1,9 @@
 import React, {Component} from "react";
 import {withRouter} from "react-router-dom";
 import {
-	MenuUnfoldOutlined,
-	MenuFoldOutlined,
+	HomeOutlined,
 	UserOutlined,
-	VideoCameraOutlined,
-	UploadOutlined,
+	TeamOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu } from "antd";
 import {getCookie, withParams, getJWtProperty} from "../../utils.js";
@@ -82,13 +80,13 @@ class Sidebar extends Component {
                 	//this.Logo()
                 }
 	            <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-		            <Menu.Item key="1" icon={<UserOutlined />} onClick={() => this.props.handleActiveSubmenu("home")}>
+		            <Menu.Item key="1" icon={<HomeOutlined />} onClick={() => this.props.handleActiveSubmenu("home")}>
 			            Inicio
 		            </Menu.Item>
-		            <Menu.Item key="2" icon={<VideoCameraOutlined />} onClick={() => this.props.handleActiveSubmenu("searchAppointment")}>
+		            <Menu.Item key="2" icon={<UserOutlined />} onClick={() => this.props.handleActiveSubmenu("searchAppointment")}>
 			            Mis consultas
 		            </Menu.Item>
-		            <Menu.Item key="3" icon={<UploadOutlined />} onClick={() => this.props.handleActiveSubmenu("appointment")}>
+		            <Menu.Item key="3" icon={<TeamOutlined />} onClick={() => this.props.handleActiveSubmenu("appointment")}>
 			            Consultas
 		            </Menu.Item>
 	            </Menu>

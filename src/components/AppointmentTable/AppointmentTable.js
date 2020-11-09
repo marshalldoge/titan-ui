@@ -105,8 +105,7 @@ class AppointmentTable extends Component {
 	};
 
 	addDoctorToAppt = (appt) => {
-		//console.log("sale tale props: ",this.props);
-		//console.log("Loading page: ",page);
+		console.log('Adding doctor ',this.props.id, "to appt: ",appt);
 		var headers = {
 			"Content-Type": "application/json; charset=utf-8",
 			Authorization: getCookie("JWT")
