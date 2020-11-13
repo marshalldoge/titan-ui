@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa195054-435e-4753-8366-c8fc039751fc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AppointmentTable/AppointmentTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppointmentTable/AppointmentTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AppointmentProfile/AppointmentProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppointmentProfile/AppointmentProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Conversation/_Conversation.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Conversation/_Conversation.scss" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -47,7 +47,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Conversation/Conversation.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
+            <state relative-caret-position="-53">
               <caret line="298" lean-forward="true" selection-start-line="298" selection-end-line="298" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
@@ -59,8 +59,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/AppointmentProfile/AppointmentProfile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="146" column="35" selection-start-line="146" selection-start-column="35" selection-end-line="146" selection-end-column="35" />
+            <state relative-caret-position="232">
+              <caret line="140" column="64" selection-start-line="140" selection-start-column="64" selection-end-line="140" selection-end-column="64" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -68,19 +68,19 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/Conversation/_Conversation.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
+            <state relative-caret-position="145">
+              <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/AppointmentTable/AppointmentTable.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
+            <state relative-caret-position="77">
               <caret line="393" column="35" lean-forward="true" selection-start-line="393" selection-start-column="35" selection-end-line="393" selection-end-column="35" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
@@ -239,13 +239,13 @@
         <option value="$PROJECT_DIR$/src/components/AppointmentProfile/_AppointmentProfile.scss" />
         <option value="$PROJECT_DIR$/src/components/Body/Body.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
-        <option value="$PROJECT_DIR$/src/components/Conversation/_Conversation.scss" />
-        <option value="$PROJECT_DIR$/src/components/AppointmentProfile/AppointmentProfile.js" />
         <option value="$PROJECT_DIR$/src/utils.js" />
         <option value="$PROJECT_DIR$/src/components/Sidebar/Sidebar.js" />
         <option value="$PROJECT_DIR$/src/components/SearchAppointmentTable/SearchAppointmentTable.js" />
         <option value="$PROJECT_DIR$/src/components/Conversation/Conversation.js" />
         <option value="$PROJECT_DIR$/src/components/AppointmentTable/AppointmentTable.js" />
+        <option value="$PROJECT_DIR$/src/components/AppointmentProfile/AppointmentProfile.js" />
+        <option value="$PROJECT_DIR$/src/components/Conversation/_Conversation.scss" />
       </list>
     </option>
   </component>
@@ -478,12 +478,12 @@
       <workItem from="1604876121863" duration="17586000" />
       <workItem from="1604935597458" duration="864000" />
       <workItem from="1605028346179" duration="489000" />
-      <workItem from="1605245050181" duration="132000" />
+      <workItem from="1605245050181" duration="1522000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="243463000" />
+    <option name="totallyTimeSpent" value="244853000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -511,7 +511,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="GraphQL" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.20431654" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.34820145" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="TypeScript" order="12" />
       <window_info anchor="bottom" id="Messages" order="13" />
@@ -869,13 +869,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Conversation/_Conversation.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/ItemFileManager/ItemFileManager.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3150">
@@ -903,9 +896,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/AppointmentTable/AppointmentTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="77">
+          <caret line="393" column="35" lean-forward="true" selection-start-line="393" selection-start-column="35" selection-end-line="393" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Conversation/Conversation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
+        <state relative-caret-position="-53">
           <caret line="298" lean-forward="true" selection-start-line="298" selection-end-line="298" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
@@ -915,21 +918,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/AppointmentProfile/AppointmentProfile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="146" column="35" selection-start-line="146" selection-start-column="35" selection-end-line="146" selection-end-column="35" />
+        <state relative-caret-position="232">
+          <caret line="140" column="64" selection-start-line="140" selection-start-column="64" selection-end-line="140" selection-end-column="64" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/AppointmentTable/AppointmentTable.js">
+    <entry file="file://$PROJECT_DIR$/src/components/Conversation/_Conversation.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="393" column="35" lean-forward="true" selection-start-line="393" selection-start-column="35" selection-end-line="393" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="145">
+          <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
         </state>
       </provider>
     </entry>

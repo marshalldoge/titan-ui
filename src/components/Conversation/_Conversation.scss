@@ -1,5 +1,5 @@
 .appointment-title-ctn {
-  height: 6%;
+  height: 8%;
 }
 .patient-title-ctn {
   height: 5%;
@@ -7,12 +7,18 @@
 .patient-data-ctn {
   height: 5%;
 }
+.profile-body-ctn {
+  height: 92%;
+  max-height: 92%;
+}
+.profile-body-sub-ctn {
+  height: 100%;
+}
 .messages-title-ctn {
-  height: 5%;
+  height: 10%;
 }
 .conversation-ctn {
-  height: 75%;
-  max-height: 75%;
+  height: 76%;
   overflow-y: scroll;
   border-top: #a4b2b7;
   border-bottom: #a4b2b7;
@@ -47,7 +53,7 @@
 }
 .message-text-area-ctn {
   margin-top: 1%;
-  height: 12%;
+  height: 14%;
 }
 .message-text-area-sub-ctn {
   max-height: 100%;

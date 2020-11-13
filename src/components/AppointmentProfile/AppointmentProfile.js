@@ -137,30 +137,33 @@ class AppointmentProfile extends Component {
 							 />
 						 </Col>
 					 </Row>
-					 {
-					 	// this.PatientData()
-					 }
-					 <Row className={"messages-title-ctn"}>
-						 <Col>
-							 <TTitle
-								  label={"Mensajes"}
-								  size={"medium"}
-								  onClick={() => this.props.onEditClick(this.props.person)}
+					 <Row className={"profile-body-ctn"}>
+						 <Col span={12} className={"profile-body-sub-ctn"}>
+							 <Row className={"messages-title-ctn"}>
+								 <Col>
+									 <TTitle
+										  label={"Mensajes"}
+										  size={"medium"}
+										  onClick={() => this.props.onEditClick(this.props.person)}
+									 />
+								 </Col>
+							 </Row>
+							 {this.state.appointment && this.state.patient &&
+							 <Conversation
+								  appointmentId={this.state.appointment.id}
+								  appUser={
+									  {
+										  [this.props.appUser.id]: this.props.appUser,
+										  [this.state.patient.appUser.id]: this.state.patient.appUser
+									  }
+								  }
+								  doctorId={this.props.appUser.id}
 							 />
+							 }
+						 </Col>
+						 <Col span={12}>
 						 </Col>
 					 </Row>
-					 {this.state.appointment && this.state.patient &&
-					 <Conversation
-						  appointmentId={this.state.appointment.id}
-						  appUser={
-							  {
-								  [this.props.appUser.id]: this.props.appUser,
-								  [this.state.patient.appUser.id]: this.state.patient.appUser
-							  }
-						  }
-						  doctorId={this.props.appUser.id}
-					 />
-					 }
 				 </Col>
 			 </Row>
 		);
