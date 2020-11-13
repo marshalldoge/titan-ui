@@ -389,10 +389,10 @@ class AppointmentTable extends Component {
 				 </Row>
 				 <Row className={"this.state.drawerVehicleData-box-row"}>
 					 <Col span={7}>
-						 {this.FieldValue("Altura: ",this.state.drawerAppointmentData.patient.appUser.height)}
+						 {this.FieldValue("Altura: ",this.state.drawerAppointmentData.patient.height)}
 					 </Col>
 					 <Col span={8}>
-						 {this.FieldValue("Peso: ",this.state.drawerAppointmentData.patient.appUser.weight)}
+						 {this.FieldValue("Peso: ",this.state.drawerAppointmentData.patient.weight)}
 					 </Col>
 					 <Col span={9}>
 						 {this.FieldValue("Celular: ",this.state.drawerAppointmentData.patient.appUser.phone)}
