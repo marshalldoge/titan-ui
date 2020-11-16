@@ -1,17 +1,23 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Row, Col, Button } from "antd";
+import { Row, Col, Tabs, Timeline } from "antd";
+import { ClockCircleOutlined } from '@ant-design/icons';
 import { getCookie, withParams} from "../../utils.js";
 import * as constants from "../../constants"
 import {connect} from "react-redux";
 import "antd/dist/antd.css";
 import "./_AppointmentProfile.scss";
-import {camelize, getAge, getJWtProperty, getTime, getUrlParams} from "../../utils";
+import {camelize, getAge, getJWtProperty, getDateFromLocalDateTime, getUrlParams} from "../../utils";
 
+const { TabPane } = Tabs;
 const TTitle = React.lazy(() => import("../TTitle/TTitle"));
 const Conversation = React.lazy(() => import("../Conversation/Conversation"));
 
 class AppointmentProfile extends Component {
+	constructor(props) {
+		super(props);
+		this.goToPatientProfile = this.goToPatientProfile.bind(this);
+	}
 
 	state = {
 		appointment: null,
@@ -73,6 +79,14 @@ class AppointmentProfile extends Component {
 		});
 	}
 
+	goToPatientProfile() {
+		let me = this;
+		me.props.history.push({
+			pathname: "patient_profile",
+			search: "?patientId="+getUrlParams('patientId')
+		})
+	};
+
 	FieldValue = (name, value) => {
 		return (
 			 <Row>
@@ -122,6 +136,29 @@ class AppointmentProfile extends Component {
 		)
 	};
 
+	onChangeTab = (key) => {
+		console.log(key);
+	};
+
+	AppointmentTimeline = () => {
+		return (
+			 <Timeline mode="alternate">
+				 <Timeline.Item>{"Consulta creada el "+getDateFromLocalDateTime(this.state.appointment.creationTimeStamp) }</Timeline.Item>
+				 <Timeline.Item color="green">Solve initial network problems 2015-09-01</Timeline.Item>
+				 <Timeline.Item dot={<ClockCircleOutlined style={{ fontSize: '16px' }} />}>
+					 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+					 laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto
+					 beatae vitae dicta sunt explicabo.
+				 </Timeline.Item>
+				 <Timeline.Item color="red">Network problems being solved 2015-09-01</Timeline.Item>
+				 <Timeline.Item>Create a services site 2015-09-01</Timeline.Item>
+				 <Timeline.Item dot={<ClockCircleOutlined style={{ fontSize: '16px' }} />}>
+					 Technical testing 2015-09-01
+				 </Timeline.Item>
+			 </Timeline>
+		)
+	};
+
 	render() {
 		return (
 			 <Row className={"appointment-profile-ctn"}>
@@ -133,12 +170,12 @@ class AppointmentProfile extends Component {
 									   " " +
 									   this.state.patient.appUser.lastName))}
 								  size={"big"}
-								  onClick={() => this.props.onEditClick(this.props.person)}
+								  onClick={this.goToPatientProfile}
 							 />
 						 </Col>
 					 </Row>
 					 <Row className={"profile-body-ctn"}>
-						 <Col span={12} className={"profile-body-sub-ctn"}>
+						 <Col span={11} className={"profile-body-sub-ctn"}>
 							 <Row className={"messages-title-ctn"}>
 								 <Col>
 									 <TTitle
@@ -161,7 +198,18 @@ class AppointmentProfile extends Component {
 							 />
 							 }
 						 </Col>
-						 <Col span={12}>
+						 <Col span={10} offset={1}>
+							 <Tabs defaultActiveKey="1" onChange={this.onChangeTab}>
+								 <TabPane tab="Resumen" key="1">
+									 {this.state.appointment && this.AppointmentTimeline()}
+								 </TabPane>
+								 <TabPane tab="Media" key="2">
+									 Content of Tab Pane 2
+								 </TabPane>
+								 <TabPane tab="Tratamientos" key="3">
+									 Content of Tab Pane 3
+								 </TabPane>
+							 </Tabs>
 						 </Col>
 					 </Row>
 				 </Col>

@@ -156,7 +156,7 @@ export function getDateFromLocalDateTime(timestamp) {
 export function getTimeIntervalFromLocalDateTime(timestamp) {
 	let time = moment(timestamp);
 	let now = moment();
-	if(now.diff(time,'days') === 0) return "Hoy";
+	if(time.diff(now,'days') === 0) return "Hoy";
 	return "Hace "+now.diff(time,'days')+" días";
 }
 //--------------------------------END TIME---------------------------------------

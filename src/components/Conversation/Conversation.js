@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import {Row, Col, Input, Button, Select, Drawer, DatePicker} from "antd";
-import { SendOutlined, PaperClipOutlined, ThunderboltOutlined } from '@ant-design/icons';
+import {Row, Col, Input, Button, Select, Drawer, DatePicker, Upload, message} from "antd";
+import { SendOutlined, PaperClipOutlined, ThunderboltOutlined, InboxOutlined } from '@ant-design/icons';
 import * as constants from "../../constants"
 import {connect} from "react-redux";
 import moment from "moment";
@@ -13,6 +13,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 import LoadingGif from "../../assets/gif/loading.gif";
+import Modal from "react-modal";
 
 firebase.initializeApp({
 	apiKey: "AIzaSyClRs3Xkafgy4TNUA9vfFz8RjHLG3ZHMaU",
@@ -29,6 +30,7 @@ const auth = firebase.auth();
 const firestore = firebase.firestore();
 
 const { Option } = Select;
+const { Dragger } = Upload;
 const { TextArea } = Input;
 const TTitle = React.lazy(() => import("../TTitle/TTitle"));
 const TButton = React.lazy(() => import("../TButton/TButton"));
@@ -49,8 +51,10 @@ class Conversation extends Component {
 		messages: null,
 		query: null,
 		messageText: "",
+		messageFile: "",
 		actionSelected: "",
-		isActionDrawerOpen: false
+		isActionDrawerOpen: false,
+		isAttachmentModalOpen: false
 	};
 
 	componentDidMount() {
@@ -165,6 +169,14 @@ class Conversation extends Component {
 		);
 	};
 
+	updateFilesSelected = e => {
+		let formData  = new FormData();
+		formData.append("file",e.target.files[0]);
+		this.setState({messageFile:formData});
+		console.log("Files updated: ",e.target.files);
+		console.log("FILE 0: ",e.target.files[0]);
+	};
+
 	handleInputChange(event) {
 		let me = this;
 		const target = event.target;
@@ -192,7 +204,7 @@ class Conversation extends Component {
 						 </Col>
 						 <Col span={3} offset={15}>
 							 <Row justify={"end"}>
-								 <div className={"icon-button attachment"}>
+								 <div className={"icon-button attachment"} onClick={() => this.setState({isAttachmentModalOpen: true})}>
 									 <PaperClipOutlined className={"icon"}/>
 								 </div>
 							 </Row>
@@ -214,7 +226,7 @@ class Conversation extends Component {
 		console.log(`selected ${value}`);
 	};
 
-	Drawer = () => {
+	ActionDrawer = () => {
 		return (
 			 <Drawer
 				  placement="right"
@@ -253,13 +265,13 @@ class Conversation extends Component {
 				 <br/>
 				 <Row className={"vehicle-box-row"}>
 					 <Col span={24}>
-						 DE: <DatePicker placeholder={"Escoja la fecha de inicio"}/>
+						 <Input placeholder="Número de veces" />
 					 </Col>
 				 </Row>
 				 <br/>
 				 <Row className={"vehicle-box-row"}>
 					 <Col span={24}>
-						 A: <DatePicker placeholder={"Escoja la fecha de fin"}/>
+						 DE: <DatePicker placeholder={"Escoja la fecha de inicio"}/>
 					 </Col>
 				 </Row>
 				 <br/>
@@ -297,6 +309,64 @@ class Conversation extends Component {
 		)
 	};
 
+	closeAttachmentModal = () => {
+		this.setState({isAttachmentModalOpen: false});
+	};
+
+
+	AttachmentModal = () => {
+		const customStyles = {
+			content : {
+				top                   : '50%',
+				left                  : '50%',
+				right                 : 'auto',
+				bottom                : 'auto',
+				marginRight           : '-50%',
+				transform             : 'translate(-50%, -50%)',
+				width                 : '400px',
+				height                : '300px'
+			}
+		};
+		const props = {
+			name: 'file',
+			multiple: true,
+			action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+			onChange(info) {
+				const { status } = info.file;
+				if (status !== 'uploading') {
+					console.log(info.file, info.fileList);
+				}
+				if (status === 'done') {
+					message.success(`${info.file.name} file uploaded successfully.`);
+				} else if (status === 'error') {
+					message.error(`${info.file.name} file upload failed.`);
+				}
+			},
+		};
+		return (
+			 <Modal
+				  isOpen={this.state.isAttachmentModalOpen}
+				  onRequestClose={this.closeAttachmentModal}
+				  contentLabel="Enviar archivos"
+				  style={customStyles}
+				  ariaHideApp={false}
+			 >
+				 <TTitle
+					  size={'big'}
+					  label={'Enviar archivos '}
+				 />
+				 <Row justify={"center"}>
+					 <Dragger {...props}>
+						 <p className="ant-upload-drag-icon">
+							 <InboxOutlined />
+						 </p>
+						 <p className="ant-upload-text">Haga click aquí o desplaze documentos acá.</p>
+					 </Dragger>
+				 </Row>
+			 </Modal>
+		);
+	};
+
 
 	render() {
 		return (
@@ -309,7 +379,8 @@ class Conversation extends Component {
 					 </Row>
 				 </div>
 				 {this.MessageTextArea()}
-				 {this.Drawer()}
+				 {this.ActionDrawer()}
+				 {this.AttachmentModal()}
 			 </React.Fragment>
 		);
 	}

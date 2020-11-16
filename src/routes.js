@@ -52,6 +52,7 @@ const Order = React.lazy(() => import('./views/Order/Order'));
 
 //New routes
 const Appointment = React.lazy(() => import('./views/Appointment/Appointment'));
+const PatientProfile = React.lazy(() => import('./components/PatientProfile/PatientProfile'));
 const AppointmentProfile = React.lazy(() => import('./components/AppointmentProfile/AppointmentProfile'));
 const SearchAppointment = React.lazy(() => import('./views/SearchAppointment/SearchAppointment'));
 
@@ -110,6 +111,7 @@ const routes = [
 
     //New routes
 	{ path:'/appointment',name:'Appointment',component: Appointment},
+	{ path:'/patient_profile',name:'patient_profile',component: PatientProfile},
 	{ path:'/appointment_profile',name:'appointment_profile',component: AppointmentProfile},
 	{ path:'/searchAppointment',name:'SearchAppointment',component: SearchAppointment}
 
