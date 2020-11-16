@@ -9,24 +9,11 @@ import "antd/dist/antd.css";
 import "./_Conversation.scss";
 import loadingChat from'../../assets/gif/loadingChat.gif';
 import {getJWtProperty, getTime, getUrlParams, parsedFirebaseTime, parsedFirebaseDate, getAge, isToday} from "../../utils";
-import firebase from 'firebase/app';
+import firebase from '../../Firebase';
 import 'firebase/firestore';
-import 'firebase/auth';
 import LoadingGif from "../../assets/gif/loading.gif";
 import Modal from "react-modal";
 
-firebase.initializeApp({
-	apiKey: "AIzaSyClRs3Xkafgy4TNUA9vfFz8RjHLG3ZHMaU",
-	authDomain: "titan-health.firebaseapp.com",
-	databaseURL: "https://titan-health.firebaseio.com",
-	projectId: "titan-health",
-	storageBucket: "titan-health.appspot.com",
-	messagingSenderId: "562863710701",
-	appId: "1:562863710701:web:fa4cbc372b7f10c35007e4",
-	measurementId: "G-727QQ9J50P"
-});
-
-const auth = firebase.auth();
 const firestore = firebase.firestore();
 
 const { Option } = Select;
@@ -54,7 +41,8 @@ class Conversation extends Component {
 		messageFile: "",
 		actionSelected: "",
 		isActionDrawerOpen: false,
-		isAttachmentModalOpen: false
+		isAttachmentModalOpen: false,
+		treatment: {}
 	};
 
 	componentDidMount() {
@@ -95,7 +83,7 @@ class Conversation extends Component {
 			text: this.state.messageText,
 			creationTimeStamp: firebase.firestore.FieldValue.serverTimestamp(),
 			appointmentId: this.props.appointmentId,
-			appUserId: this.props.doctorId
+			appUserId: this.props.doctorAppUserId
 		};
 		firestore.collection("messages").add(message)
 			 .then(function(docRef) {
@@ -222,8 +210,69 @@ class Conversation extends Component {
 		)
 	};
 
+	multiplierMapping = {
+		"0": 86400, //dias
+		"1": 3600, //horas
+		"2": 60 //minutos
+	};
+
+	createTreatment = () => {
+		let me = this;
+		let treatment = {
+			description: this.state.treatment.description,
+			recurrence: parseInt(this.state.treatment.recurrence),
+			startTimestamp: this.state.treatment.startTimestamp,
+			appointmentId: this.props.appointmentId,
+			appUserId: this.props.doctorAppUserId,
+			interval:
+				 parseInt(this.state.treatment.timeInterval) *
+				 this.multiplierMapping[this.state.treatment.multiplier]
+		};
+		firestore.collection("treatments").add(treatment)
+			 .then(function(docRef) {
+				 console.log("Document written with ID: ", docRef.id);
+				 message.success("El tratamiento fue creado con éxito");
+				 me.setState({isActionDrawerOpen: false});
+			 })
+			 .catch(function(error) {
+				 console.error("Error adding document: ", error);
+			 });
+	};
+
 	handleChange = (value) => {
 		console.log(`selected ${value}`);
+
+	};
+
+	updateTreatment = (event, name) => {
+		let value = event.target.value;
+		this.setState(prevState => {
+			prevState.treatment = {
+				...prevState.treatment,
+				[name]: value
+			};
+			return prevState;
+		})
+	};
+
+	onDateChange = (date, dateString) => {
+		this.setState(prevState => {
+			prevState.treatment = {
+				...prevState.treatment,
+				startTimestamp: dateString
+			};
+			return prevState;
+		})
+	};
+
+	handleMultiplier = (value) => {
+		this.setState(prevState => {
+			prevState.treatment = {
+				...prevState.treatment,
+				multiplier: value
+			};
+			return prevState;
+		})
 	};
 
 	ActionDrawer = () => {
@@ -259,19 +308,19 @@ class Conversation extends Component {
 				 <br/>
 				 <Row className={"vehicle-box-row"}>
 					 <Col span={24}>
-						 <Input placeholder="Nombre del medicamento" />
+						 <Input placeholder="Descripción tratamiento" onChange={(e) => this.updateTreatment(e,"description")} />
 					 </Col>
 				 </Row>
 				 <br/>
 				 <Row className={"vehicle-box-row"}>
 					 <Col span={24}>
-						 <Input placeholder="Número de veces" />
+						 <Input placeholder="Número de veces" onChange={(e) => this.updateTreatment(e,"recurrence")}/>
 					 </Col>
 				 </Row>
 				 <br/>
 				 <Row className={"vehicle-box-row"}>
 					 <Col span={24}>
-						 DE: <DatePicker placeholder={"Escoja la fecha de inicio"}/>
+						 DE: <DatePicker placeholder={"Escoja la fecha de inicio"} onChange={this.onDateChange}/>
 					 </Col>
 				 </Row>
 				 <br/>
@@ -280,11 +329,12 @@ class Conversation extends Component {
 						 Cada: <Input
 							  style={{ width: '50%' }}
 							  placeholder=""
+							  onChange={(e) => this.updateTreatment(e,"timeInterval")}
 						 />
 					 </Col>
 					 <Col span={11}>
 						 <Select
-							  onChange={this.handleChange}
+							  onChange={this.handleMultiplier}
 							  placeholder={"Tiempo..."}
 						 >
 							 <Option value="0">Dias</Option>
@@ -300,6 +350,7 @@ class Conversation extends Component {
 							  label={"CREAR"}
 							  type={"inverse"}
 							  size={"expanded"}
+							  onClick={this.createTreatment}
 						 />
 					 </Col>
 				 </Row>

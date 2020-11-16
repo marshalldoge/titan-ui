@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa195054-435e-4753-8366-c8fc039751fc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/AppointmentProfile/AppointmentProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppointmentProfile/AppointmentProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AppointmentProfile/_AppointmentProfile.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppointmentProfile/_AppointmentProfile.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Conversation/Conversation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Conversation/Conversation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TTitle/TTitle.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TTitle/TTitle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -24,14 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Conversation/Conversation.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="326" column="44" selection-start-line="326" selection-start-column="44" selection-end-line="326" selection-end-column="44" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-738">
+              <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -72,8 +66,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/AppointmentProfile/AppointmentProfile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="18" column="69" selection-start-line="18" selection-start-column="69" selection-end-line="18" selection-end-column="69" />
+            <state relative-caret-position="227">
+              <caret line="195" column="38" selection-start-line="195" selection-start-column="38" selection-end-line="195" selection-end-column="38" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -81,13 +75,22 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Description/Description.js">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/AppointmentProfile/_AppointmentProfile.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="777">
-              <caret line="44" column="15" selection-start-line="44" selection-start-column="15" selection-end-line="44" selection-end-column="15" />
+            <state relative-caret-position="294">
+              <caret line="14" column="14" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Firebase.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="294">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
               <folding>
-                <element signature="e#0#41#0" expanded="true" />
+                <element signature="e#0#36#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -123,8 +126,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>field-name</find>
-      <find>drawerAppointmentData.patient.appUser</find>
       <find>drawerAppointmentData</find>
       <find>this.state.patient</find>
       <find>has</find>
@@ -153,6 +154,8 @@
       <find>&lt;DESCRIPTION</find>
       <find>&lt;Modal</find>
       <find>Title</find>
+      <find>target.value</find>
+      <find>doctorId</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;/pos/Purchase</replace>
@@ -181,6 +184,7 @@
       <replace>conversationDates</replace>
       <replace>isActionDrawerOpen</replace>
       <replace>TTitle</replace>
+      <replace>doctorAppUserId</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -193,7 +197,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/.env.development" />
         <option value="$PROJECT_DIR$/.env.production" />
         <option value="$PROJECT_DIR$/src/components/ItemQuantityForm/ItemQuantityForm.js" />
@@ -231,7 +234,6 @@
         <option value="$PROJECT_DIR$/src/components/TButton/TButton.js" />
         <option value="$PROJECT_DIR$/src/pages/AdminLayout/AdminLayout.js" />
         <option value="$PROJECT_DIR$/src/components/Body/_Body.scss" />
-        <option value="$PROJECT_DIR$/src/components/AppointmentProfile/_AppointmentProfile.scss" />
         <option value="$PROJECT_DIR$/src/components/Body/Body.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/components/Sidebar/Sidebar.js" />
@@ -241,9 +243,11 @@
         <option value="$PROJECT_DIR$/src/utils.js" />
         <option value="$PROJECT_DIR$/src/routes.js" />
         <option value="$PROJECT_DIR$/src/components/TTitle/TTitle.js" />
-        <option value="$PROJECT_DIR$/src/components/AppointmentProfile/AppointmentProfile.js" />
         <option value="$PROJECT_DIR$/src/components/PatientProfile/PatientProfile.js" />
+        <option value="$PROJECT_DIR$/src/Firebase.js" />
         <option value="$PROJECT_DIR$/src/components/Conversation/Conversation.js" />
+        <option value="$PROJECT_DIR$/src/components/AppointmentProfile/AppointmentProfile.js" />
+        <option value="$PROJECT_DIR$/src/components/AppointmentProfile/_AppointmentProfile.scss" />
       </list>
     </option>
   </component>
@@ -272,94 +276,6 @@
               <item name="titan-ui" type="b2602c69:ProjectViewProjectNode" />
               <item name="titan-ui" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="titan-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="titan-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="titan-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="titan-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="gif" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="titan-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="titan-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="titan-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="titan-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="AppointmentProfile" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="titan-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="titan-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="AppointmentTable" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="titan-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="titan-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Body" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="titan-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="titan-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Conversation" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="titan-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="titan-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="OrderTable" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="titan-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="titan-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="PatientProfile" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="titan-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="titan-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="SearchAppointmentTable" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="titan-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="titan-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="ShiftTable" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="titan-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="titan-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="stylesheets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="titan-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="titan-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="stylesheets" type="462c0819:PsiDirectoryNode" />
-              <item name="themes" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -485,12 +401,12 @@
       <workItem from="1605028346179" duration="489000" />
       <workItem from="1605245050181" duration="3846000" />
       <workItem from="1605399604505" duration="749000" />
-      <workItem from="1605520416464" duration="1501000" />
+      <workItem from="1605520416464" duration="7033000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="249427000" />
+    <option name="totallyTimeSpent" value="254959000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -505,7 +421,7 @@
     <frame x="0" y="23" width="1440" height="803" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2149401" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2149401" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -518,7 +434,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="GraphQL" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.27194244" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.12230216" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="TypeScript" order="12" />
       <window_info anchor="bottom" id="Messages" order="13" />
@@ -552,9 +468,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/views/SearchAppointment/_SearchAppointment.scss">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/Home/Home.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -796,13 +709,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/AppointmentProfile/_AppointmentProfile.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/SearchAppointment/SearchAppointment.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -897,16 +803,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/AppointmentProfile/AppointmentProfile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="18" column="69" selection-start-line="18" selection-start-column="69" selection-end-line="18" selection-end-column="69" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/PatientProfile/PatientProfile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8">
@@ -943,11 +839,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Conversation/Conversation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="326" column="44" selection-start-line="326" selection-start-column="44" selection-end-line="326" selection-end-column="44" />
+        <state relative-caret-position="-738">
+          <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Firebase.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/AppointmentProfile/AppointmentProfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="195" column="38" selection-start-line="195" selection-start-column="38" selection-end-line="195" selection-end-column="38" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/AppointmentProfile/_AppointmentProfile.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="14" column="14" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
         </state>
       </provider>
     </entry>

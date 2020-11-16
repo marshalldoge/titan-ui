@@ -5,13 +5,24 @@ import { ClockCircleOutlined } from '@ant-design/icons';
 import { getCookie, withParams} from "../../utils.js";
 import * as constants from "../../constants"
 import {connect} from "react-redux";
+import 'firebase/firestore';
+import firebase from '../../Firebase';
 import "antd/dist/antd.css";
 import "./_AppointmentProfile.scss";
-import {camelize, getAge, getJWtProperty, getDateFromLocalDateTime, getUrlParams} from "../../utils";
+import {
+	camelize,
+	getAge,
+	getJWtProperty,
+	getDateFromLocalDateTime,
+	getUrlParams,
+	parsedFirebaseDate, isToday
+} from "../../utils";
 
 const { TabPane } = Tabs;
 const TTitle = React.lazy(() => import("../TTitle/TTitle"));
 const Conversation = React.lazy(() => import("../Conversation/Conversation"));
+
+const firestore = firebase.firestore();
 
 class AppointmentProfile extends Component {
 	constructor(props) {
@@ -22,12 +33,21 @@ class AppointmentProfile extends Component {
 	state = {
 		appointment: null,
 		patient: null,
-		conversationDay: null
+		conversationDay: null,
+		treatments: null
 	};
 
 	componentDidMount() {
 		this.loadAppt();
 		this.loadPatient();
+		let me = this;
+		firestore.collection("treatments")
+			 .where("appointmentId", "==", 2)
+			 .limit(25)
+			 .onSnapshot(function(querySnapshot) {
+			 	console.log('treatments received: ',querySnapshot.docs.map(t => t.data()),querySnapshot.docs.length);
+			 	me.setState({treatments: querySnapshot.docs.map(t => t.data())});
+			 });
 	}
 
 	loadAppt(){
@@ -87,14 +107,15 @@ class AppointmentProfile extends Component {
 		})
 	};
 
-	FieldValue = (name, value) => {
+	FieldValue = (prefix, value, suffix) => {
+		if(suffix === undefined) suffix="";
 		return (
 			 <Row>
 				 <Col span={8} className={"field-name"}>
-					 {name}
+					 {prefix}
 				 </Col>
 				 <Col span={16}>
-					 {value}
+					 {value+" "+suffix}
 				 </Col>
 			 </Row>
 		);
@@ -159,6 +180,45 @@ class AppointmentProfile extends Component {
 		)
 	};
 
+	TreatmentCard = (treatment,idx) => {
+		let secondsMap = {
+
+		};
+		return (
+			 <Row key={idx} className={"treatment-card-ctn"}>
+				 <Col span={24}>
+					 <Row>
+						 <Col span={24}>
+							 <TTitle label={"Descripción"} size={"small"}/>
+						 </Col>
+					 </Row>
+					 <Row justify={"center"}>
+						 <Col span={24}>
+							 {treatment.description}
+						 </Col>
+					 </Row>
+					 <Row justify={"space-around"}>
+						 <Col span={8}>
+							 {this.FieldValue("Inicio: ",treatment.startTimestamp)}
+						 </Col>
+						 <Col span={8}>
+							 {this.FieldValue("Cant: ",treatment.recurrence," veces")}
+						 </Col>
+						 <Col span={8}>
+							 {this.FieldValue("Cada: ",treatment.interval/3600," Horas")}
+						 </Col>
+					 </Row>
+				 </Col>
+			 </Row>
+		)
+	};
+
+	Treatments = () => {
+		if(this.state.treatments === null) return null;
+		let treatments = this.state.treatments.map((treatment, idx) => this.TreatmentCard(treatment,idx));
+		return treatments;
+	};
+
 	render() {
 		return (
 			 <Row className={"appointment-profile-ctn"}>
@@ -194,11 +254,11 @@ class AppointmentProfile extends Component {
 										  [this.state.patient.appUser.id]: this.state.patient.appUser
 									  }
 								  }
-								  doctorId={this.props.appUser.id}
+								  doctorAppUserId={this.props.appUser.id}
 							 />
 							 }
 						 </Col>
-						 <Col span={10} offset={1}>
+						 <Col span={12} offset={1}>
 							 <Tabs defaultActiveKey="1" onChange={this.onChangeTab}>
 								 <TabPane tab="Resumen" key="1">
 									 {this.state.appointment && this.AppointmentTimeline()}
@@ -207,7 +267,7 @@ class AppointmentProfile extends Component {
 									 Content of Tab Pane 2
 								 </TabPane>
 								 <TabPane tab="Tratamientos" key="3">
-									 Content of Tab Pane 3
+									 {this.Treatments()}
 								 </TabPane>
 							 </Tabs>
 						 </Col>
