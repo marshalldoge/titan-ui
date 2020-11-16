@@ -34,12 +34,14 @@ class AppointmentProfile extends Component {
 		appointment: null,
 		patient: null,
 		conversationDay: null,
-		treatments: null
+		treatments: null,
+		appointmentEvents: null
 	};
 
 	componentDidMount() {
 		this.loadAppt();
 		this.loadPatient();
+		this.loadAppointmentEvents();
 		let me = this;
 		firestore.collection("treatments")
 			 .where("appointmentId", "==", 2)
@@ -93,6 +95,30 @@ class AppointmentProfile extends Component {
 				 });
 				 me.setState({
 					 patient: response.data
+				 })
+			 }).catch(function(error) {
+			console.log(error);
+		});
+	}
+
+	loadAppointmentEvents(){
+		var headers = {
+			"Content-Type": "application/json; charset=utf-8",
+			Authorization: getCookie("JWT")
+		};
+		let me = this;
+		let params = {
+			appointmentId: parseInt(getUrlParams('appointmentId'))
+		};
+		var url = withParams(constants.BACKEND_URL+"/appointmentEvent",params);
+		fetch(url, {
+			method: "GET",
+			headers: headers
+		}).then(response => response.json())
+			 .then(function(response) {
+				 //console.log("Result of ")
+				 me.setState({
+					 appointmentEvents: response.data
 				 })
 			 }).catch(function(error) {
 			console.log(error);
@@ -162,9 +188,36 @@ class AppointmentProfile extends Component {
 	};
 
 	AppointmentTimeline = () => {
+		if(this.state.appointmentEvents === null) return null;
+		let appointmentEvents = this.state.appointmentEvents.map((event,idx) => {
+			return (
+				 <Timeline.Item key={idx}>
+					 <Row>
+						 <Col span={24}>
+							 {event.name}
+						 </Col>
+					 </Row>
+					 <Row>
+						 <Col span={24}>
+							 {event.description}
+						 </Col>
+					 </Row>
+					 <Row>
+						 <Col span={24}>
+							 {event.creationTimeStamp}
+						 </Col>
+					 </Row>
+				 </Timeline.Item>
+			)
+		});
 		return (
 			 <Timeline mode="alternate">
-				 <Timeline.Item>{"Consulta creada el "+getDateFromLocalDateTime(this.state.appointment.creationTimeStamp) }</Timeline.Item>
+				 {appointmentEvents}
+			 </Timeline>
+		)
+	};
+	/*
+				<Timeline.Item>{"Consulta creada el "+getDateFromLocalDateTime(this.state.appointment.creationTimeStamp) }</Timeline.Item>
 				 <Timeline.Item color="green">Solve initial network problems 2015-09-01</Timeline.Item>
 				 <Timeline.Item dot={<ClockCircleOutlined style={{ fontSize: '16px' }} />}>
 					 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
@@ -176,9 +229,7 @@ class AppointmentProfile extends Component {
 				 <Timeline.Item dot={<ClockCircleOutlined style={{ fontSize: '16px' }} />}>
 					 Technical testing 2015-09-01
 				 </Timeline.Item>
-			 </Timeline>
-		)
-	};
+	 */
 
 	TreatmentCard = (treatment,idx) => {
 		let secondsMap = {

@@ -8,7 +8,16 @@ import moment from "moment";
 import "antd/dist/antd.css";
 import "./_Conversation.scss";
 import loadingChat from'../../assets/gif/loadingChat.gif';
-import {getJWtProperty, getTime, getUrlParams, parsedFirebaseTime, parsedFirebaseDate, getAge, isToday} from "../../utils";
+import {
+	getJWtProperty,
+	getTime,
+	getUrlParams,
+	parsedFirebaseTime,
+	parsedFirebaseDate,
+	getAge,
+	isToday,
+	getCookie, camelize, withParams
+} from "../../utils";
 import firebase from '../../Firebase';
 import 'firebase/firestore';
 import LoadingGif from "../../assets/gif/loading.gif";
@@ -216,6 +225,41 @@ class Conversation extends Component {
 		"2": 60 //minutos
 	};
 
+	createAppointmentEvent = () => {
+		var headers = {
+			"Content-Type": "application/json; charset=utf-8",
+			Authorization: getCookie("JWT")
+		};
+		let me = this;
+		let body = JSON.stringify({
+			name: "Se ha creado un tratamiento.",
+			description: this.state.treatment.description,
+			appointmentId: getUrlParams("appointmentId"),
+			type: 1
+
+		});
+		var url = constants.BACKEND_URL+"/appointmentEvent";
+		fetch(url, {
+			method: "POST",
+			headers: headers,
+			body: body
+		}).then(response => response.json())
+			 .then(function(response) {
+				 //console.log("Result of ")
+				 me.setState(prevState => {
+					 let patient = response.data;
+					 patient.appUser.firstName = camelize(patient.appUser.firstName);
+					 patient.appUser.lastName = camelize(patient.appUser.lastName);
+					 return prevState;
+				 });
+				 me.setState({
+					 patient: response.data
+				 })
+			 }).catch(function(error) {
+			console.log(error);
+		});
+	};
+
 	createTreatment = () => {
 		let me = this;
 		let treatment = {
@@ -231,6 +275,7 @@ class Conversation extends Component {
 		firestore.collection("treatments").add(treatment)
 			 .then(function(docRef) {
 				 console.log("Document written with ID: ", docRef.id);
+				 me.createAppointmentEvent();
 				 message.success("El tratamiento fue creado con éxito");
 				 me.setState({isActionDrawerOpen: false});
 			 })
