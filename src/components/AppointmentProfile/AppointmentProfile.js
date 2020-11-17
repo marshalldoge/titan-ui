@@ -8,6 +8,7 @@ import {connect} from "react-redux";
 import 'firebase/firestore';
 import firebase from '../../Firebase';
 import "antd/dist/antd.css";
+import moment from "moment";
 import "./_AppointmentProfile.scss";
 import {
 	camelize,
@@ -17,6 +18,7 @@ import {
 	getUrlParams,
 	parsedFirebaseDate, isToday
 } from "../../utils";
+import Gallery from "react-photo-gallery";
 
 const { TabPane } = Tabs;
 const TTitle = React.lazy(() => import("../TTitle/TTitle"));
@@ -28,6 +30,7 @@ class AppointmentProfile extends Component {
 	constructor(props) {
 		super(props);
 		this.goToPatientProfile = this.goToPatientProfile.bind(this);
+		this.loadAppointmentEvents = this.loadAppointmentEvents.bind(this);
 	}
 
 	state = {
@@ -35,7 +38,29 @@ class AppointmentProfile extends Component {
 		patient: null,
 		conversationDay: null,
 		treatments: null,
-		appointmentEvents: null
+		appointmentEvents: null,
+		drawerMedia: [
+			{
+				src: "https://mejorconsalud.com/wp-content/uploads/2014/02/moreton-hematoma-rodilla-470x313.jpg",
+				width: 4,
+				height: 3
+			},
+			{
+				src: "https://hdstatic.net/gridfs/holadoctor/53602d6bb937955142fe44e2_0_7-1571840563,231.jpg",
+				width: 1,
+				height: 1
+			},
+			{
+				src: "https://us.123rf.com/450wm/bankrx/bankrx1703/bankrx170300212/74107080-hematoma-de-color-marrón-en-el-fondo-de-la-rodilla-mujer.jpg?ver=6",
+				width: 1,
+				height: 1
+			},
+			{
+				src: "https://img.saludsavia.com/wp-content/uploads/2019/04/Hematomas-300x200.jpg",
+				width: 1,
+				height: 1
+			}
+		]
 	};
 
 	componentDidMount() {
@@ -204,7 +229,7 @@ class AppointmentProfile extends Component {
 					 </Row>
 					 <Row>
 						 <Col span={24}>
-							 {event.creationTimeStamp}
+							 {moment(event.creationTimeStamp).format("YYYY-MM-DD HH:mm")}
 						 </Col>
 					 </Row>
 				 </Timeline.Item>
@@ -213,6 +238,23 @@ class AppointmentProfile extends Component {
 		return (
 			 <Timeline mode="alternate">
 				 {appointmentEvents}
+				 <Timeline.Item key={999} color="green">
+					 <Row>
+						 <Col span={24}>
+							 {"Se subió imágenes."}
+						 </Col>
+					 </Row>
+					 <Row>
+						 <Col span={24}>
+							 {"El paciente subió 4 imágenes."}
+						 </Col>
+					 </Row>
+					 <Row>
+						 <Col span={24}>
+							 {"2020-11-15 10:40"}
+						 </Col>
+					 </Row>
+				 </Timeline.Item>
 			 </Timeline>
 		)
 	};
@@ -306,6 +348,7 @@ class AppointmentProfile extends Component {
 									  }
 								  }
 								  doctorAppUserId={this.props.appUser.id}
+								  loadAppointmentEvents={this.loadAppointmentEvents}
 							 />
 							 }
 						 </Col>
@@ -315,7 +358,7 @@ class AppointmentProfile extends Component {
 									 {this.state.appointment && this.AppointmentTimeline()}
 								 </TabPane>
 								 <TabPane tab="Media" key="2">
-									 Content of Tab Pane 2
+									 <Gallery photos={this.state.drawerMedia} renderImage={this.imageRenderer}  />
 								 </TabPane>
 								 <TabPane tab="Tratamientos" key="3">
 									 {this.Treatments()}

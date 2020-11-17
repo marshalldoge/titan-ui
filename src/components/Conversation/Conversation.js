@@ -121,6 +121,7 @@ class Conversation extends Component {
 	};
 
 	conversationDates = (date ,messages, idx) => {
+		if(this.props.appUser === null) return null;
 		let messagesCmps = messages.map((message,idx) => this.Message(message,idx));
 		return (
 			 <Row key={idx}>
@@ -245,16 +246,7 @@ class Conversation extends Component {
 			body: body
 		}).then(response => response.json())
 			 .then(function(response) {
-				 //console.log("Result of ")
-				 me.setState(prevState => {
-					 let patient = response.data;
-					 patient.appUser.firstName = camelize(patient.appUser.firstName);
-					 patient.appUser.lastName = camelize(patient.appUser.lastName);
-					 return prevState;
-				 });
-				 me.setState({
-					 patient: response.data
-				 })
+			 	me.props.loadAppointmentEvents();
 			 }).catch(function(error) {
 			console.log(error);
 		});
