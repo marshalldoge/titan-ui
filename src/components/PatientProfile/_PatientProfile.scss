@@ -1,0 +1,63 @@
+@import './../../stylesheets/themes/main';
+.title-ctn {
+  height: 5%;
+}
+.patient-data-row-ctn {
+  height: 5%;
+}
+.tabs-ctn {
+  height: 85%;
+  max-height: 85%;
+  overflow: hidden;
+}
+.appointments-ctn {
+  height: 65vh;
+  overflow-y: scroll;
+}
+.appointments-sub-ctn {
+  height: 100%;
+}
+.itemCode {
+  text-align: center;
+}
+.itemName{
+  text-align: center;
+}
+.itemCtn {
+  border-width: 1px;
+  border-style: solid;
+  border-color: whitesmoke;
+  font-family: Roboto-Regular;
+}
+.itemBox {
+  cursor: pointer;
+  border-width: 1px 1px 1px 5px;
+  background-color: white;
+  border-color: transparent transparent gray #003152;
+  border-style: solid;
+  vertical-align: center;
+  height: 100%;
+  width: 100%;
+}
+.itembox-fields-ctn {
+  min-height: 40px;
+  margin-left: 10px;
+  margin-top: 25px;
+}
+.text-buttons-ctn {
+  min-height: 160px;
+  height: 160px;
+}
+.appt-description {
+  border-width: 2px;
+  border-style: solid;
+  border-color: #dbdbdb;
+  border-radius: 5px;
+  height: 110px;
+  overflow-y: scroll;
+  padding: 10px;
+  margin: 10px;
+}
+.field-name {
+  font-weight: 700;
+}

@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Row, Col, Tabs, Timeline } from "antd";
-import { ClockCircleOutlined } from '@ant-design/icons';
+import {
+	UserOutlined,
+} from '@ant-design/icons';
 import { getCookie, withParams} from "../../utils.js";
 import * as constants from "../../constants"
 import {connect} from "react-redux";
@@ -322,6 +324,7 @@ class AppointmentProfile extends Component {
 								  label={"Consulta - "+(this.state.patient && (this.state.patient.appUser.firstName +
 									   " " +
 									   this.state.patient.appUser.lastName))}
+								  icon={<UserOutlined />}
 								  size={"big"}
 								  onClick={this.goToPatientProfile}
 							 />
