@@ -104,8 +104,6 @@ class Conversation extends Component {
 	};
 
 	Message = (message,idx) => {
-		console.log('this.props.appUser map: ',this.props.appUser);
-		console.log('Trying to render message: ',message);
 		return (
 			 <Row key={idx} className={"message-ctn"}>
 				 <Col span={24} className={"message-sub-ctn"}>
