@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import moment from "moment";
 import "antd/dist/antd.css";
 import "./_PatientProfile.scss";
+import firebase from '../../Firebase';
 import loadingChat from'../../assets/gif/loadingChat.gif';
 import {
 	getJWtProperty,
@@ -25,6 +26,8 @@ const { Panel } = Collapse;
 const TTitle = React.lazy(() => import("../TTitle/TTitle"));
 const TButton = React.lazy(() => import("../TButton/TButton"));
 
+const firestore = firebase.firestore();
+
 class PatientProfile extends Component {
 
 	state = {
@@ -38,7 +41,8 @@ class PatientProfile extends Component {
 		isActionDrawerOpen: false,
 		appointmentPageData: [],
 		currentPage: 0,
-		pageSize: 10
+		pageSize: 10,
+		treatments: null
 	};
 
 	componentDidMount() {
@@ -63,11 +67,17 @@ class PatientProfile extends Component {
 					 let patient = response.data;
 					 patient.appUser.firstName = camelize(patient.appUser.firstName);
 					 patient.appUser.lastName = camelize(patient.appUser.lastName);
+					 prevState.patient = patient;
 					 return prevState;
 				 });
-				 me.setState({
-					 patient: response.data
-				 })
+				 console.log('searching treatmets for patient: ',response.data.appUser.id);
+				 firestore.collection("treatments")
+					  .where("patientAppUserId", "==", response.data.appUser.id)
+					  .limit(25)
+					  .onSnapshot(function(querySnapshot) {
+						  console.log('treatments received: ',querySnapshot.docs.map(t => t.data()),querySnapshot.docs.length);
+						  me.setState({treatments: querySnapshot.docs.map(t => t.data())});
+					  });
 			 }).catch(function(error) {
 			console.log(error);
 		});
@@ -217,6 +227,16 @@ class PatientProfile extends Component {
 		);
 	};
 
+	goToAppointmentProfile = (e, record) => {
+		//const idSale = record.id;
+		console.log("Clicked row: ",record);
+		this.props.history.push({
+			pathname: "appointment_profile",
+			search: "?appointmentId=" + record.id+"&patientId="+record.patient.id
+		})
+	};
+
+
 	ItemBox = (appt,index) => {
 		return(
 			 <div className={"itemBox"} key={index}>
@@ -246,12 +266,7 @@ class PatientProfile extends Component {
 					 <Col span={6} style={{marginTop: 10}}>
 						 <Row align="bottom">
 							 <Col span={24}>
-								 <TButton
-									  type={"inverse"}
-									  label={"Remitir"}
-									  size={"expanded"}
-									  inverse={true}
-								 />
+
 							 </Col>
 						 </Row>
 						 <br />
@@ -259,10 +274,10 @@ class PatientProfile extends Component {
 							 <Col span={24}>
 								 <TButton
 									  type={"inverse"}
-									  label={"Atender"}
+									  label={"Ver más"}
 									  size={"expanded"}
 									  inverse={true}
-									  onClick={e => this.onTakeAppointment(e,appt)}
+									  onClick={e => this.goToAppointmentProfile(e,appt)}
 								 />
 							 </Col>
 						 </Row>
@@ -280,6 +295,45 @@ class PatientProfile extends Component {
 				 {boxes}
 			 </div>
 		);
+	};
+
+	TreatmentCard = (treatment,idx) => {
+		let secondsMap = {
+
+		};
+		return (
+			 <Row key={idx} className={"treatment-card-ctn"}>
+				 <Col span={24}>
+					 <Row>
+						 <Col span={24}>
+							 <TTitle label={"Descripción"} size={"small"}/>
+						 </Col>
+					 </Row>
+					 <Row justify={"center"}>
+						 <Col span={24}>
+							 {treatment.description}
+						 </Col>
+					 </Row>
+					 <Row justify={"space-around"}>
+						 <Col span={8}>
+							 {this.FieldValue("Inicio: ",parsedFirebaseDate(treatment.startTimestamp))}
+						 </Col>
+						 <Col span={8}>
+							 {this.FieldValue("Cant: ",treatment.recurrence," veces")}
+						 </Col>
+						 <Col span={8}>
+							 {this.FieldValue("Cada: ",treatment.interval/3600," Horas")}
+						 </Col>
+					 </Row>
+				 </Col>
+			 </Row>
+		)
+	};
+
+	Treatments = () => {
+		if(this.state.treatments === null) return null;
+		let treatments = this.state.treatments.map((treatment, idx) => this.TreatmentCard(treatment,idx));
+		return treatments;
 	};
 
 	render() {
@@ -306,7 +360,11 @@ class PatientProfile extends Component {
 								 </Row>
 							 </TabPane>
 							 <TabPane tab="Tratamientos" key="3">
-
+								 <Row className={"appointments-ctn"}>
+									 <Col span={24} className={"appointments-sub-ctn"}>
+										 {this.Treatments()}
+									 </Col>
+								 </Row>
 							 </TabPane>
 						 </Tabs>
 					 </Col>

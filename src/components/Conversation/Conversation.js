@@ -104,6 +104,8 @@ class Conversation extends Component {
 	};
 
 	Message = (message,idx) => {
+		console.log('this.props.appUser map: ',this.props.appUser);
+		console.log('Trying to render message: ',message);
 		return (
 			 <Row key={idx} className={"message-ctn"}>
 				 <Col span={24} className={"message-sub-ctn"}>
@@ -257,9 +259,10 @@ class Conversation extends Component {
 		let treatment = {
 			description: this.state.treatment.description,
 			recurrence: parseInt(this.state.treatment.recurrence),
-			startTimestamp: this.state.treatment.startTimestamp,
+			startTimestamp: firebase.firestore.Timestamp.fromDate(new Date(this.state.treatment.startTimestamp)),
 			appointmentId: this.props.appointmentId,
-			appUserId: this.props.doctorAppUserId,
+			doctorAppUserId: this.props.doctorAppUserId,
+			patientAppUserId: this.props.patientAppUserId,
 			interval:
 				 parseInt(this.state.treatment.timeInterval) *
 				 this.multiplierMapping[this.state.treatment.multiplier]

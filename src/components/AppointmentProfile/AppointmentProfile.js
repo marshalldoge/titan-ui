@@ -71,7 +71,7 @@ class AppointmentProfile extends Component {
 		this.loadAppointmentEvents();
 		let me = this;
 		firestore.collection("treatments")
-			 .where("appointmentId", "==", 2)
+			 .where("appointmentId", "==", parseInt(getUrlParams("appointmentId")))
 			 .limit(25)
 			 .onSnapshot(function(querySnapshot) {
 			 	console.log('treatments received: ',querySnapshot.docs.map(t => t.data()),querySnapshot.docs.length);
@@ -294,7 +294,7 @@ class AppointmentProfile extends Component {
 					 </Row>
 					 <Row justify={"space-around"}>
 						 <Col span={8}>
-							 {this.FieldValue("Inicio: ",treatment.startTimestamp)}
+							 {this.FieldValue("Inicio: ",parsedFirebaseDate(treatment.startTimestamp))}
 						 </Col>
 						 <Col span={8}>
 							 {this.FieldValue("Cant: ",treatment.recurrence," veces")}
@@ -351,6 +351,7 @@ class AppointmentProfile extends Component {
 									  }
 								  }
 								  doctorAppUserId={this.props.appUser.id}
+								  patientAppUserId={this.state.patient.appUser.id}
 								  loadAppointmentEvents={this.loadAppointmentEvents}
 							 />
 							 }
