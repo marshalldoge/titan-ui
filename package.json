@@ -7,6 +7,8 @@
     "@ant-design/compatible": "^1.0.5",
     "@ant-design/icons": "^4.2.2",
     "@babel/runtime": "^7.8.3",
+    "@firebase/storage": "^0.4.2",
+    "@google-cloud/storage": "^5.5.0",
     "@nivo/bar": "^0.59.2",
     "@nivo/circle-packing": "^0.60.0",
     "@nivo/line": "^0.59.3",

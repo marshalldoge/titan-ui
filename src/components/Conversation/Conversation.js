@@ -20,10 +20,12 @@ import {
 } from "../../utils";
 import firebase from '../../Firebase';
 import 'firebase/firestore';
+import 'firebase/storage';
 import LoadingGif from "../../assets/gif/loading.gif";
 import Modal from "react-modal";
 
 const firestore = firebase.firestore();
+const storage = firebase.storage();
 
 const { Option } = Select;
 const { Dragger } = Upload;
@@ -64,7 +66,6 @@ class Conversation extends Component {
 				 let conversationDates = {};
 
 			 	 for(let i = 0; i < querySnapshot.docs.length; i++) {
-			 	 	console.log('processing: ',querySnapshot.docs[i].data());
 			 	 	let creationTimeStamp = parsedFirebaseDate(querySnapshot.docs[i].data().creationTimeStamp);
 				     if(querySnapshot.docs[i].data().creationTimeStamp !== null && isToday(querySnapshot.docs[i].data().creationTimeStamp)) {
 					     creationTimeStamp = "Hoy";
@@ -77,6 +78,9 @@ class Conversation extends Component {
 			 	 console.log(conversationDates);
 				 me.setState({conversationDates: conversationDates});
 			 });
+
+		var pathReference = storage.ref('images');
+		console.log('list ref: ',pathReference);
 		this.scrollToBottom()
 	}
 
@@ -236,7 +240,7 @@ class Conversation extends Component {
 			name: "Se ha creado un tratamiento.",
 			description: this.state.treatment.description,
 			appointmentId: getUrlParams("appointmentId"),
-			type: 1
+			type: 2
 
 		});
 		var url = constants.BACKEND_URL+"/appointmentEvent";
@@ -419,7 +423,10 @@ class Conversation extends Component {
 		const props = {
 			name: 'file',
 			multiple: true,
-			action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+			action: (file) => {
+				const uploadTask = storage.ref(`/images/${file.name}`).put(file);
+				console.log('URL OF IMAGES IS: ',uploadTask);
+			},
 			onChange(info) {
 				const { status } = info.file;
 				if (status !== 'uploading') {
@@ -430,6 +437,7 @@ class Conversation extends Component {
 				} else if (status === 'error') {
 					message.error(`${info.file.name} file upload failed.`);
 				}
+
 			},
 		};
 		return (
