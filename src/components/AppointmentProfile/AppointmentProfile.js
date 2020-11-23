@@ -238,25 +238,8 @@ class AppointmentProfile extends Component {
 			)
 		});
 		return (
-			 <Timeline mode="alternate">
+			 <Timeline mode="alternate" className={"timeline"}>
 				 {appointmentEvents}
-				 <Timeline.Item key={999} color="green">
-					 <Row>
-						 <Col span={24}>
-							 {"Se subió imágenes."}
-						 </Col>
-					 </Row>
-					 <Row>
-						 <Col span={24}>
-							 {"El paciente subió 4 imágenes."}
-						 </Col>
-					 </Row>
-					 <Row>
-						 <Col span={24}>
-							 {"2020-11-15 10:40"}
-						 </Col>
-					 </Row>
-				 </Timeline.Item>
 			 </Timeline>
 		)
 	};
