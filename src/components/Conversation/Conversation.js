@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import {Row, Col, Input, Button, Select, Drawer, DatePicker, Upload, message} from "antd";
-import { SendOutlined, PaperClipOutlined, ThunderboltOutlined, InboxOutlined } from '@ant-design/icons';
+import { SendOutlined, PaperClipOutlined, ThunderboltOutlined, InboxOutlined, UploadOutlined } from '@ant-design/icons';
 import * as constants from "../../constants"
 import {connect} from "react-redux";
 import moment from "moment";
@@ -53,7 +53,10 @@ class Conversation extends Component {
 		actionSelected: "",
 		isActionDrawerOpen: false,
 		isAttachmentModalOpen: false,
-		treatment: {}
+		treatment: {},
+		fileMessageText: "",
+		fileList: [],
+		uploading: false,
 	};
 
 	componentDidMount() {
@@ -85,11 +88,40 @@ class Conversation extends Component {
 	}
 
 	componentDidUpdate () {
-		this.scrollToBottom()
+		this.scrollToBottom();
 	}
 	scrollToBottom() {
 		this.el.current.scrollTop = this.el.current.scrollHeight;
 	}
+
+	saveImages(fileUrl){
+		var headers = {
+			"Content-Type": "application/json; charset=utf-8",
+			Authorization: getCookie("JWT")
+		};
+		let me = this;
+		//+getUrlParams('appointmentId')
+
+		let body = JSON.stringify({
+			url: fileUrl,
+			appointmentId: getUrlParams("appointmentId"),
+			appUserId: this.props.doctorAppUserId
+		});
+		let message = {
+			text: this.state.messageText,
+			creationTimeStamp: firebase.firestore.FieldValue.serverTimestamp(),
+			appointmentId: this.props.appointmentId,
+			appUserId: this.props.doctorAppUserId
+		};
+		firestore.collection("messages").add(message)
+			 .then(function(docRef) {
+				 console.log("Document written with ID: ", docRef.id);
+			 })
+			 .catch(function(error) {
+				 console.error("Error adding document: ", error);
+			 });
+	}
+
 
 	sendMessage = () => {
 		let message = {
@@ -406,6 +438,72 @@ class Conversation extends Component {
 		this.setState({isAttachmentModalOpen: false});
 	};
 
+	handleUpload = () => {
+		let me = this;
+		const { fileList } = this.state;
+		let firebaseMessage = {
+			text: me.state.fileMessageText,
+			creationTimeStamp: firebase.firestore.FieldValue.serverTimestamp(),
+			appointmentId: this.props.appointmentId,
+			appUserId: this.props.doctorAppUserId,
+			files: []
+		};
+		this.setState({
+			uploading: true,
+		});
+		let uploadedFilesCnt = 0;
+		firestore.collection("messages").add(firebaseMessage)
+			 .then(function(docRef) {
+				 console.log("Message sent with id: ", docRef.id);
+				 for(let i = 0; i < fileList.length; i++) {
+					 let file = fileList[i];
+					 const uploadTask = storage.ref(`/images/${file.name}`).put(file);
+					 uploadTask.on('state_changed', function(snapshot){
+						 // Observe state change events such as progress, pause, and resume
+						 // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+						 let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+						 console.log('Upload is ' + progress + '% done');
+						 switch (snapshot.state) {
+							 case firebase.storage.TaskState.PAUSED: // or 'paused'
+								 console.log('Upload is paused');
+								 break;
+							 case firebase.storage.TaskState.RUNNING: // or 'running'
+								 console.log('Upload is running');
+								 break;
+						 }
+					 }, function(error) {
+						 // Handle unsuccessful uploads
+					 }, function() {
+						 // Handle successful uploads on complete
+						 // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+						 uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+							 console.log('File available at', downloadURL);
+							 firestore.collection("messages").doc(docRef.id).update({
+								 files: firebase.firestore.FieldValue.arrayUnion(downloadURL)
+							 })
+								  .then(function() {
+									  console.log("Updated meessage with new url: ",downloadURL);
+									  uploadedFilesCnt++;
+									  if(uploadedFilesCnt === fileList.length) {
+										  me.setState({
+											  uploading: false,
+											  isAttachmentModalOpen: false,
+											  fileMessageText: ""
+										  });
+										  message.success("Se han subido las imágenes correctamente.");
+									  }
+								  })
+								  .catch(function(error) {
+									  console.error("Error writing document: ", error);
+								  });
+						 });
+					 });
+				 }
+			 })
+			 .catch(function(error) {
+				 console.error("Error adding document: ", error);
+			 });
+	};
 
 	AttachmentModal = () => {
 		const customStyles = {
@@ -420,25 +518,25 @@ class Conversation extends Component {
 				height                : '300px'
 			}
 		};
-		const props = {
-			name: 'file',
-			multiple: true,
-			action: (file) => {
-				const uploadTask = storage.ref(`/images/${file.name}`).put(file);
-				console.log('URL OF IMAGES IS: ',uploadTask);
+		const { uploading, fileList } = this.state;
+		const uploadProps = {
+			onRemove: file => {
+				this.setState(state => {
+					const index = state.fileList.indexOf(file);
+					const newFileList = state.fileList.slice();
+					newFileList.splice(index, 1);
+					return {
+						fileList: newFileList,
+					};
+				});
 			},
-			onChange(info) {
-				const { status } = info.file;
-				if (status !== 'uploading') {
-					console.log(info.file, info.fileList);
-				}
-				if (status === 'done') {
-					message.success(`${info.file.name} file uploaded successfully.`);
-				} else if (status === 'error') {
-					message.error(`${info.file.name} file upload failed.`);
-				}
-
+			beforeUpload: file => {
+				this.setState(state => ({
+					fileList: [...state.fileList, file],
+				}));
+				return false;
 			},
+			fileList,
 		};
 		return (
 			 <Modal
@@ -452,14 +550,22 @@ class Conversation extends Component {
 					  size={'big'}
 					  label={'Enviar archivos '}
 				 />
-				 <Row justify={"center"}>
-					 <Dragger {...props}>
-						 <p className="ant-upload-drag-icon">
-							 <InboxOutlined />
-						 </p>
-						 <p className="ant-upload-text">Haga click aquí o desplaze documentos acá.</p>
-					 </Dragger>
+				 <Row>
+					 <Input placeholder="Mensaje" onChange={(e) => this.setState({fileMessageText: e.target.value})} />
 				 </Row>
+				 <br/>
+				 <Upload {...uploadProps}>
+					 <Button icon={<UploadOutlined />}>Select File</Button>
+				 </Upload>
+				 <Button
+					  type="primary"
+					  onClick={this.handleUpload}
+					  disabled={fileList.length === 0}
+					  loading={uploading}
+					  style={{ marginTop: 16 }}
+				 >
+					 {uploading ? 'Uploading' : 'Start Upload'}
+				 </Button>
 			 </Modal>
 		);
 	};
