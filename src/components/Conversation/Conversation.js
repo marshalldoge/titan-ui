@@ -238,7 +238,11 @@ class Conversation extends Component {
 						 </Col>
 						 <Col span={3} offset={15}>
 							 <Row justify={"end"}>
-								 <div className={"icon-button attachment"} onClick={() => this.setState({isAttachmentModalOpen: true})}>
+								 <div className={"icon-button attachment"} onClick={() => this.setState(prevState => {
+								 	prevState.isAttachmentModalOpen = true;
+								 	prevState.fileMessageText = prevState.messageText;
+								 	return prevState;
+								 })}>
 									 <PaperClipOutlined className={"icon"}/>
 								 </div>
 							 </Row>
@@ -551,7 +555,7 @@ class Conversation extends Component {
 					  label={'Enviar archivos '}
 				 />
 				 <Row>
-					 <Input placeholder="Mensaje" onChange={(e) => this.setState({fileMessageText: e.target.value})} />
+					 <Input placeholder="Mensaje" value={this.state.fileMessageText} onChange={(e) => this.setState({fileMessageText: e.target.value})} />
 				 </Row>
 				 <br/>
 				 <Upload {...uploadProps}>

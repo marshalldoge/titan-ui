@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa195054-435e-4753-8366-c8fc039751fc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Conversation/Conversation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Conversation/Conversation.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
@@ -35,10 +34,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/AppointmentProfile/AppointmentProfile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1239">
-              <caret line="81" column="4" selection-start-line="81" selection-start-column="4" selection-end-line="102" />
+            <state relative-caret-position="173">
+              <caret line="347" column="101" lean-forward="true" selection-start-line="347" selection-start-column="101" selection-end-line="347" selection-end-column="101" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/AppointmentTable/AppointmentTable.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="37">
+              <caret line="35" column="8" lean-forward="true" selection-start-line="35" selection-start-column="8" selection-end-line="40" selection-end-column="14" />
+              <folding>
+                <element signature="e#0#40#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -47,8 +58,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/Conversation/Conversation.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="491" column="45" selection-start-line="491" selection-start-column="45" selection-end-line="491" selection-end-column="45" />
+            <state relative-caret-position="295">
+              <caret line="557" column="83" selection-start-line="557" selection-start-column="83" selection-end-line="557" selection-end-column="83" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -60,7 +71,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>LoadingGif</find>
       <find>messagete</find>
       <find>histo</find>
       <find>&lt;TTITLE</find>
@@ -90,6 +100,7 @@
       <find>props.app</find>
       <find>input</find>
       <find>message</find>
+      <find>galler</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;/pos/Purchase</replace>
@@ -364,12 +375,12 @@
       <workItem from="1606038355276" duration="515000" />
       <workItem from="1606072496559" duration="50000" />
       <workItem from="1606098871010" duration="3099000" />
-      <workItem from="1606139299849" duration="2789000" />
+      <workItem from="1606139299849" duration="3040000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="277705000" />
+    <option name="totallyTimeSpent" value="277956000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -397,7 +408,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="GraphQL" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.22733814" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.22733814" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="TypeScript" order="12" />
       <window_info anchor="bottom" id="Messages" order="13" />
@@ -726,16 +737,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/AppointmentTable/AppointmentTable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="70" column="4" selection-start-line="70" selection-start-column="4" selection-end-line="104" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/AppointmentTable/_AppointmentTable.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -830,18 +831,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/AppointmentProfile/AppointmentProfile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1239">
-          <caret line="81" column="4" selection-start-line="81" selection-start-column="4" selection-end-line="102" />
+        <state relative-caret-position="173">
+          <caret line="347" column="101" lean-forward="true" selection-start-line="347" selection-start-column="101" selection-end-line="347" selection-end-column="101" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/AppointmentTable/AppointmentTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="37">
+          <caret line="35" column="8" lean-forward="true" selection-start-line="35" selection-start-column="8" selection-end-line="40" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Conversation/Conversation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="491" column="45" selection-start-line="491" selection-start-column="45" selection-end-line="491" selection-end-column="45" />
+        <state relative-caret-position="295">
+          <caret line="557" column="83" selection-start-line="557" selection-start-column="83" selection-end-line="557" selection-end-column="83" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
