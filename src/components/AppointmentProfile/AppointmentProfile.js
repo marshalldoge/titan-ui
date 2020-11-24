@@ -33,6 +33,7 @@ class AppointmentProfile extends Component {
 		super(props);
 		this.goToPatientProfile = this.goToPatientProfile.bind(this);
 		this.loadAppointmentEvents = this.loadAppointmentEvents.bind(this);
+		this.loadFiles = this.loadFiles.bind(this);
 	}
 
 	state = {
@@ -149,6 +150,12 @@ class AppointmentProfile extends Component {
 				 })
 			 }).catch(function(error) {
 			console.log(error);
+		});
+	}
+
+	loadFiles(files) {
+		this.setState({
+			drawerMedia: files
 		});
 	}
 
@@ -336,6 +343,7 @@ class AppointmentProfile extends Component {
 								  doctorAppUserId={this.props.appUser.id}
 								  patientAppUserId={this.state.patient.appUser.id}
 								  loadAppointmentEvents={this.loadAppointmentEvents}
+								  loadFiles={this.loadFiles}
 							 />
 							 }
 						 </Col>
@@ -345,7 +353,9 @@ class AppointmentProfile extends Component {
 									 {this.state.appointment && this.AppointmentTimeline()}
 								 </TabPane>
 								 <TabPane tab="Media" key="2">
-									 <Gallery photos={this.state.drawerMedia} renderImage={this.imageRenderer}  />
+									 <Row className={"gallery"}>
+										 <Gallery photos={this.state.drawerMedia} renderImage={this.imageRenderer}/>
+									 </Row>
 								 </TabPane>
 								 <TabPane tab="Tratamientos" key="3">
 									 {this.Treatments()}

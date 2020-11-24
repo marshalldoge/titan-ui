@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import {Row, Col, Input, Button, Select, Drawer, DatePicker, Upload, message} from "antd";
+import {Row, Col, Input, Button, Select, Drawer, DatePicker, Upload, message, Image} from "antd";
 import { SendOutlined, PaperClipOutlined, ThunderboltOutlined, InboxOutlined, UploadOutlined } from '@ant-design/icons';
 import * as constants from "../../constants"
 import {connect} from "react-redux";
@@ -23,6 +23,7 @@ import 'firebase/firestore';
 import 'firebase/storage';
 import LoadingGif from "../../assets/gif/loading.gif";
 import Modal from "react-modal";
+import Gallery from "react-photo-gallery";
 
 const firestore = firebase.firestore();
 const storage = firebase.storage();
@@ -67,7 +68,7 @@ class Conversation extends Component {
 			 .limit(25)
 			 .onSnapshot(function(querySnapshot) {
 				 let conversationDates = {};
-
+				 let allFiles = [];
 			 	 for(let i = 0; i < querySnapshot.docs.length; i++) {
 			 	 	let creationTimeStamp = parsedFirebaseDate(querySnapshot.docs[i].data().creationTimeStamp);
 				     if(querySnapshot.docs[i].data().creationTimeStamp !== null && isToday(querySnapshot.docs[i].data().creationTimeStamp)) {
@@ -77,8 +78,18 @@ class Conversation extends Component {
 					    conversationDates[creationTimeStamp] = [];
 				    }
 					conversationDates[creationTimeStamp].push(querySnapshot.docs[i].data());
+			 	 	console.log('Message: ',querySnapshot.docs[i].data());
+			 	 	let files = querySnapshot.docs[i].data().files ? querySnapshot.docs[i].data().files : [];
+			 	 	for(let i = 0; i < files.length; i++) {
+			 	 		allFiles.push({
+						    src: files[i],
+						    width: 2,
+						    height: 3
+					    })
+				    }
 			     }
-			 	 console.log(conversationDates);
+			 	 console.log('All files: ',allFiles);
+			 	 me.props.loadFiles(allFiles);
 				 me.setState({conversationDates: conversationDates});
 			 });
 
@@ -139,7 +150,24 @@ class Conversation extends Component {
 			 });
 	};
 
+	imageRenderer = ({ index, left, top, key, photo }) => {
+		return (
+			 <Image
+				  key={index}
+				  {...photo}
+				  className={"drawer-media"}
+			 />
+		);
+	};
+
 	Message = (message,idx) => {
+		let files = message.files ? message.files.map((url,idx) => {
+			return  {
+				src: url,
+				width: 4,
+				height: 4
+			}
+		}) : [];
 		return (
 			 <Row key={idx} className={"message-ctn"}>
 				 <Col span={24} className={"message-sub-ctn"}>
@@ -150,6 +178,11 @@ class Conversation extends Component {
 					 </Row>
 					 <Row>
 						 {message.text}
+					 </Row>
+					 <Row>
+						 <Col span={23}>
+							 <Gallery photos={files} renderImage={this.imageRenderer}  />
+						 </Col>
 					 </Row>
 				 </Col>
 			 </Row>
