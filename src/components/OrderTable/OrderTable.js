@@ -23,8 +23,7 @@ class OrderTable extends Component {
             {headerName: "ID", field: "id", width: "5%"},
             {headerName: "Medicamento", field: "itemDescription", width: "30%"},
             {headerName: "Celular", field: "phone", width: "15%"},
-            {headerName: "Nombre Persona", field: "clientName", width: "20%"},
-	        {headerName: "Precio", field: "price", width: "20%"},
+            {headerName: "Nombre Persona", field: "clientName", width: "35%"},
 	        {headerName: "Mensaje",
 		        render:(row) =>
 			         <Button type="link" size={'small'} onClick={(e) => this.sendMessage(e,row)}>

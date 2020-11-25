@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {withRouter} from "react-router-dom";
 import { Icon as LegacyIcon } from '@ant-design/compatible';
+import { DashboardOutlined } from '@ant-design/icons';
 import { Layout, Menu } from "antd";
 import {getCookie, withParams, getJWtProperty} from "../../utils.js";
 import "antd/dist/antd.css";
@@ -13,7 +14,48 @@ const {Sider} = Layout;
 class Sidebar extends Component {
     state = {
         collapsed: false,
-        menuData: []
+        menuData: [
+	        {
+		        "menuItems": [],
+		        "logo": "home",
+		        "submenuTitle": "Inicio",
+		        "name": "Dashboard",
+		        "menuItemLength": 0,
+		        "id": 1
+	        },
+	        {
+		        "menuItems": [],
+		        "logo": "team",
+		        "submenuTitle": "Clientes",
+		        "name": "Client",
+		        "menuItemLength": 0,
+		        "id": 3
+	        },
+	        {
+		        "menuItems": [],
+		        "logo": "team",
+		        "submenuTitle": "Usuarios",
+		        "name": "AppUser",
+		        "menuItemLength": 0,
+		        "id": 8
+	        },
+	        {
+		        "menuItems": [],
+		        "logo": "paper-clip",
+		        "submenuTitle": "Items",
+		        "name": "Item",
+		        "menuItemLength": 0,
+		        "id": 9
+	        },
+	        {
+		        "menuItems": [],
+		        "logo": "code-sandbox",
+		        "submenuTitle": "Pedido",
+		        "name": "Order",
+		        "menuItemLength": 0,
+		        "id": 10
+	        }
+        ]
     };
 
     onCollapse = collapsed => {
@@ -22,7 +64,7 @@ class Sidebar extends Component {
     };
 
     componentDidMount = () => {
-        this.loadSidebarPermit();
+        //this.loadSidebarPermit();
     };
 
     loadSidebarPermit = () => {
