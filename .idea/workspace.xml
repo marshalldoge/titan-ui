@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa195054-435e-4753-8366-c8fc039751fc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/AppUserTable/AppUserTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppUserTable/AppUserTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ItemStock/ItemStock.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ItemStock/ItemStock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SaleTable/SaleTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SaleTable/SaleTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/AppUserProfile/AppUserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/AppUserProfile/AppUserProfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/ClientProfile/ClientProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ClientProfile/ClientProfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Item/Item.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Item/Item.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/NewOrderForm/NewOrderForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NewOrderForm/NewOrderForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/ItemManager/ItemManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ItemManager/ItemManager.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -25,111 +21,21 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/NewOrderForm/NewOrderForm.js">
+        <entry file="file://$PROJECT_DIR$/src/views/ItemManager/ItemManager.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="103" column="23" lean-forward="true" selection-start-line="103" selection-start-column="23" selection-end-line="103" selection-end-column="23" />
-              <folding>
-                <element signature="e#0#40#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/WarehouseItemTable/WarehouseItemTable.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2557">
-              <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/ItemManualManager/ItemManualManager.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1834">
-              <caret line="313" column="22" lean-forward="true" selection-start-line="313" selection-start-column="22" selection-end-line="313" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/Item/Item.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="117">
-              <caret line="6" column="73" selection-start-line="6" selection-start-column="73" selection-end-line="6" selection-end-column="73" />
-              <folding>
-                <element signature="e#0#40#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/ItemStock/ItemStock.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
-              <folding>
-                <element signature="e#0#40#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/ClientProfile/ClientProfile.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="67" column="51" lean-forward="true" selection-start-line="67" selection-start-column="51" selection-end-line="67" selection-end-column="51" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/SaleTable/SaleTable.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="206" column="35" selection-start-line="206" selection-start-column="35" selection-end-line="206" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/AppUserTable/AppUserTable.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-379">
+              <caret line="6" column="92" selection-start-line="6" selection-start-column="92" selection-end-line="6" selection-end-column="92" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/views/AppUserProfile/AppUserProfile.js">
+        <entry file="file://$PROJECT_DIR$/src/components/NewOrderForm/NewOrderForm.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="92" column="30" selection-start-line="92" selection-start-column="30" selection-end-line="92" selection-end-column="30" />
+            <state relative-caret-position="271">
+              <caret line="148" column="47" selection-start-line="148" selection-start-column="47" selection-end-line="148" selection-end-column="47" />
               <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/ModuleForm/ModuleForm.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="11" selection-start-line="11" selection-end-line="11" selection-end-column="61" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
+                <element signature="e#0#40#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -139,7 +45,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>JWT</find>
       <find>field</find>
       <find>title: ,</find>
       <find>constructor</find>
@@ -169,6 +74,7 @@
       <find>&lt;tbu</find>
       <find>looki</find>
       <find>mover item</find>
+      <find>agregar prod</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;/pos/Purchase</replace>
@@ -201,7 +107,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/ItemManualManager/_ItemManualManager.scss" />
         <option value="$PROJECT_DIR$/src/components/ItemQuantityForm/_ItemQuantityForm.scss" />
         <option value="$PROJECT_DIR$/src/components/ItemStock/_ItemStock.scss" />
         <option value="$PROJECT_DIR$/src/constants.js" />
@@ -244,7 +149,6 @@
         <option value="$PROJECT_DIR$/src/redux/reducers/clientReducer.js" />
         <option value="$PROJECT_DIR$/src/pages/AdminLayout/AdminLayout.js" />
         <option value="$PROJECT_DIR$/src/redux/reducers/itemQuantityReducer.js" />
-        <option value="$PROJECT_DIR$/src/components/NewOrderForm/NewOrderForm.js" />
         <option value="$PROJECT_DIR$/src/components/ItemManualManager/ItemManualManager.js" />
         <option value="$PROJECT_DIR$/src/views/Item/Item.js" />
         <option value="$PROJECT_DIR$/src/components/ItemStock/ItemStock.js" />
@@ -252,6 +156,8 @@
         <option value="$PROJECT_DIR$/src/components/SaleTable/SaleTable.js" />
         <option value="$PROJECT_DIR$/src/components/AppUserTable/AppUserTable.js" />
         <option value="$PROJECT_DIR$/src/views/AppUserProfile/AppUserProfile.js" />
+        <option value="$PROJECT_DIR$/src/views/ItemManager/ItemManager.js" />
+        <option value="$PROJECT_DIR$/src/components/NewOrderForm/NewOrderForm.js" />
       </list>
     </option>
   </component>
@@ -485,13 +391,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="205147000" />
+    <option name="totallyTimeSpent" value="206011000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="804" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27625087" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27625087" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -504,7 +410,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="GraphQL" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.4066092" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.4066092" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="TypeScript" order="12" />
       <window_info anchor="bottom" id="Messages" order="13" />
@@ -538,16 +444,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/views/Sale/Sale.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="15" column="5" selection-end-line="58" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Description/Description.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -867,13 +763,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/NewOrderForm/NewOrderForm.js">
+    <entry file="file://$PROJECT_DIR$/src/components/ItemManualManager/ItemManualManager.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="103" column="23" lean-forward="true" selection-start-line="103" selection-start-column="23" selection-end-line="103" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-555">
+          <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -881,13 +774,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2557">
           <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ItemManualManager/ItemManualManager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1834">
-          <caret line="313" column="22" lean-forward="true" selection-start-line="313" selection-start-column="22" selection-end-line="313" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -940,10 +826,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/AppUserProfile/AppUserProfile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="92" column="30" selection-start-line="92" selection-start-column="30" selection-end-line="92" selection-end-column="30" />
+        <state relative-caret-position="127">
+          <caret line="81" column="51" lean-forward="true" selection-start-line="81" selection-start-column="51" selection-end-line="81" selection-end-column="51" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/ItemManager/ItemManager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-379">
+          <caret line="6" column="92" selection-start-line="6" selection-start-column="92" selection-end-line="6" selection-end-column="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/NewOrderForm/NewOrderForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="148" column="47" selection-start-line="148" selection-start-column="47" selection-end-line="148" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
           </folding>
         </state>
       </provider>

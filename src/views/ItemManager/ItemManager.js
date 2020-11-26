@@ -30,9 +30,6 @@ class ItemManager extends Component{
                     <TabPane tab="Manual" key="2">
                         <ItemManualManager/>
                     </TabPane>
-                    <TabPane tab="Administrar" key="3">
-                        Content of Tab Pane 3
-                    </TabPane>
                 </Tabs>
             </div>
         );

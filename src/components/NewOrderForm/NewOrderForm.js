@@ -110,6 +110,7 @@ class NewOrderForm extends Component {
 		console.log('SearchText: ',searchText);
 		let newOptions = [];
 		for(let i = 0; i < this.props.itemNameArray.length; i++) {
+			console.log('item: ',this.props.itemNameArray[i]);
 			if(this.props.itemNameArray[i].toLowerCase().includes(searchText.toLowerCase())) {
 				newOptions.push({
 					value: this.props.itemNameArray[i]
@@ -142,7 +143,10 @@ class NewOrderForm extends Component {
 			          icon={"edit"}
 		         />
 		         <Row>
-			         <Col span={20} offset={4}>
+			         <Col span={4}>
+				         {"Celular"}
+			         </Col>
+			         <Col span={19} offset={1}>
 				         <AutoComplete
 					          options={this.state.options}
 					          style={{ width: 300 }}
@@ -154,19 +158,28 @@ class NewOrderForm extends Component {
 		         </Row>
 		         <br/>
 		         <Row>
-			         <Col span={20} offset={4}>
-				         <Input placeholder="Primer nombre" value={this.state.firstName} onChange={(e) => this.setState({firstName: e.target.value})}/>
+			         <Col span={4}>
+				         {"Nombre"}
+			         </Col>
+			         <Col span={19} offset={1}>
+				         <Input placeholder="Nombre" value={this.state.firstName} onChange={(e) => this.setState({firstName: e.target.value})}/>
 			         </Col>
 		         </Row>
 		         <br/>
 		         <Row>
-			         <Col span={20} offset={4}>
-				         <Input placeholder="Segundo nombre" value={this.state.lastName} onChange={(e) => this.setState({lastName: e.target.value})}/>
+			         <Col span={4}>
+				         {"Apellidos"}
+			         </Col>
+			         <Col span={19} offset={1}>
+				         <Input placeholder="Apellidos" value={this.state.lastName} onChange={(e) => this.setState({lastName: e.target.value})}/>
 			         </Col>
 		         </Row>
 		         <br/>
 		         <Row>
-			         <Col span={20} offset={4}>
+			         <Col span={4}>
+				         {"Medicamento"}
+			         </Col>
+			         <Col span={19} offset={1}>
 				         <AutoComplete
 					          options={this.state.optionsMedicamento}
 					          style={{ width: 500 }}
