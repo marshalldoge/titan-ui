@@ -204,7 +204,7 @@ class SaleTable extends Component {
                     loadTablePage={this.state.loadPageFunction}
                     length={this.state.length}
                     onRowClick={this.onRowClick}
-                    title={"Ventas"}
+                    title={"Pedidos"}
                     pageSize={this.props.pageSize?this.props.pageSize:Math.floor(this.state.windowHeight/50)}
                 />
             );

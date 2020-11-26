@@ -64,15 +64,12 @@ class ClientProfile extends Component {
             <div>
                 {this.state.client && this.clientDescription()}
                 <Tabs defaultActiveKey="1" onChange={this.callback}>
-                    <TabPane tab="Ventas" key="1">
+                    <TabPane tab="Pedidos" key="1">
                         {this.state.client && <SaleTable
                             idClient={this.state.client.id}
                             filterModel={"client"}
                             pageSize={10}
                         />}
-                    </TabPane>
-                    <TabPane tab="Credito" key="2">
-                        Content of Tab Pane 2
                     </TabPane>
                 </Tabs>
             </div>

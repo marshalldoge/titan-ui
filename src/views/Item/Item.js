@@ -53,9 +53,6 @@ class Item extends Component {
                     <Col span={4}>
                         {this.loadItemButton()}
                     </Col>
-                    <Col span={4}>
-                        {this.moveItemButton()}
-                    </Col>
                 </Row>
             </div>
         );

@@ -20,7 +20,8 @@ class AppUserTable extends Component {
             {headerName: "Email", field: "email", width: "20%"},
             {headerName: "Role", field: "role", width: "20%"}
         ],
-        windowHeight: document.body.clientHeight
+        windowHeight: document.body.clientHeight,
+	    pageSize: 12
     };
 
     loadClientTablePage(page) {
@@ -33,7 +34,7 @@ class AppUserTable extends Component {
         let params = {
             idCompany: this.props.idCompany,
             page: page,
-            pageSize: 25
+            pageSize: me.props.pageSize
         };
         const url = withParams(constants.BACKEND_URL + "/AppUser/findByIdCompanyPaginated", params);
         fetch(url, {
@@ -75,7 +76,7 @@ class AppUserTable extends Component {
                       length={this.props.clientCount}
                       onRowClick={this.onRowClick}
                       title={"Usuarios"}
-                      pageSize={Math.floor(this.state.windowHeight/50)}
+                      pageSize={this.state.pageSize}
                  />
              </div>
         );

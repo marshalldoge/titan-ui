@@ -26,7 +26,7 @@ class ItemStock extends Component {
             last: 1
         },
         currentPage:0,
-        pageSize: 15,
+        pageSize: 9,
 	    itemToTransform: {},
 	    isModalOpen: false,
     };

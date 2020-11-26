@@ -79,7 +79,7 @@ class AppUserProfile extends Component {
                     />
                 </Row>
                 <Tabs defaultActiveKey="1" onChange={this.callback}>
-                    <TabPane tab="Ventas" key="1">
+                    <TabPane tab="Pedidos" key="1">
                         {this.state.AppUser.id && <SaleTable
                             idAppUser={
                                 (()=>{
@@ -91,12 +91,6 @@ class AppUserProfile extends Component {
                             saleCount={this.state.AppUser.saleCount}
                         />}
                     </TabPane>
-                    <TabPane tab="Cajas" key="3">
-                        <ShiftTable
-                            idAppUser = {this.state.AppUser.id}
-                        />
-                    </TabPane>
-                    {this.ModuleConfigurationTab()}
                 </Tabs>
             </div>
         );
