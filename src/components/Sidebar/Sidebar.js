@@ -155,13 +155,12 @@ class Sidebar extends Component {
      };
 
      Logo = () => {
-         return null;
          return (
               <div>
                   <img
                        className = "logo"
                        alt = "SABONIS"
-                       //src={require("../../assets/brandLogos/sabonis.jpg")}
+                       src={require("../../assets/logos/SidebarLogo.png")}
                   />
               </div>
          );
