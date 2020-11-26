@@ -2,15 +2,17 @@ import React, {Component } from "react";
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Form } from '@ant-design/compatible';
 import '@ant-design/compatible/assets/index.css';
-import { Input, Tooltip, message } from "antd";
+import { Input, Tooltip, message, Row, Col, AutoComplete } from "antd";
 import "antd/dist/antd.css";
 import "../../stylesheets/layout/_adminLayout.scss";
 // routes config
 import * as constants from "../../constants";
 import {getCookie} from "../../utils";
+import {withRouter} from "react-router";
+import {connect} from "react-redux";
 
 const TTitle = React.lazy(() => import("../TTitle/TTitle"));
-const Button= React.lazy(() => import("../TButton/TButton"));
+const TButton= React.lazy(() => import("../TButton/TButton"));
 
 class NewOrderForm extends Component {
 
@@ -21,7 +23,14 @@ class NewOrderForm extends Component {
 
     state = {
         confirmDirty: false,
-        autoCompleteResult: []
+        autoCompleteResult: [],
+	    cellphone: "",
+	    itemValue: "",
+	    firstName: "",
+	    lastName: "",
+	    options: "",
+	    optionsMedicamento: "",
+	    cellPhoneValue: ""
     };
 
 	goToOrder = () => {
@@ -29,78 +38,102 @@ class NewOrderForm extends Component {
 	};
 
     handleSubmit = e => {
-        this.props.form.validateFields((err, values) => {
-            if (!err) {
-                let me = this;
-                //console.log("Received values of form: ", values);
+	    let me = this;
+	    //console.log("Received values of form: ", values);
 
-                // Default options are marked with *
-                var data = JSON.stringify({
-	                itemDescription: values.itemDescription,
-                    phone: values.phone,
-	                clientName: values.firstName + " " +
-		                 values.secondName + " " +
-		                 values.secondName + " " +
-		                 values.secondLastName,
-	                price: Math.round(Math.random()*100+10 * 100) / 100
+	    // Default options are marked with *
+	    var data = JSON.stringify({
+		    itemDescription: this.state.itemValue,
+	        phone: this.state.cellPhoneValue,
+	        clientName: this.state.firstName + " " + this.state.lastName,
+	        active: true
+	    });
+	    var url = constants.BACKEND_URL+"/Order";
+	    fetch(url, {
+		    method: "POST",
+		    body: data,
+		    headers: {
+			    "Content-Type": "application/json; charset=utf-8",
+			    "Authorization":getCookie("JWT")
+		    }
+	    }).then(function (res) {
+		    if (res.status == "200") {
+			    console.log("Success");
+			    me.goToOrder();
+			    message.success("Se ha guardado el pedido correctamente.");
+			    //var jwt = parseJwt(res.headers.get("Authorization"));
+			    //var json=JSON.parse(jwt);
 
-                });
-                var url = constants.BACKEND_URL+"/Order";
-                fetch(url, {
-                    method: "POST",
-                    body: data,
-                    headers: {
-                        "Content-Type": "application/json; charset=utf-8",
-	                    "Authorization":getCookie("JWT")
-                    }
-                }).then(function (res) {
-                    if (res.status == "200") {
-                        console.log("Success");
-                        me.goToOrder();
-                        message.success("Se ha guardado el pedido correctamente.");
-                        //var jwt = parseJwt(res.headers.get("Authorization"));
-                        //var json=JSON.parse(jwt);
-
-                    } else {
-                        /*var ele = document.getElementById("mensaje");
-                        var alerta = document.createElement("DIV");
-                        alerta.className = "alert alert-danger";
-                        alerta.innerHTML = "Su contraseña o usuario son incorrectos.";
-                        console.log("Mostrando alerta: ", alerta);
-                        ele.appendChild(alerta);
-                    */
-                    }
-                });
-            }
-        });
+		    } else {
+			    /*var ele = document.getElementById("mensaje");
+				var alerta = document.createElement("DIV");
+				alerta.className = "alert alert-danger";
+				alerta.innerHTML = "Su contraseña o usuario son incorrectos.";
+				console.log("Mostrando alerta: ", alerta);
+				ele.appendChild(alerta);
+			*/
+		    }
+	    });
     };
 
+	onSearch = (searchText) => {
+		let newOptions = [];
+		for(let i = 0; i < this.props.phoneArray.length; i++) {
+			if(this.props.phoneArray[i].includes(searchText)) {
+				newOptions.push({
+					value: this.props.phoneArray[i]
+				});
+			}
+		}
+		this.setState({
+			options: !searchText ? [] : newOptions
+		});
+	};
+
+	onSelect = (data) => {
+		console.log('onSelect', data);
+		if(this.props.phoneClientHashMap[data] !== undefined) {
+			this.setState({
+				firstName: this.props.phoneClientHashMap[data].firstName,
+				lastName: this.props.phoneClientHashMap[data].lastName,
+				cellPhoneValue: data
+			})
+		}
+	};
+	onChange = (data) => {
+		this.setState({
+			cellPhoneValue: ""
+		})
+	};
+
+	onSearchMedicamento = (searchText) => {
+		console.log('SearchText: ',searchText);
+		let newOptions = [];
+		for(let i = 0; i < this.props.itemNameArray.length; i++) {
+			if(this.props.itemNameArray[i].toLowerCase().includes(searchText.toLowerCase())) {
+				newOptions.push({
+					value: this.props.itemNameArray[i]
+				});
+			}
+		}
+		this.setState({
+			optionsMedicamento: !searchText ? [] : newOptions
+		});
+	};
+
+	onSelectMedicamento = (data) => {
+		console.log('onSelect', data);
+		this.setState({
+			itemValue: data
+		})
+	};
+	onChangeMedicamento = (data) => {
+		this.setState({
+			itemValue: ""
+		})
+	};
 
     render() {
-        const {getFieldDecorator} = this.props.form;
-
-        const formItemLayout = {
-            labelCol: {
-                xs: {span: 24},
-                sm: {span: 8}
-            },
-            wrapperCol: {
-                xs: {span: 24},
-                sm: {span: 16}
-            }
-        };
-        const tailFormItemLayout = {
-            wrapperCol: {
-                xs: {
-                    span: 24,
-                    offset: 0
-                },
-                sm: {
-                    span: 16,
-                    offset: 8
-                }
-            }
-        };
         return (
 	         <div>
 		         <TTitle
@@ -108,94 +141,62 @@ class NewOrderForm extends Component {
 			          size={"big"}
 			          icon={"edit"}
 		         />
-	            <Form {...formItemLayout} onSubmit={this.handleSubmit}>
-	                <Form.Item
-	                    label={
-	                        <span>
-	                            Primer Nombre&nbsp;
-	                            <Tooltip title="Nombres del usuario">
-	                                 <QuestionCircleOutlined />
-	                            </Tooltip>
-	                        </span>
-	                    }
-	                >
-	                    {getFieldDecorator('firstName', {
-	                        rules: [{required: true, message: 'Porfavor coloca el primer nombre.', whitespace: true}]
-	                    })(<Input/>)}
-	                </Form.Item>
-	                <Form.Item
-	                    label={
-	                        <span>
-	                            Segundo Nombre&nbsp;
-	                            <Tooltip title="Nombres del usuario">
-	                                 <QuestionCircleOutlined />
-	                            </Tooltip>
-	                        </span>
-	                    }
-	                >
-	                    {getFieldDecorator('secondName', {
-	                        rules: [{required: true, message: 'Porfavor coloca el segundo nombre.!', whitespace: true}]
-	                    })(<Input/>)}
-	                </Form.Item>
-	                <Form.Item
-	                    label={
-	                        <span>
-	                            Primer apellido&nbsp;
-	                            <Tooltip title="Apellidos del usuario.">
-	                                 <QuestionCircleOutlined />
-	                            </Tooltip>
-	                        </span>
-	                    }
-	                >
-	                    {getFieldDecorator('lastName', {
-	                        rules: [{required: true, message: 'Porfavor coloca el primer apellido!', whitespace: true}]
-	                    })(<Input/>)}
-	                </Form.Item>
-	                <Form.Item
-	                    label={
-	                        <span>
-	                            Segundo apellido&nbsp;
-	                            <Tooltip title="Apellidos del usuario.">
-	                                 <QuestionCircleOutlined />
-	                            </Tooltip>
-	                        </span>
-	                    }
-	                >
-	                    {getFieldDecorator('secondLastName', {
-	                        rules: [{required: true, message: 'Porfavor coloca el segundo apellido!', whitespace: true}]
-	                    })(<Input/>)}
-	                </Form.Item>
-		            <Form.Item
-			             label={
-				             <span>
-	                            Medicamento(s):&nbsp;
-					             <Tooltip title="Medicamento para pedir">
-	                                 <QuestionCircleOutlined />
-	                            </Tooltip>
-	                        </span>
-			             }
-		            >
-			            {getFieldDecorator('itemDescription', {
-				            rules: [{required: true, message: 'Pon un medicamento', whitespace: true}]
-			            })(<Input/>)}
-		            </Form.Item>
-	                <Form.Item label="Numero Celular">
-	                    {getFieldDecorator('phone', {
-	                        rules: [{required: true, message: 'Pon un número!'}]
-	                    })(<Input addonBefore={"591"} style={{width: '100%'}}/>)}
-	                </Form.Item>
-	                <Form.Item {...tailFormItemLayout}>
-		                <Button
-			                 onClick={this.handleSubmit}
-			                 label={"Guardar Pedido"}
-			                 size={"expanded"}
-		                />
-	                </Form.Item>
-	            </Form>
+		         <Row>
+			         <Col span={20} offset={4}>
+				         <AutoComplete
+					          options={this.state.options}
+					          style={{ width: 300 }}
+					          onSelect={this.onSelect}
+					          onSearch={this.onSearch}
+					          placeholder="Celular"
+				         />
+			         </Col>
+		         </Row>
+		         <br/>
+		         <Row>
+			         <Col span={20} offset={4}>
+				         <Input placeholder="Primer nombre" value={this.state.firstName} onChange={(e) => this.setState({firstName: e.target.value})}/>
+			         </Col>
+		         </Row>
+		         <br/>
+		         <Row>
+			         <Col span={20} offset={4}>
+				         <Input placeholder="Segundo nombre" value={this.state.lastName} onChange={(e) => this.setState({lastName: e.target.value})}/>
+			         </Col>
+		         </Row>
+		         <br/>
+		         <Row>
+			         <Col span={20} offset={4}>
+				         <AutoComplete
+					          options={this.state.optionsMedicamento}
+					          style={{ width: 500 }}
+					          onSelect={this.onSelectMedicamento}
+					          onSearch={this.onSearchMedicamento}
+					          placeholder="Item"
+				         />
+			         </Col>
+		         </Row>
+		         <br/>
+		         <Row>
+			         <Col span={20} offset={4}>
+				         <TButton
+					          label={"Guardar Pedido"}
+					          size={"medium"}
+					          onClick={this.handleSubmit}
+					          type={"inverse"}
+				         />
+			         </Col>
+		         </Row>
+
 	         </div>
         );
     }
 }
-
-const WNewUserForm = Form.create({name: 'Enviar'})(NewOrderForm);
-export default WNewUserForm;
+const mapStateToProps = state => {
+	const { clientReducer, itemQuantityReducer } = state;
+	const {phoneArray, phoneClientHashMap} = clientReducer;
+	const {nameItemHashMap, itemNameArray} = itemQuantityReducer;
+	console.log('itemQuantityReducer: ',itemQuantityReducer);
+	return {phoneArray, phoneClientHashMap, nameItemHashMap, itemNameArray};
+};
+export default withRouter(connect(mapStateToProps)(NewOrderForm));

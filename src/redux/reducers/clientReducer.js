@@ -7,7 +7,9 @@ const initialState = {
     clientHashMap:{},
     clientBillName:[],
     nitClientHashMap:{},
-    clientNit:[]
+    clientNit:[],
+	phoneClientHashMap: {},
+	phoneArray: []
 };
 
 export default function(state = initialState, action) {
@@ -25,6 +27,7 @@ export default function(state = initialState, action) {
             //console.log("SET_MODULE: The content to be updated: ",action);
             const clientHashMap = action.payload;
             //console.log("Current MODULE ",modules);
+	        console.log('Client hashmap: ',clientHashMap);
             return {
                 ...state,
                 clientHashMap:clientHashMap
@@ -41,11 +44,13 @@ export default function(state = initialState, action) {
         }
         case SET_CLIENT_NIT_ARRAY: {
             //console.log("SET_MODULE: The content to be updated: ",action);
-            const clientNit = action.payload;
+            const {clientNit, phoneArray, phoneClientHashMap} = action.payload;
             //console.log("clientNit to save in reducer: ",clientNit);
             return {
                 ...state,
-                clientNit: clientNit
+                clientNit: clientNit,
+	            phoneArray: phoneArray,
+	            phoneClientHashMap: phoneClientHashMap
             };
         }
         case SET_NIT_CLIENT_HASHMAP: {

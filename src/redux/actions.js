@@ -79,9 +79,9 @@ export const setClientBillNameArray = array => ({
     payload:array
 });
 
-export const setClientNitArray = array => ({
+export const setClientNitArray = payload => ({
     type: SET_CLIENT_NIT_ARRAY,
-    payload:array
+    payload:payload
 });
 export const setNitClientHashMap = hashmap => ({
     type : SET_NIT_CLIENT_HASHMAP,

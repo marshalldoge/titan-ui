@@ -115,19 +115,28 @@ class AdminLayout extends Component {
             .then(function(data) {
                 //console.log("Result of ")
                 me.props.setClientData(data);
+                console.log('CLIENT DATA ',data);
                 let clientBillName = [];
                 let clientNit= [];
                 let nitClientHashMap = {};
+                let phoneClientHashMap = {};
+                let phoneArray = [];
                 for (let client in data) {
                     if (data.hasOwnProperty(client)) {
                         //console.log(key + " -> " + p[key]);
+	                    phoneClientHashMap[data[client]["cellphone"]]=data[client];
+	                    phoneArray.push(data[client]["cellphone"]);
                         clientBillName.push(data[client]["billName"]);
                         clientNit.push(data[client]["nit"]);
                         nitClientHashMap[data[client]["nit"]]=data[client];
                     }
                 }
                 console.log("clientNit made in request: ",clientNit);
-                me.props.setClientNitArray(clientNit);
+                me.props.setClientNitArray({
+	                clientNit: clientNit,
+	                phoneArray: phoneArray,
+	                phoneClientHashMap: phoneClientHashMap
+                });
                 me.props.setClientBillNameArray(clientBillName);
                 me.props.setNitClientHashMap(nitClientHashMap);
                 me.setState ((prevState) =>{
@@ -215,6 +224,8 @@ class AdminLayout extends Component {
                 me.props.setItemQuantityHashMap(data);
                 console.log("ItemQuanitity data: ",data);
                 let itemQuantityCode = {};
+                let nameItemHashMap = {};
+                let itemNameArray = [];
                 for (let warehouse in data) {
                     if (data.hasOwnProperty(warehouse)) {
                         //console.log(key + " -> " + p[key]);
@@ -222,13 +233,20 @@ class AdminLayout extends Component {
                         for (let item in data[warehouse]) {
                             if (data[warehouse].hasOwnProperty(item)) {
                                 //console.log(key + " -> " + p[key]);
+	                            //console.log('ITEM: ',item);
                                 itemQuantityCode[warehouse].push(item);
+	                            itemNameArray.push(data[warehouse][item].name);
+	                            nameItemHashMap[data[warehouse][item].name] = data[warehouse][item];
                             }
                         }
                     }
                 }
                 console.log("Item codes: ",itemQuantityCode);
-                me.props.setItemQuantityCode(itemQuantityCode);
+                me.props.setItemQuantityCode({
+	                itemQuantityCode: itemQuantityCode,
+	                nameItemHashMap: nameItemHashMap,
+	                itemNameArray: itemNameArray
+                });
                 me.setState ((prevState) =>{
                     prevState.loadedServices = prevState.loadedServices+1;
                     console.log(":V5");

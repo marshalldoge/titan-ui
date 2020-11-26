@@ -2,7 +2,9 @@ import {SET_ITEM_QUANTITY, SET_ITEM_QUANTITY_CODE } from "../actionTypes";
 
 const initialState = {
     itemQuantityHashMap: {},
-    itemQuantityCode: {}
+    itemQuantityCode: {},
+	nameItemHashMap: {},
+	itemNameArray: []
 };
 
 export default function(state = initialState, action) {
@@ -18,11 +20,14 @@ export default function(state = initialState, action) {
         }
         case SET_ITEM_QUANTITY_CODE:{
             //console.log("The content to be updated: ",action);
-            const itemQuantityCode = action.payload;
+	        //console.log('payload: ',action.payload);
+            const {itemQuantityCode, nameItemHashMap, itemNameArray} = action.payload;
             //console.log("Current appUser ",idAppUser);
             return {
                 ...state,
-                itemQuantityCode: itemQuantityCode
+                itemQuantityCode: itemQuantityCode,
+	            nameItemHashMap: nameItemHashMap,
+	            itemNameArray: itemNameArray
             };
         }
         default:
