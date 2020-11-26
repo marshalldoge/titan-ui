@@ -6,6 +6,7 @@ import * as constants from "../../constants"
 import {connect} from "react-redux";
 import "antd/dist/antd.css";
 import "./_OrderTable.scss";
+import moment from 'moment';
 
 const MessageModal = React.lazy(() => import("../../components/MessageModal/MessageModal"));
 const PaginatedLazyTable= React.lazy(() => import("../../components/PaginatedLazyTable/PaginatedLazyTable"));
@@ -21,9 +22,16 @@ class OrderTable extends Component {
         data: [],
         columnDefs: [
             {headerName: "ID", field: "id", width: "5%"},
-            {headerName: "Medicamento", field: "itemDescription", width: "30%"},
+            {headerName: "Medicamento", field: "itemDescription", width: "25%"},
             {headerName: "Celular", field: "phone", width: "15%"},
-            {headerName: "Nombre Persona", field: "clientName", width: "35%"},
+            {headerName: "Nombre Persona", field: "clientName", width: "20%"},
+            {headerName: "Fecha",
+	            render:(row) => {
+            	    return (
+		                 <p>{moment(row["creationTimeStamp"]).format("d/MM/YYYY")}</p>
+	                )
+	            },
+	            width: "20%"},
 	        {headerName: "Mensaje",
 		        render:(row) =>
 			         <Button type="link" size={'small'} onClick={(e) => this.sendMessage(e,row)}>

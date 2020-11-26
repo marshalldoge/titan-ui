@@ -17,11 +17,11 @@ class ClientTable extends Component {
         columnDefs: [
             {headerName: "ID", field: "id", width: "10%"},
             {headerName: "Nombre", field: "fullName", width: "30%"},
-            {headerName: "Nit", field: "nit", width: "20%"},
-            {headerName: "Celular", field: "cellphone", width: "20%"},
-            {headerName: "Ultima Venta", field: "lastSaleTimeStamp", width: "20%"}
+            {headerName: "Celular", field: "cellphone", width: "30%"},
+            {headerName: "Ultima Venta", field: "lastSaleTimeStamp", width: "30%"}
         ],
-        windowHeight: document.body.clientHeight
+        windowHeight: document.body.clientHeight,
+	    pageSize: 12
     };
 
     loadClientTablePage(page) {
@@ -33,7 +33,8 @@ class ClientTable extends Component {
         let me = this;
         let params = {
             idCompany: this.props.idCompany,
-            page: page
+            page: page,
+	        pageSize: this.props.pageSize
         };
         const url = withParams(constants.BACKEND_URL + "/Client/findByIdCompanyPaginated", params);
         fetch(url, {
@@ -77,7 +78,7 @@ class ClientTable extends Component {
                     length={this.props.clientCount}
                     onRowClick={this.onRowClick}
                     title={"Clientes"}
-                    pageSize={Math.floor(this.state.windowHeight/50)}
+                    pageSize={this.state.pageSize}
                 />
             </div>
         );
