@@ -232,7 +232,7 @@ class Dashboard extends Component {
 					 tickSize: 5,
 					 tickPadding: 5,
 					 tickRotation: 0,
-					 legend: 'Dias Octubre',
+					 legend: 'Dias Noviembre',
 					 legendOffset: 36,
 					 legendPosition: 'middle'
 				 }}

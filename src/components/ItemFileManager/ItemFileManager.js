@@ -2,7 +2,7 @@ import React, { Component} from "react";
 import { withRouter} from "react-router-dom";
 import { Form } from '@ant-design/compatible';
 import '@ant-design/compatible/assets/index.css';
-import { Button, Input, Select } from "antd";
+import { Button, Input, Select, message } from "antd";
 import { getCookie} from "../../utils.js";
 import "antd/dist/antd.css";
 import {withParams} from "../../utils";
@@ -52,7 +52,10 @@ class ItemFileManager extends Component {
              .then(function (response) {
                  //console.log("me in getpage fetch is ",me);
                  if(response.success){
-                     alert("El archivo se ha subido correctamente")
+                 	message.success("Los medicamentos se han añadido correctamente al inventario.");
+				    me.props.history.push({
+					    pathname: "/Item"
+				    })
                  }else{
                      alert("Ha habido un error: " + response.message);
                  }
@@ -147,6 +150,7 @@ class ItemFileManager extends Component {
                     <Form.Item label="Nota:" {...formItemLayout}>
                         <TextArea rows={2} />
                     </Form.Item>
+	                <h1>Sucursal:</h1>
                     <Select
                         placeholder= {"Almacen donde guardar los items"}
                         defaultActiveFirstOption={false}

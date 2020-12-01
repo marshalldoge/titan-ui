@@ -21,7 +21,7 @@ class AppUserTable extends Component {
             {headerName: "Role", field: "role", width: "20%"}
         ],
         windowHeight: document.body.clientHeight,
-	    pageSize: 12
+	    pageSize: 11
     };
 
     loadClientTablePage(page) {

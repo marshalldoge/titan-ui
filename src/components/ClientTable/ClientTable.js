@@ -16,9 +16,8 @@ class ClientTable extends Component {
         data: [],
         columnDefs: [
             {headerName: "ID", field: "id", width: "10%"},
-            {headerName: "Nombre", field: "fullName", width: "30%"},
-            {headerName: "Celular", field: "cellphone", width: "30%"},
-            {headerName: "Ultima Venta", field: "lastSaleTimeStamp", width: "30%"}
+            {headerName: "Nombre", field: "fullName", width: "45%"},
+            {headerName: "Celular", field: "cellphone", width: "45%"},
         ],
         windowHeight: document.body.clientHeight,
 	    pageSize: 12

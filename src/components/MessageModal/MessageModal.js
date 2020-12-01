@@ -71,7 +71,7 @@ class TransformItemModal extends Component {
 				marginRight           : '-50%',
 				transform             : 'translate(-50%, -50%)',
 				width                 : '450px',
-				height                : '230px'
+				height                : '250px'
 			}
 		};
 		return (

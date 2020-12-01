@@ -102,7 +102,7 @@ class NewOrderForm extends Component {
 	};
 	onChange = (data) => {
 		this.setState({
-			cellPhoneValue: ""
+			cellPhoneValue: data
 		})
 	};
 
@@ -130,7 +130,7 @@ class NewOrderForm extends Component {
 	};
 	onChangeMedicamento = (data) => {
 		this.setState({
-			itemValue: ""
+			itemValue: data
 		})
 	};
 
@@ -153,6 +153,7 @@ class NewOrderForm extends Component {
 					          onSelect={this.onSelect}
 					          onSearch={this.onSearch}
 					          placeholder="Celular"
+					          onChange={this.onChange}
 				         />
 			         </Col>
 		         </Row>
@@ -186,6 +187,7 @@ class NewOrderForm extends Component {
 					          onSelect={this.onSelectMedicamento}
 					          onSearch={this.onSearchMedicamento}
 					          placeholder="Item"
+					          onChange={this.onChangeMedicamento}
 				         />
 			         </Col>
 		         </Row>
