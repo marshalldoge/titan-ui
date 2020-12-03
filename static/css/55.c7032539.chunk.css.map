@@ -1,0 +1,1 @@
+{"version":3,"sources":["_Login.scss"],"names":[],"mappings":"AAAA,UACE,WAAY,CACZ,UAAW,CACX,gBAAiB,CAClB,WAEC,YAAa,CACb,WAAY","file":"55.c7032539.chunk.css","sourcesContent":[".loginCtn {\n  height: 100%;\n  width: 100%;\n  min-height: 100vh;\n}\n.loginLogo {\n  height: 240px;\n  width: 240px;\n}\n"]}

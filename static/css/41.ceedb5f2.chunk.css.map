@@ -1,0 +1,1 @@
+{"version":3,"sources":["_ManualTable.scss"],"names":[],"mappings":"AAGG,UAGD,qBAAsB","file":"41.ceedb5f2.chunk.css","sourcesContent":[".tr {\n  &:hover {\n    background-color: grey;\n  }\n}\n.tr:hover {\n  background-color: grey;\n}\n"]}
