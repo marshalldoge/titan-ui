@@ -189,10 +189,10 @@ class AppointmentTable extends Component {
 								 {this.FieldValue("Nombre: ",appt.patient.appUser.firstName+" "+appt.patient.appUser.lastName)}
 							 </Col>
 							 <Col span={8}>
-								 {this.FieldValue("Género: ","Masculino")}
+								 {this.FieldValue("Género: ",appt.patient.appUser.genre)}
 							 </Col>
 							 <Col span={8}>
-								 {this.FieldValue("Edad: ","24")}
+								 {this.FieldValue("Edad: ",getAge(appt.patient.appUser.birthDate))}
 							 </Col>
 						 </Row>
 					 </Col>
@@ -215,12 +215,7 @@ class AppointmentTable extends Component {
 					 <Col span={6} style={{marginTop: 10}}>
 						 <Row align="bottom">
 							 <Col span={24}>
-								 <TButton
-									  type={"inverse"}
-									  label={"Remitir"}
-									  size={"expanded"}
-									  inverse={true}
-								 />
+
 							 </Col>
 						 </Row>
 						 <br />

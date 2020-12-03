@@ -142,7 +142,7 @@ export function parsedFirebaseDate(unixTimeStamp) {
 	return dayName + ", "+monthName+" "+day;
 }
 export function getAge(timestamp) {
-	return moment(timestamp).diff(moment(),'years');
+	return moment().diff(moment(timestamp),'years');
 }
 export function isToday(unixTimeStamp) {
 	let timestamp = moment.unix(unixTimeStamp.seconds);
