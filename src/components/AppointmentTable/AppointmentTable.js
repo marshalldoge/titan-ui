@@ -166,6 +166,10 @@ class AppointmentTable extends Component {
 
 	onTakeAppointment = (e,appt) => {
 		this.addDoctorToAppt(appt);
+		this.props.history.push({
+			pathname: "appointment_profile",
+			search: "?appointmentId=" + appt.id+"&patientId="+appt.patient.id
+		})
 	};
 
 
