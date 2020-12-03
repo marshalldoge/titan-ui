@@ -47,8 +47,9 @@ class AppUserForm extends Component {
                     headers: {
                         "Content-Type": "application/json; charset=utf-8"
                     }
-                }).then(function (res) {
-                    if (res.status === "200") {
+                }).then(response => response.json())
+	                 .then(function(data) {
+                    if (data.success) {
                         console.log("Success");
                         //var jwt = parseJwt(res.headers.get("Authorization"));
                         //var json=JSON.parse(jwt);
@@ -70,7 +71,7 @@ class AppUserForm extends Component {
     goToAppUserTable = () => {
         console.log("THIS APPUSER PROFILE: ",this);
         this.props.history.push({
-            pathname: "Usuarios"
+            pathname: "/AppUser"
         })
     };
 

@@ -229,6 +229,7 @@ class PaginatedLazyTable extends Component {
                  </div>
                  <br/>
                  <br/>
+                 <br/>
                  {this.pagination()}
              </div>
         );
