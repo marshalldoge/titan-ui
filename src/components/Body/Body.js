@@ -65,7 +65,7 @@ class Body extends Component {
 	                    <Suspense fallback={this.loading()}>
 		                    <Switch>
 			                    {this.mapRoutes()}
-			                    <Redirect exact from="/AdminPage" to="/AdminPage/dashboard"/>
+			                    <Redirect exact from="/appointment" to="/appointment"/>
 		                    </Switch>
 	                    </Suspense>
                     </Col>

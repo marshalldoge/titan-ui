@@ -7,6 +7,12 @@
 .field-name {
   font-weight: 700;
 }
+.treatments-ctn {
+  height: 80%;
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
 .treatment-card-ctn {
   border-radius: 2px;
   border-width: 1px;

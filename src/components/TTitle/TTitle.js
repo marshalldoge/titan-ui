@@ -12,7 +12,7 @@ class TTitle extends Component {
 		return (
 			 <h1 className={"tTitle "+(this.props.size?this.props.size:"")} onClick={this.props.onClick}>
 				 {this.props.label}
-				 {this.Icon()}
+				 <span className={"t-title-icon"}>{this.Icon()}</span>
 			 </h1>
 		);
 	}

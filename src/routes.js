@@ -58,8 +58,8 @@ const SearchAppointment = React.lazy(() => import('./views/SearchAppointment/Sea
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
-    { path: '/', exact: true, name: 'Home' },
-    { path: '/home', name: 'Dashboard', component: Dashboard },
+    { path: '/appointment', exact: true, name: 'Home', component: Appointment },
+    { path: '/appointment', name: 'Dashboard', component: Appointment },
     /*
         { path: '/theme', exact: true, name: 'Theme', component: Colors },
     */

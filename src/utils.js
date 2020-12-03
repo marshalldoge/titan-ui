@@ -128,12 +128,12 @@ export function getTime(timestamp) {
 	return time;
 }
 export function parsedFirebaseTime(unixTimeStamp) {
-	if(unixTimeStamp === null) return "--";
+	if(unixTimeStamp === null || unixTimeStamp === undefined) return "--";
 	let time = moment.unix(unixTimeStamp.seconds).format('HH:mm');
 	return time;
 }
 export function parsedFirebaseDate(unixTimeStamp) {
-	if(unixTimeStamp === null) return "--";
+	if(unixTimeStamp === null || unixTimeStamp === undefined) return "--";
 	let timestamp = moment.unix(unixTimeStamp.seconds);
 	timestamp.locale('es');
 	let dayName = camelize(timestamp.clone().format('dddd'));

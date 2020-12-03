@@ -301,7 +301,11 @@ class AppointmentProfile extends Component {
 	Treatments = () => {
 		if(this.state.treatments === null) return null;
 		let treatments = this.state.treatments.map((treatment, idx) => this.TreatmentCard(treatment,idx));
-		return treatments;
+		return (
+			 <div className={"treatments-ctn"}>
+				 {treatments}
+			 </div>
+		);
 	};
 
 	render() {

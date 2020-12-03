@@ -80,9 +80,7 @@ class Sidebar extends Component {
                 	//this.Logo()
                 }
 	            <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-		            <Menu.Item key="1" icon={<HomeOutlined />} onClick={() => this.props.handleActiveSubmenu("home")}>
-			            Inicio
-		            </Menu.Item>
+
 		            <Menu.Item key="2" icon={<UserOutlined />} onClick={() => this.props.handleActiveSubmenu("searchAppointment")}>
 			            Mis consultas
 		            </Menu.Item>

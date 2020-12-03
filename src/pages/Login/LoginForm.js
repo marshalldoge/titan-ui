@@ -48,7 +48,7 @@ class LoginForm extends Component {
                 //var jwt = parseJwt(res.headers.get("Authorization"));
                 //var json=JSON.parse(jwt);
                 setCookie("JWT", res.headers.get("Authorization"), 1);
-                const {from} = me.props.location.state || {from: {pathname: "/"}};
+                const {from} = me.props.location.state || {from: {pathname: "/searchAppointment"}};
                 me.props.history.push(from);
 
                 //Updatign reducer

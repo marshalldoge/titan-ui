@@ -84,7 +84,7 @@ class Conversation extends Component {
 			 	 		allFiles.push({
 						    src: files[i],
 						    width: 2,
-						    height: 3
+						    height: 2
 					    })
 				    }
 			     }
@@ -411,8 +411,6 @@ class Conversation extends Component {
 							  placeholder={"Escoja la acción..."}
 						 >
 							 <Option value="0">Crear tratamiento</Option>
-							 <Option value="1">Notificar</Option>
-							 <Option value="2">Mandar correo con contactos</Option>
 						 </Select>
 					 </Col>
 				 </Row>
