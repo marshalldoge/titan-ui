@@ -457,7 +457,7 @@ class AppointmentTable extends Component {
 				 <br/>
 				 <Row>
 					 <Col span={24}>
-						 <Gallery photos={this.state.drawerMedia} renderImage={this.imageRenderer}  />
+
 					 </Col>
 				 </Row>
 			 </Drawer>
